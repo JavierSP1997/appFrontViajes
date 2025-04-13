@@ -44,3 +44,11 @@
   button.btn-secondary:hover {
     background-color: var(--color-enlace-hover);
   }
+  
+  footer {
+    background-color: var(--color-fondo-pie-pagina);
+    color: var(--color-boton-texto);
+    padding: 20px;
+    text-align: center;
+  }
+
