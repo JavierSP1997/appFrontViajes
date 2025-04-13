@@ -1,7 +1,15 @@
-<nav>
-    <ul>
-        <li>
-            <a routerLink="/editar-perfil-usuario">Editar Perfil</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex">
+    <h2 class="mx-3">Mi Perfil</h2>
+    <ul class="d-flex">
+        <li class="list-unstyled mx-3">
+            <a routerLink="editar">Editar</a>
+        </li>
+        <li class="list-unstyled mx-3">
+            <a routerLink="">Mis Viajes</a>
+        </li>
+        <li class="list-unstyled mx-3">
+            <a routerLink="home">Inicio</a>
         </li>
     </ul>
 </nav>
+<router-outlet></router-outlet>
