@@ -10,29 +10,28 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class EditUserProfileComponent {
   
   perfilUsuarioForm: FormGroup = new FormGroup({
-    name: new FormControl('', [
-      Validators.required
+    name: new FormControl('Pepita', [
     ]),
     email: new FormControl('', [
-      Validators.required
+
     ]),
     password: new FormControl('', [
-      Validators.required
+
     ]),
     description: new FormControl('', [
-      Validators.required
+
     ]),
     gender: new FormControl('', [
-      Validators.required
+
     ]),
-    hobbies: new FormControl('', [
-      Validators.required
+    hobbies: new FormControl('baloncesto', [
+
     ]),
-    pets: new FormControl('', [
-      Validators.required
+    pets: new FormControl('true', [
+
     ]),
     photo: new FormControl('', [
-      Validators.required
+
     ]),
   })
   
