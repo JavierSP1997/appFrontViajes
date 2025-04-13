@@ -1,22 +1,22 @@
 :root {
     /* Colores principales */
-    --color-fondo-principal: #F5E1C0; /* Fondo principal (color hueso) */
-    --color-titulo-principal: #6B8E23; /* Título principal (verde oliva oscuro) */
-    --color-titulo-secundario: #8FBC8F; /* Título secundario (verde claro pastel) */
-    --color-texto: #2F4F4F; /* Texto principal (verde oscuro) */
+    --color-fondo-principal: #FAF9F6; /* Fondo principal (hueso suave claro) */
+    --color-titulo-principal: #3D5A5D; /* Título principal (verde oscuro y sofisticado) */
+    --color-titulo-secundario: #f0a469; /* Título secundario (naranja cálido) */
+    --color-texto: #333333; /* Texto principal (gris oscuro para buen contraste) */
     
     /* Colores de botones */
-    --color-boton-fondo: #9ACD32; /* Fondo de botones (verde claro) */
+    --color-boton-fondo: #00BFAE; /* Fondo de botones (verde menta brillante) */
     --color-boton-texto: #FFFFFF; /* Texto de botones (blanco) */
-    --color-enlace: #6B8E23; /* Enlaces (verde oliva oscuro) */
-    --color-enlace-hover: #8FBC8F; /* Enlaces al pasar el ratón (verde claro pastel) */
+    --color-enlace: #FF7F50; /* Enlaces (coral suave) */
+    --color-enlace-hover: #FF6347; /* Enlaces al pasar el ratón (tomate suave) */
     
     /* Fondos y secciones */
-    --color-fondo-seccion: #F0E68C; /* Fondo de secciones (amarillo hueso claro) */
-    --color-fondo-tarjeta: #98FB98; /* Fondo de tarjetas (verde pastel claro) */
-    --color-fondo-pie-pagina: #6B8E23; /* Fondo del pie de página (verde oliva oscuro) */
+    --color-fondo-seccion: #E9F6EF; /* Fondo de secciones (verde suave pastel) */
+    --color-fondo-tarjeta: #e9c307; /* Fondo de tarjetas (amarillo suave y cálido) */
+    --color-fondo-pie-pagina: #3D5A5D; /* Fondo del pie de página (verde oscuro) */
     
     /* Colores de bordes y sombras */
-    --color-borde: #8FBC8F; /* Bordes suaves (verde claro pastel) */
+    --color-borde: #D9D9D9; /* Bordes suaves (gris claro) */
     --color-sombra: rgba(0, 0, 0, 0.1); /* Sombra sutil (ligera) */
   }
