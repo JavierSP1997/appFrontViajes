@@ -1,0 +1,22 @@
+:root {
+    /* Colores principales */
+    --color-fondo-principal: #F5E1C0; /* Fondo principal (color hueso) */
+    --color-titulo-principal: #6B8E23; /* Título principal (verde oliva oscuro) */
+    --color-titulo-secundario: #8FBC8F; /* Título secundario (verde claro pastel) */
+    --color-texto: #2F4F4F; /* Texto principal (verde oscuro) */
+    
+    /* Colores de botones */
+    --color-boton-fondo: #9ACD32; /* Fondo de botones (verde claro) */
+    --color-boton-texto: #FFFFFF; /* Texto de botones (blanco) */
+    --color-enlace: #6B8E23; /* Enlaces (verde oliva oscuro) */
+    --color-enlace-hover: #8FBC8F; /* Enlaces al pasar el ratón (verde claro pastel) */
+    
+    /* Fondos y secciones */
+    --color-fondo-seccion: #F0E68C; /* Fondo de secciones (amarillo hueso claro) */
+    --color-fondo-tarjeta: #98FB98; /* Fondo de tarjetas (verde pastel claro) */
+    --color-fondo-pie-pagina: #6B8E23; /* Fondo del pie de página (verde oliva oscuro) */
+    
+    /* Colores de bordes y sombras */
+    --color-borde: #8FBC8F; /* Bordes suaves (verde claro pastel) */
+    --color-sombra: rgba(0, 0, 0, 0.1); /* Sombra sutil (ligera) */
+  }
