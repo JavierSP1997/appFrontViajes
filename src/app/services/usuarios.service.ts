@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import type { Usuario } from '../../../interfaces/usuario';
 
 
 type Body = { nombre?: string, email: string, password: string };
@@ -20,6 +21,11 @@ export class UsuariosService {
     }
 
 
+    register(body: Body) {
+      return lastValueFrom(
+        this.httpClient.post<Usuario>(`${this.baseUrl}/register`, body)
+      );
+  
+    }
 
-    //register
   }
