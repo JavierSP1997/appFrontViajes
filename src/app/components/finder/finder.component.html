@@ -1,6 +1,7 @@
 <div class="d-flex justify-content-center align-items-center my-4">
   <form
     class="d-flex flex-wrap justify-content-center align-items-center w-100"
+    (submit)="onSubmit($event)"
   >
     <div class="form-group mx-2">
       <label for="destino" class="form-label">Destino</label>
@@ -9,15 +10,30 @@
         id="destino"
         class="form-control"
         placeholder="Ingrese destino"
+        [(ngModel)]="destino"
+        (input)="filtrar()"
+        name="destino"
       />
     </div>
     <div class="form-group mx-2">
       <label for="fecha-ida" class="form-label">Fecha de Ida</label>
-      <input type="date" id="fecha-ida" class="form-control" />
+      <input
+        type="date"
+        id="fecha-ida"
+        class="form-control"
+        [(ngModel)]="fechaIda"
+        name="fechaIda"
+      />
     </div>
     <div class="form-group mx-2">
       <label for="fecha-vuelta" class="form-label">Fecha de Vuelta</label>
-      <input type="date" id="fecha-vuelta" class="form-control" />
+      <input
+        type="date"
+        id="fecha-vuelta"
+        class="form-control"
+        [(ngModel)]="fechaVuelta"
+        name="fechaVuelta"
+      />
     </div>
     <div class="form-group mx-2">
       <label for="viajeros" class="form-label">Número de Viajeros</label>
@@ -28,14 +44,10 @@
         min="1"
         max="10"
         placeholder="1-10"
+        [(ngModel)]="viajeros"
+        name="viajeros"
       />
     </div>
-    <button
-      type="submit"
-      class="btn btn-primary mx-2 mt-3"
-      (input)="onInput($event)"
-    >
-      Buscar
-    </button>
+    <button type="submit" class="btn btn-primary mx-2 mt-3">Buscar</button>
   </form>
 </div>
