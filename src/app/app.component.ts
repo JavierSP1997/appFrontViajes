@@ -9,5 +9,4 @@ import { GuideComponent } from "./conponents/guide/guide.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-
 }
