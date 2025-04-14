@@ -1,62 +1,84 @@
-// finder.component.ts
 import {
   Component,
   EventEmitter,
-  Output,
   inject,
+  Output,
   type OnInit,
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { ViajesService } from '../../services/viajes.service';
+import type { Viaje } from '../../../../interfaces/viaje.interface';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; // <-- AÑADIDO
 
 @Component({
   selector: 'app-finder',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule], // <-- ACTUALIZADO
   templateUrl: './finder.component.html',
+  styleUrls: ['./finder.component.css'],
 })
 export class FinderComponent implements OnInit {
-  nombre = '';
-  fecha_inicio = '';
-  fecha_fin = '';
-  personas_minimas: number | null = null;
+  @Output() viajesFiltrados = new EventEmitter<Viaje[]>();
 
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  @Output() viajesFiltrados = new EventEmitter<any[]>();
-
+  viajesService = inject(ViajesService);
   router = inject(Router);
   route = inject(ActivatedRoute);
 
-  ngOnInit() {
-    // Si hay parámetros en la URL, prellenar los inputs
-    const queryParams = this.route.snapshot.queryParams;
+  destino = '';
+  fechaIda = '';
+  fechaVuelta = '';
+  viajeros = '';
 
-    // biome-ignore lint/complexity/useLiteralKeys: <explanation>
-    this.nombre = queryParams['nombre'] || '';
-    // biome-ignore lint/complexity/useLiteralKeys: <explanation>
-    this.fecha_inicio = queryParams['fecha_inicio'] || '';
-    // biome-ignore lint/complexity/useLiteralKeys: <explanation>
-    this.fecha_fin = queryParams['fecha_fin'] || '';
-    // biome-ignore lint/complexity/useLiteralKeys: <explanation>
-    this.personas_minimas = queryParams['personas_minimas']
-      ? // biome-ignore lint/complexity/useLiteralKeys: <explanation>
-        Number.parseInt(queryParams['personas_minimas'], 10)
-      : null;
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(async (params) => {
+      // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+      this.destino = params['nombre'] || '';
+      // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+      this.fechaIda = params['fecha_inicio'] || '';
+      // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+      this.fechaVuelta = params['fecha_fin'] || '';
+      // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+      this.viajeros = params['personas_minimas'] || '';
+
+      if (this.router.url.startsWith('/viajes') && Object.keys(params).length) {
+        await this.filtrar();
+      }
+    });
   }
 
-  buscar() {
+  async onSubmit(event: Event) {
+    event.preventDefault();
+
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    const queryParams: any = {};
+    const params: any = {
+      ...(this.destino && { nombre: this.destino }),
+      ...(this.fechaIda && { fecha_inicio: this.fechaIda }),
+      ...(this.fechaVuelta && { fecha_fin: this.fechaVuelta }),
+      ...(this.viajeros && { personas_minimas: this.viajeros }),
+    };
 
-    if (this.nombre) queryParams.nombre = this.nombre;
-    if (this.fecha_inicio) queryParams.fecha_inicio = this.fecha_inicio;
-    if (this.fecha_fin) queryParams.fecha_fin = this.fecha_fin;
-    if (this.personas_minimas)
-      queryParams.personas_minimas = this.personas_minimas;
+    if (this.router.url !== '/viajes') {
+      this.router.navigate(['/viajes'], { queryParams: params });
+    } else {
+      await this.filtrar(params);
+    }
+  }
 
-    this.router.navigate(['/viajes'], {
-      queryParams,
-    });
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  async filtrar(paramsOverride?: any) {
+    const params = paramsOverride ?? {
+      ...(this.destino && { nombre: this.destino }),
+      ...(this.fechaIda && { fecha_inicio: this.fechaIda }),
+      ...(this.fechaVuelta && { fecha_fin: this.fechaVuelta }),
+      ...(this.viajeros && { personas_minimas: this.viajeros }),
+    };
+
+    try {
+      const viajes = await this.viajesService.getAllViajes(params);
+      this.viajesFiltrados.emit(viajes);
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

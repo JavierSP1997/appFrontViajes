@@ -7,6 +7,7 @@ import { FeaturedTravelerComponent } from '../../components/featured-traveler/fe
 
 @Component({
   selector: 'app-home',
+<<<<<<< HEAD
   imports: [
     RouterLink,
     GuideComponent,
@@ -14,6 +15,9 @@ import { FeaturedTravelerComponent } from '../../components/featured-traveler/fe
     FinderComponent,
     FeaturedTravelerComponent,
   ],
+=======
+  imports: [RouterLink, GuideComponent, LastTripsComponent, FinderComponent],
+>>>>>>> feature-viajes
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

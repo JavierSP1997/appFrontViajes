@@ -1,18 +1,17 @@
 <div class="d-flex justify-content-center align-items-center my-4">
   <form
     class="d-flex flex-wrap justify-content-center align-items-center w-100"
-    (submit)="buscar()"
-    novalidate
+    (submit)="onSubmit($event)"
   >
     <div class="form-group mx-2">
       <label for="nombre" class="form-label">Destino</label>
       <input
         type="text"
-        id="nombre"
-        [(ngModel)]="nombre"
-        name="nombre"
         class="form-control"
         placeholder="Ingrese destino"
+        [(ngModel)]="destino"
+        (input)="filtrar()"
+        name="destino"
       />
     </div>
     <div class="form-group mx-2">
@@ -20,9 +19,9 @@
       <input
         type="date"
         id="fecha-ida"
-        [(ngModel)]="fecha_inicio"
-        name="fecha_inicio"
         class="form-control"
+        [(ngModel)]="fechaIda"
+        name="fechaIda"
       />
     </div>
     <div class="form-group mx-2">
@@ -30,9 +29,9 @@
       <input
         type="date"
         id="fecha-vuelta"
-        [(ngModel)]="fecha_fin"
-        name="fecha_fin"
         class="form-control"
+        [(ngModel)]="fechaVuelta"
+        name="fechaVuelta"
       />
     </div>
     <div class="form-group mx-2">
@@ -40,16 +39,14 @@
       <input
         type="number"
         id="viajeros"
-        [(ngModel)]="personas_minimas"
-        name="personas_minimas"
         class="form-control"
         min="1"
         max="10"
         placeholder="1-10"
+        [(ngModel)]="viajeros"
+        name="viajeros"
       />
     </div>
-    <button type="button" class="btn btn-primary mx-2 mt-3" (click)="buscar()">
-      Buscar
-    </button>
+    <button type="submit" class="btn btn-primary mx-2 mt-3">Buscar</button>
   </form>
 </div>

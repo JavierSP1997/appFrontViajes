@@ -23,7 +23,10 @@ export class ViajesComponent implements OnInit {
       personas_minimas: 5,
       localizacion: 'Alpes, Suiza',
       itinerario: 'Excursiones, esquí y visitas guiadas',
+<<<<<<< HEAD
       imagen: '',
+=======
+>>>>>>> feature-viajes
     },
     {
       id_viaje: 2,
@@ -35,7 +38,10 @@ export class ViajesComponent implements OnInit {
       personas_minimas: 8,
       localizacion: 'Nairobi, Kenia',
       itinerario: 'Safari, visitas a reservas naturales y cultura local',
+<<<<<<< HEAD
       imagen: '',
+=======
+>>>>>>> feature-viajes
     },
     {
       id_viaje: 3,
@@ -47,7 +53,10 @@ export class ViajesComponent implements OnInit {
       personas_minimas: 10,
       localizacion: 'Tokio, Japón',
       itinerario: 'Templos, gastronomía y tecnología',
+<<<<<<< HEAD
       imagen: '',
+=======
+>>>>>>> feature-viajes
     },
     {
       id_viaje: 4,
@@ -59,7 +68,10 @@ export class ViajesComponent implements OnInit {
       personas_minimas: 2,
       localizacion: 'Maldivas',
       itinerario: 'Playas, snorkel y lujo',
+<<<<<<< HEAD
       imagen: '',
+=======
+>>>>>>> feature-viajes
     },
     {
       id_viaje: 5,
@@ -71,9 +83,15 @@ export class ViajesComponent implements OnInit {
       personas_minimas: 4,
       localizacion: 'Toscana, Italia',
       itinerario: 'Viñedos, pueblos medievales y gastronomía',
+<<<<<<< HEAD
       imagen: '',
     },
   ];
+=======
+    },
+  ];
+
+>>>>>>> feature-viajes
   viajeSeleccionado: Viaje | null = null;
 
   viajesService = inject(ViajesService);
@@ -82,6 +100,7 @@ export class ViajesComponent implements OnInit {
 
   async ngOnInit() {
     try {
+<<<<<<< HEAD
       const viajes = await this.viajesService.getAllViajes();
 
       const { nombre, fecha_inicio, fecha_fin, personas_minimas } =
@@ -113,6 +132,53 @@ export class ViajesComponent implements OnInit {
       this.arrViajes = filtrados;
     } catch (error) {
       console.error('Error al cargar viajes:', error);
+=======
+      const viajes = await this.viajesService.getAllTrips();
+
+      this.route.queryParams.subscribe((params) => {
+        let filtrados = viajes;
+
+        // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+        if (params['nombre']) {
+          // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+          const nombre = params['nombre'].toLowerCase();
+          filtrados = filtrados.filter((v) =>
+            v.nombre_viaje.toLowerCase().includes(nombre)
+          );
+        }
+
+        // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+        if (params['fecha_inicio']) {
+          // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+          const fechaInicio = new Date(params['fecha_inicio']);
+          filtrados = filtrados.filter(
+            (v) => new Date(v.fecha_inicio) >= fechaInicio
+          );
+        }
+
+        // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+        if (params['fecha_fin']) {
+          // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+          const fechaFin = new Date(params['fecha_fin']);
+          filtrados = filtrados.filter(
+            (v) => new Date(v.fecha_fin) <= fechaFin
+          );
+        }
+
+        // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+        if (params['personas_minimas']) {
+          // biome-ignore lint/complexity/useLiteralKeys: <explanation>
+          const personasMin = Number.parseInt(params['personas_minimas'], 10);
+          filtrados = filtrados.filter(
+            (v) => v.personas_minimas >= personasMin
+          );
+        }
+
+        this.arrViajes = filtrados;
+      });
+    } catch (error) {
+      console.error(error);
+>>>>>>> feature-viajes
     }
   }
 
