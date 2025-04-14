@@ -1,10 +1,13 @@
 footer {
 	background-color: var(--color-fondo-principal);
 	color: var(--color-titulo-principal);
+	font-size: 18px; /* Aumenta el tamaño del texto */
 }
+
 a {
 	text-decoration: none;
 }
+
 .social-icon {
 	font-size: 24px;
 	display: inline-flex;
@@ -15,6 +18,7 @@ a {
 	border-radius: 50%;
 	color: white;
 	transition: transform 0.3s ease;
+	margin-left: 10px; /* Espaciado entre íconos */
 }
 
 .social-icon:hover {
