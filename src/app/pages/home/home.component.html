@@ -6,27 +6,8 @@
         </li>
     </ul>
 </nav>
-<div class="d-flex justify-content-center align-items-center my-4">
-    <form class="d-flex flex-wrap justify-content-center align-items-center w-100">
-        <div class="form-group mx-2">
-            <label for="destino" class="form-label">Destino</label>
-            <input type="text" id="destino" class="form-control" placeholder="Ingrese destino">
-        </div>
-        <div class="form-group mx-2">
-            <label for="fecha-ida" class="form-label">Fecha de Ida</label>
-            <input type="date" id="fecha-ida" class="form-control">
-        </div>
-        <div class="form-group mx-2">
-            <label for="fecha-vuelta" class="form-label">Fecha de Vuelta</label>
-            <input type="date" id="fecha-vuelta" class="form-control">
-        </div>
-        <div class="form-group mx-2">
-            <label for="viajeros" class="form-label">Número de Viajeros</label>
-            <input type="number" id="viajeros" class="form-control" min="1" max="10" placeholder="1-10">
-        </div>
-        <button type="submit" class="btn btn-primary mx-2 mt-3">Buscar</button>
-    </form>
-</div>
+
+<app-last-trips></app-last-trips>
 
 <div class="hero container-fluid d-flex flex-column justify-content-center align-items-center">
     <h1 class="text-center">Bienvenido a Viajeros Unidos</h1>
@@ -38,3 +19,4 @@
 </div>
 
 
+<app-guide></app-guide>
