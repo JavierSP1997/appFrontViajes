@@ -1,0 +1,34 @@
+<h2>Pagina de viajes!!!</h2>
+
+<!-- aquí va el finder -->
+<app-finder></app-finder>
+
+<!-- aquí va el grid con todas las cards con los viajes cargados/ ya sea listado completo o filtrado -->
+<section class="lista">
+  <div class="viajes row">
+    @for(viaje of arrViajes; track viaje.id){
+
+    <div
+      class="viaje col-12 col-md-8 card m-2"
+      [class]="{
+        clickado: viajeSeleccionado?.id === viaje.id
+      }"
+      (click)="onClick(viaje)"
+    >
+      <figure>
+        <img src="{{ viaje.image }}" />
+      </figure>
+
+      <div class="card-img-overlay">
+        <span>{{ viaje.gender }}</span>
+        <h4 class="card-title">{{ viaje.race }}</h4>
+        <h2 class="card-title">{{ viaje.name }}</h2>
+        <hr />
+        <p class="card-text">{{ viaje.ki }}</p>
+        <p class="card-text">{{ viaje.maxKi }}</p>
+        <p class="card-text">{{ viaje.affiliation }}</p>
+      </div>
+    </div>
+    }
+  </div>
+</section>

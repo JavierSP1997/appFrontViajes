@@ -1,40 +1,26 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex">
-    <h1 class="mx-3">Viajeros Unidos</h1>
-    <ul class="d-flex">
-        <li class="list-unstyled mx-3">
-            <a routerLink="/perfil-usuario">Mi Perfil</a>
-        </li>
-    </ul>
+  <h1 class="mx-3">Viajeros Unidos</h1>
+  <ul class="d-flex">
+    <li class="list-unstyled mx-3">
+      <a routerLink="/perfil-usuario">Mi Perfil</a>
+    </li>
+  </ul>
 </nav>
-<div class="d-flex justify-content-center align-items-center my-4">
-    <form class="d-flex flex-wrap justify-content-center align-items-center w-100">
-        <div class="form-group mx-2">
-            <label for="destino" class="form-label">Destino</label>
-            <input type="text" id="destino" class="form-control" placeholder="Ingrese destino">
-        </div>
-        <div class="form-group mx-2">
-            <label for="fecha-ida" class="form-label">Fecha de Ida</label>
-            <input type="date" id="fecha-ida" class="form-control">
-        </div>
-        <div class="form-group mx-2">
-            <label for="fecha-vuelta" class="form-label">Fecha de Vuelta</label>
-            <input type="date" id="fecha-vuelta" class="form-control">
-        </div>
-        <div class="form-group mx-2">
-            <label for="viajeros" class="form-label">Número de Viajeros</label>
-            <input type="number" id="viajeros" class="form-control" min="1" max="10" placeholder="1-10">
-        </div>
-        <button type="submit" class="btn btn-primary mx-2 mt-3">Buscar</button>
-    </form>
+
+<app-finder></app-finder>
+
+<div
+  class="hero container-fluid d-flex flex-column justify-content-center align-items-center"
+>
+  <h1 class="text-center">Bienvenido a Viajeros Unidos</h1>
+  <p class="text-center">
+    La plataforma para compartir experiencias de viaje y conectar con otros
+    viajeros.
+  </p>
+  <div>
+    <button class="btn btn-primary" routerLink="/login">Iniciar Sesión</button>
+    <button class="btn btn-secondary m-3" routerLink="/register">
+      Registrarse
+    </button>
+  </div>
 </div>
-
-<div class="hero container-fluid d-flex flex-column justify-content-center align-items-center">
-    <h1 class="text-center">Bienvenido a Viajeros Unidos</h1>
-    <p class="text-center">La plataforma para compartir experiencias de viaje y conectar con otros viajeros.</p>
-    <div>
-        <button class="btn btn-primary" routerLink="/login">Iniciar Sesión</button>
-        <button class="btn btn-secondary m-3" routerLink="/register">Registrarse</button>
-    </div>
-</div>
-
-
