@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 <<<<<<< HEAD
-import { GuideComponent } from "../../conponents/guide/guide.component";
+import { GuideComponent } from "../../components/guide/guide.component";
 import { LastTripsComponent } from '../../components/last-trips/last-trips.component';
 
 @Component({
