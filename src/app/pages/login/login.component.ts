@@ -10,7 +10,7 @@ import {
 import { GuideComponent } from "../../components/guide/guide.component";
 @Component({
 	selector: "app-login",
-	imports: [ReactiveFormsModule, GuideComponent],
+	imports: [ReactiveFormsModule,],
 	templateUrl: "./login.component.html",
 	styleUrl: "./login.component.css",
 })

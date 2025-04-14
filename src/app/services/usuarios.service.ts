@@ -1,11 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
-import type { Usuario } from '../../../interfaces/usuario.interface';
+import { HttpClient } from "@angular/common/http";
+import { inject, Injectable } from "@angular/core";
+import { lastValueFrom } from "rxjs";
+import type { Usuario } from "../../../interfaces/usuario.interface";
 
-
-type Body = { nombre?: string, email: string, password: string };
-type LoginResponse = { message: string, token: string };
+type Body = { nombre?: string; email: string; password: string };
+type LoginResponse = { message: string; token: string };
 
 @Injectable({
 	providedIn: "root",
@@ -28,5 +27,9 @@ export class UsuariosService {
 		return lastValueFrom(
 			this.httpClient.post<Usuario>(`${this.baseUrl}/register`, body),
 		);
+	}
+
+	getById(id: number) {
+		return lastValueFrom(this.httpClient.get<Usuario>(`${this.baseUrl}/${id}`));
 	}
 }
