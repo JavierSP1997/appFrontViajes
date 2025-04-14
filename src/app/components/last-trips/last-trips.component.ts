@@ -10,14 +10,15 @@ import { DatePipe } from '@angular/common';
   styleUrl: './last-trips.component.css',
 })
 export class LastTripsComponent {
+  
   viajes: Viaje[] = [];
   lastThreeTrips: Viaje[] = [];
   private viajeService = inject(ViajesService);
 
   ngOnInit() {
     try {
-      this.viajeService.getLastViaje().subscribe((viaje: Viaje) => {
-        this.viajes = [viaje, ...this.viajes].slice(0, 3);
+      this.viajeService.getLastViaje().subscribe((viajes: Viaje[]) => {
+        this.viajes = viajes.reverse().slice(0, 3);
       });
     } catch (error) {
       console.log('error al cargar los viajes', error);
