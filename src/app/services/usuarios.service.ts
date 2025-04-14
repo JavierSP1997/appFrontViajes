@@ -13,6 +13,10 @@ export class UsuariosService {
 	private httpClient = inject(HttpClient);
 	private baseUrl = "http://localhost:3000/api/usuarios";
 
+	getAll() {
+		return lastValueFrom(this.httpClient.get<Usuario[]>(`${this.baseUrl}`));
+	}
+
 	login(body: Body) {
 		return lastValueFrom(
 			this.httpClient.post<LoginResponse>(`${this.baseUrl}/login`, body),
