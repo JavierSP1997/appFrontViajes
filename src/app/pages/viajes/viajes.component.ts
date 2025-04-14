@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   imports: [FinderComponent],
 })
 export class ViajesComponent implements OnInit {
+  
   arrViajes: Viaje[] = [
     {
       id_viaje: 1,
@@ -23,10 +24,7 @@ export class ViajesComponent implements OnInit {
       personas_minimas: 5,
       localizacion: 'Alpes, Suiza',
       itinerario: 'Excursiones, esquí y visitas guiadas',
-<<<<<<< HEAD
       imagen: '',
-=======
->>>>>>> feature-viajes
     },
     {
       id_viaje: 2,
@@ -38,10 +36,7 @@ export class ViajesComponent implements OnInit {
       personas_minimas: 8,
       localizacion: 'Nairobi, Kenia',
       itinerario: 'Safari, visitas a reservas naturales y cultura local',
-<<<<<<< HEAD
       imagen: '',
-=======
->>>>>>> feature-viajes
     },
     {
       id_viaje: 3,
@@ -53,10 +48,7 @@ export class ViajesComponent implements OnInit {
       personas_minimas: 10,
       localizacion: 'Tokio, Japón',
       itinerario: 'Templos, gastronomía y tecnología',
-<<<<<<< HEAD
       imagen: '',
-=======
->>>>>>> feature-viajes
     },
     {
       id_viaje: 4,
@@ -68,10 +60,7 @@ export class ViajesComponent implements OnInit {
       personas_minimas: 2,
       localizacion: 'Maldivas',
       itinerario: 'Playas, snorkel y lujo',
-<<<<<<< HEAD
       imagen: '',
-=======
->>>>>>> feature-viajes
     },
     {
       id_viaje: 5,
@@ -83,15 +72,9 @@ export class ViajesComponent implements OnInit {
       personas_minimas: 4,
       localizacion: 'Toscana, Italia',
       itinerario: 'Viñedos, pueblos medievales y gastronomía',
-<<<<<<< HEAD
       imagen: '',
     },
   ];
-=======
-    },
-  ];
-
->>>>>>> feature-viajes
   viajeSeleccionado: Viaje | null = null;
 
   viajesService = inject(ViajesService);

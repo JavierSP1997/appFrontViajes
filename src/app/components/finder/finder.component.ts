@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common'; // <-- AÑADIDO
   styleUrls: ['./finder.component.css'],
 })
 export class FinderComponent implements OnInit {
+  
   @Output() viajesFiltrados = new EventEmitter<Viaje[]>();
 
   viajesService = inject(ViajesService);
