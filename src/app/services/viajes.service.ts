@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Viaje } from '../../../interfaces/viaje.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,6 @@ export class ViajesService {
   //mirar bien lo del enviroment
   
   getLastTrip() {
-    return this.httpClient.get<any>(`${this.baseUrl}`)
+    return this.httpClient.get<Viaje[]>(`${this.baseUrl}`)
   }
 }
