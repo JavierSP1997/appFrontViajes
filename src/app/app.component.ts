@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { GuideComponent } from "./conponents/guide/guide.component";
+import { Component } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
 
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet, GuideComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+	selector: "app-root",
+	imports: [RouterOutlet],
+	templateUrl: "./app.component.html",
+	styleUrl: "./app.component.css",
 })
-export class AppComponent {
-}
+export class AppComponent {}
