@@ -1,0 +1,48 @@
+.navbar {
+	font-family: "Arial", sans-serif;
+	font-size: 16px;
+	padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #f8f9fa;
+	text-transform: uppercase;
+	transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+	color: #ffc107;
+	text-decoration: none;
+}
+
+.nav-link {
+	color: #f8f9fa;
+	margin-right: 1rem;
+	transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+	color: #ffc107;
+	text-decoration: none;
+}
+
+.nav-link.active {
+	font-weight: bold;
+	color: #ffc107;
+}
+.navbar-toggler {
+	border: none;
+	outline: none;
+}
+
+@media (max-width: 992px) {
+	.navbar-nav {
+		text-align: center;
+	}
+
+	.nav-link {
+		margin: 0.5rem 0;
+	}
+}
