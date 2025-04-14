@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import type { Usuario } from '../../../interfaces/usuario';
+import type { Usuario } from '../../../interfaces/usuario.interface';
 
 
 type Body = { nombre?: string, email: string, password: string };
