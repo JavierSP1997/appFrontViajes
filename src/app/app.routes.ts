@@ -4,6 +4,7 @@ import { LoginComponent } from "./pages/login/login.component";
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { EditUserProfileComponent } from './pages/edit-user-profile/edit-user-profile.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 
 export const routes: Routes = [
     {path: '', pathMatch: 'full', component: HomeComponent},
@@ -11,6 +12,7 @@ export const routes: Routes = [
     { path: "login", component: LoginComponent },
     { path: 'perfil-usuario', component: UserProfileComponent,
         children: [
+            { path: '', component: MyProfileComponent},
             { path: 'editar', component: EditUserProfileComponent }] 
     },
     { path: "**", component: HomeComponent },
