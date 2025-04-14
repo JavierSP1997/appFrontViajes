@@ -2,9 +2,10 @@ import { Component, inject } from '@angular/core';
 import { UsuariosService } from '../../services/usuarios.service';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { GuideComponent } from "../../conponents/guide/guide.component";
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, GuideComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
