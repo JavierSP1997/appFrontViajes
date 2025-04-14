@@ -1,6 +1,4 @@
-import { Component, inject } from "@angular/core";
-import { UsuariosService } from "../../services/usuarios.service";
-import type { Usuario } from "../../../../interfaces/usuario";
+import { Component } from "@angular/core";
 
 @Component({
 	selector: "app-featured-traveler",
@@ -8,11 +6,4 @@ import type { Usuario } from "../../../../interfaces/usuario";
 	templateUrl: "./featured-traveler.component.html",
 	styleUrl: "./featured-traveler.component.css",
 })
-export class FeaturedTravelerComponent {
-	usuariosService = inject(UsuariosService);
-	arrUsers: Usuario[] = [];
-
-	async ngOnInit() {
-		this.arrUsers = await this.usuariosService.getAll();
-	}
-}
+export class FeaturedTravelerComponent {}
