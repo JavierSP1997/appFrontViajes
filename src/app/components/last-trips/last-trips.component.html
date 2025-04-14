@@ -1,18 +1,18 @@
 <section class="m-4 seccion">
     <h3>VIAJES RECIENTES</h3>
-    <article>
+    <article class="viajes">
         @for (viaje of viajes; track viaje.id_viaje) {
             <section class="viaje">
-                <h6>{{viaje.nombre_viaje}}</h6>
-            <figure>
-                <img src="{{viaje.imagen}}" alt="">
-            </figure>
-            <section class="parrafos">
-                <ul>
-                    <li>Fecha del viaje: {{viaje.fecha_inicio | date: 'dd-MM-YYYY'}}</li>
-                    <li>{{viaje.localizacion}}</li>
-                </ul>
-            </section>
+                <figure>
+                    <figcaption>{{viaje.nombre_viaje}}</figcaption>
+                    <img src="{{viaje.imagen}}" alt="">
+                </figure>
+                <div class="parrafos">
+                    <ul>
+                        <li>Fecha del viaje: {{viaje.fecha_inicio | date: 'dd-MM-YYYY'}}</li>
+                        <li>Destino: {{viaje.localizacion}}</li>
+                    </ul>
+                </div>
             </section>
         }
     </article>

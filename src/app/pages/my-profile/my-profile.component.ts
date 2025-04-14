@@ -7,7 +7,7 @@ import {
 } from "@angular/forms";
 import { RouterLink, RouterOutlet } from "@angular/router";
 import { UsuariosService } from "../../services/usuarios.service";
-import { Usuario } from "../../../../interfaces/usuario.interface";
+import type { Usuario } from "../../../../interfaces/usuario.interface";
 
 @Component({
 	selector: "app-my-profile",
