@@ -1,40 +1,47 @@
+nav {
+	background-color: var(--color-fondo-principal);
+	color: var(--color-titulo-principal);
+}
 .navbar {
 	font-family: "Arial", sans-serif;
-	font-size: 16px;
 	padding: 0.5rem 1rem;
 }
 
 .navbar-brand {
+	color: var(--color-titulo-principal);
 	font-size: 1.5rem;
 	font-weight: bold;
-	color: #f8f9fa;
 	text-transform: uppercase;
 	transition: color 0.3s ease;
 }
 
 .navbar-brand:hover {
-	color: #ffc107;
+	color: var(--color-enlace);
 	text-decoration: none;
 }
 
 .nav-link {
-	color: #f8f9fa;
+	color: var(--color-titulo-principal);
 	margin-right: 1rem;
 	transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-	color: #ffc107;
+	color: var(--color-enlace);
 	text-decoration: none;
 }
 
 .nav-link.active {
+	color: var(--color-titulo-principal);
 	font-weight: bold;
 	color: #ffc107;
 }
 .navbar-toggler {
 	border: none;
 	outline: none;
+}
+.navbar-toggler {
+	--bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%233D5A5D' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 @media (max-width: 992px) {
