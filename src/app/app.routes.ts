@@ -11,13 +11,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   // { path: 'viajes', component: ViajesComponent },
-  {
-    path: 'perfil-usuario',
-    component: MyProfileComponent,
-    children: [
-      { path: '', component: MyProfileComponent },
-      { path: 'editar', component: EditUserProfileComponent },
-    ],
-  },
+  { path: 'perfil-usuario/:id', component: MyProfileComponent },
+  { path: 'perfil-usuario/:id/editar', component: EditUserProfileComponent },
   { path: '**', component: HomeComponent },
 ];
