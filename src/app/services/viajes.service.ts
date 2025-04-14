@@ -9,9 +9,10 @@ import type { Viaje } from '../../../interfaces/viaje.interface';
 export class ViajesService {
   private httpClient = inject(HttpClient);
   private baseUrl = 'http://localhost:3000/api/viajes';
+  //mirar bien lo del enviroment
 
   getLastViaje() {
-    return this.httpClient.get<Viaje>(`${this.baseUrl}`);
+    return this.httpClient.get<Viaje[]>(`${this.baseUrl}`);
   }
 
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
