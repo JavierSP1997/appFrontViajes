@@ -1,0 +1,32 @@
+.seccion{
+    background-color: var(--color-fondo-seccion);
+    border-radius: 20px;
+    padding: 25px;
+    
+    h3{
+        text-align: center;
+    }
+
+    article{
+        background-color: var(--color-fondo-tarjeta);
+        border-radius: 20px;
+        padding: 20px;
+        display: flex;
+    }
+}
+
+figure{
+    width: 250px;
+    img{
+        width: 100%;
+        height: auto;
+    }
+}
+
+.viaje {
+    width: 400px;
+}
+
+.parrafos {
+align-content: center;
+}

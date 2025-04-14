@@ -1,32 +1,40 @@
-<h2>Pagina de viajes!!!</h2>
+<h2 class="text-center my-4">¡Página de viajes!</h2>
 
-<!-- aquí va el finder -->
-<app-finder></app-finder>
+<!-- Finder para filtrar viajes -->
+<app-finder (viajesFiltrados)="actualizarTrips($event)"></app-finder>
 
-<!-- aquí va el grid con todas las cards con los viajes cargados/ ya sea listado completo o filtrado -->
-<section class="lista">
-  <div class="viajes row">
-    @for(viaje of arrViajes; track viaje.id){
+<!-- Grid de cards -->
+<section class="container my-4">
+  <div class="row g-4">
+    @for(viaje of arrViajes; track viaje.id_viaje) {
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div
+        class="card h-100 shadow-sm viaje-card"
+        (click)="irATrip(viaje.id_viaje)"
+      >
+        <!-- Imagen del viaje -->
+        <!--           <img 
+            src="{{ viaje.image || 'assets/default-image.jpg' }}" 
+            class="card-img-top"
+            alt="Imagen del viaje"
+          /> a ver si va foto o no-->
 
-    <div
-      class="viaje col-12 col-md-8 card m-2"
-      [class]="{
-        clickado: viajeSeleccionado?.id === viaje.id
-      }"
-      (click)="onClick(viaje)"
-    >
-      <figure>
-        <img src="{{ viaje.image }}" />
-      </figure>
-
-      <div class="card-img-overlay">
-        <span>{{ viaje.gender }}</span>
-        <h4 class="card-title">{{ viaje.race }}</h4>
-        <h2 class="card-title">{{ viaje.name }}</h2>
-        <hr />
-        <p class="card-text">{{ viaje.ki }}</p>
-        <p class="card-text">{{ viaje.maxKi }}</p>
-        <p class="card-text">{{ viaje.affiliation }}</p>
+        <!-- Contenido -->
+        <div class="card-body">
+          <h5 class="card-title text-primary">{{ viaje.nombre_viaje }}</h5>
+          <p class="card-text mb-1">
+            <strong>Desde:</strong> {{ viaje.fecha_inicio }}
+          </p>
+          <p class="card-text mb-1">
+            <strong>Hasta:</strong> {{ viaje.fecha_fin }}
+          </p>
+          <p class="card-text mb-1">
+            <strong>Precio:</strong> {{ viaje.coste_por_persona }} €
+          </p>
+          <p class="card-text mb-1">
+            <strong>Localización:</strong> {{ viaje.localizacion }}
+          </p>
+        </div>
       </div>
     </div>
     }
