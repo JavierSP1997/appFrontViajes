@@ -33,3 +33,6 @@ export class UsuariosService {
 		return lastValueFrom(this.httpClient.get<Usuario>(`${this.baseUrl}/${id}`));
 	}
 }
+
+
+
