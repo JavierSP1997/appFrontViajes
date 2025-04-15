@@ -1,10 +1,14 @@
 <h2 class="text-center my-4">¡Página de viajes!</h2>
 
 <!-- Finder para filtrar viajes -->
-<app-finder (viajesFiltrados)="actualizarTrips($event)"></app-finder>
+<app-finder></app-finder>
 
+<div class="text-end">
+  <button id="clear" class="btn btn-secondary" (click)="quitarFiltros()">Quitar filtros</button>
+</div>
 <!-- Grid de cards -->
 <section class="container my-4">
+
   <div class="row g-4">
     @for(viaje of arrViajes; track viaje.id_viaje) {
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
