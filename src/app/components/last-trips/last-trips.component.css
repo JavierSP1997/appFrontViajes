@@ -1,63 +1,78 @@
-
-img{
-    width: 100%;
-    height: auto;
-    display: block;
+.seccion {
+	padding: 20px;
+	text-align: center;
+	hgroup {
+		text-align: center;
+		padding-bottom: 20px;
+		h3 {
+			color: var(--color-titulo-principal);
+		}
+		h5 {
+			color: var(--color-titulo-secundario);
+		}
+	}
 }
 
-.seccion{
-    h3{
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    
+figure {
+	width: 100%;
+	max-height: 300px;
+	overflow: hidden;
+	border-radius: 20px;
+
+	figcaption {
+		padding: 10px;
+	}
+
+	img {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: cover;
+		border-radius: 20px;
+	}
 }
 
-figure{
-    width: 100%;
-    max-height: 80%;
-    min-height: 70%;
-    text-align: center;
-
-    figcaption{
-        text-transform: uppercase;
-        font-weight: bold;
-        font-style: italic;
-        margin-bottom: 10px;
-    }
+button.info {
+	margin-bottom: 10px;
+	border: 1px solid var(--color-borde);
+	border-radius: 10px;
+	background-color: var(--color-boton-fondo);
+	color: var(--color-boton-texto);
 }
 
-section.viaje{
-    background-color: var(--color-fondo-tarjeta);
-    border: 2px solid var(--color-sombra);
-    border-radius: 20px;
-    width: 350px;
-    align-content: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.5s ease, box-shadow 0.3s ease;
-
-    &:hover {
-        transform: scale(1.020);
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    }
-
+.viaje {
+	border-bottom: 2px solid rgb(95, 94, 94);
 }
 
-article.viajes {
-    display: flex;
-    justify-content: space-around;
+ul {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
 }
 
+span {
+	font-weight: bold;
+}
 
+@media (min-width: 768px) {
+	.viaje {
+		width: 80vw;
+		margin: auto;
+	}
+}
 
-.parrafos ul{
-    text-align: center;
-    align-items: start;
-    padding: 0;
-    
-    li{
-        list-style: none;
-        background-color: var(--color-sombra);
-        margin: 10px 0;
-    }
+@media (min-width: 1024px) {
+	.viaje {
+		width: 50vw;
+		margin: auto;
+	}
+}
+
+@media (min-width: 1200px) {
+	.viajes {
+		display: flex;
+	}
+
+	.viaje {
+		margin: 0 20px;
+	}
 }
