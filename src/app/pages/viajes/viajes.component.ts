@@ -21,45 +21,45 @@ export class ViajesComponent implements OnInit {
 
 	async ngOnInit() {
 		try {
-			const viajes = await this.viajesService.getAllViajes();
-
-			this.arrViajes = viajes;
-
 			// Obtenemos los query params
 			const { nombre, fecha_inicio, fecha_fin, personas_minimas } =
 				this.route.snapshot.queryParams;
 
-			let filtrados = [...viajes];
+			// Suscribimos al Observable que devuelve el servicio
+			this.viajesService.getAllViajes().subscribe((viajes: Viaje[]) => {
+				let filtrados = [...viajes];
 
-			// Aplicamos los filtros según los query params
-			if (nombre) {
-				filtrados = filtrados.filter((v) =>
-					v.nombre_viaje.toLowerCase().includes(nombre.toLowerCase()),
-				);
-			}
+				// Aplicamos los filtros según los query params
+				if (nombre) {
+					filtrados = filtrados.filter((v) =>
+						v.nombre_viaje.toLowerCase().includes(nombre.toLowerCase()),
+					);
+				}
 
-			if (fecha_inicio) {
-				const inicio = new Date(fecha_inicio);
-				filtrados = filtrados.filter((v) => new Date(v.fecha_inicio) >= inicio);
-			}
+				if (fecha_inicio) {
+					const inicio = new Date(fecha_inicio);
+					filtrados = filtrados.filter(
+						(v) => new Date(v.fecha_inicio) >= inicio,
+					);
+				}
 
-			if (fecha_fin) {
-				const fin = new Date(fecha_fin);
-				filtrados = filtrados.filter((v) => new Date(v.fecha_fin) <= fin);
-			}
+				if (fecha_fin) {
+					const fin = new Date(fecha_fin);
+					filtrados = filtrados.filter((v) => new Date(v.fecha_fin) <= fin);
+				}
 
-			if (personas_minimas) {
-				const min = Number.parseInt(personas_minimas, 10);
-				filtrados = filtrados.filter((v) => v.personas_minimas >= min);
-			}
+				if (personas_minimas) {
+					const min = Number.parseInt(personas_minimas, 10);
+					filtrados = filtrados.filter((v) => v.personas_minimas >= min);
+				}
 
-			// Asignamos el array filtrado a arrViajes
-			this.arrViajes = filtrados;
+				// Asignamos el array filtrado a arrViajes
+				this.arrViajes = filtrados;
+			});
 		} catch (error) {
-			console.error("Error al cargar viajes:", error);
+			console.error("Error al cargar los viajes:", error);
 		}
 	}
-
 	actualizarTrips(viajes: Viaje[]): void {
 		this.arrViajes = viajes;
 	}
