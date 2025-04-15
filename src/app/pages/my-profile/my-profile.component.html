@@ -20,14 +20,7 @@
       </ul>
     </nav>
   </header>
-  <article>
-    <p>Tus datos personales</p>
-    <p>Tus viajes</p>
-  </article>
-  <div class="text-center mt-4">
-      <h1>Mi perfil</h1>
-    </div>
-    <div class="container mt-4">
+    <!-- <div class="container mt-4">
       <form
       [formGroup]="perfilUsuarioForm"
       (ngSubmit)="onSubmit()"
@@ -120,5 +113,24 @@
     
       <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
+    </div> -->
+    @if (usuario) {
+      <div class="container my-4">
+        <div class="row align-items-center cubo-header p-3">
+          <div class="col-8">
+            <h1 class="nombre-usuario">{{ usuario.nombre }}</h1>
+          </div>
+          <div class="col-4 text-end">
+            <img src="ruta/foto.jpg" alt="Foto de perfil" class="foto-perfil img-fluid rounded-circle" />
+          </div>
+        </div>
+        <div class="cubo-contenedor">
+          <div class="cubo">
+            <div class="cara cara-frontal">
+              <p class="descripcion">Soy un viajero apasionado por descubrir culturas nuevas 🌍✈️</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
     
-    </div>
