@@ -15,10 +15,11 @@ h3 {
 	padding: 5px;
 	border-radius: 10px;
 	transition: 0.5s;
+	border: none;
 }
 
 .button:hover {
-	background-color: var(--color-boton-hover-fondo);
-	color: var(--color-boton-hover-texto);
 	transition: 0.5s;
+	background-color: var(--color-boton-hover-fondo);
+	color: var(--color-boton-hover);
 }
