@@ -15,7 +15,10 @@
                   placeholder="Tu nombre"
                   required
                 >
-                
+                <div class="error">
+                  @if (checkError('nombre', 'required') || checkError('nombre', 'minlength')){
+                  <p class="error">El campo nombre es obligatorio y debe tener mínimo 3 carácteres</p>}
+              </div>
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">Correo electrónico</label>
@@ -27,6 +30,10 @@
                   placeholder="tucorreo@ejemplo.com"
                   required
                 >
+                <div class="error">
+                  @if (checkError('email', 'required') || checkError('email', 'minlength')){
+                  <p class="error">El campo email es obligatorio y debe tener formato email</p>}
+              </div>
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
@@ -38,6 +45,10 @@
                   placeholder="********"
                   required
                 >
+                <div class="error">
+                  @if (checkError('password', 'required') || checkError('password', 'minlength') || checkError('password', 'pattern')){
+                  <p class="error">El campo contraseña es obligatorio, debe empezar por mayúscula y contener un número</p>}
+              </div>
               </div>
               <div class="d-grid">
                 <input type="submit" class="button" value="Enviar">

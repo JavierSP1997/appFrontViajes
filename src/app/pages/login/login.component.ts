@@ -41,4 +41,10 @@ export class LoginComponent {
 			console.error(error);
 		}
 	}
+	checkError(field: string, validator: string): boolean | undefined {
+		return (
+			this.formLogin.get(field)?.hasError(validator) &&
+			this.formLogin.get(field)?.touched
+		);
+	}
 }

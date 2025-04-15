@@ -26,3 +26,11 @@ h3 {
 	background-color: var(--color-boton-hover-fondo);
 	color: var(--color-boton-hover);
 }
+p {
+	font-size: 0.8rem;
+	color: tomato;
+}
+
+.error {
+	height: 1.5rem;
+}
