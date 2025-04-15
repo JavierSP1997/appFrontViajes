@@ -3,7 +3,7 @@
       <div class="col-md-6 col-lg-5">
         <div class="card shadow-sm border-0 rounded-3">
           <div class="card-body p-4">
-            <h3 class="card-title text-center mb-4">Iniciar Sesión</h3>
+            <h3 class="card-title text-center mb-4 fw-bold y border-bottom pb-2">Iniciar Sesión</h3>
             <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
               <div class="mb-3">
                 <label for="email" class="form-label">Correo electrónico</label>
@@ -28,7 +28,7 @@
                 >
               </div>
               <div class="d-grid">
-                <button type="submit" class="btn ">Iniciar Sesión</button>
+                <input class="button" type="submit" value="Iniciar Sesión">
               </div>
             </form>
             <p class="text-center mt-3 mb-0">
