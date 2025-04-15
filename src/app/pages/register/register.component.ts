@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
 import { UsuariosService } from "../../services/usuarios.service";
+import { emailExisteValidator } from "../../validators/checkEmail.validator";
 
 @Component({
 	selector: "app-register",
@@ -20,7 +21,11 @@ export class RegisterComponent {
 
 	formRegister: FormGroup = new FormGroup({
 		nombre: new FormControl("", [Validators.required, Validators.minLength(3)]),
-		email: new FormControl("", [Validators.required, Validators.email]),
+		email: new FormControl(
+			"",
+			[Validators.required, Validators.email],
+			[emailExisteValidator(this.usuariosService)],
+		),
 		password: new FormControl("", [
 			Validators.required,
 			Validators.minLength(6),

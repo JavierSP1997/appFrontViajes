@@ -47,7 +47,7 @@ export class ViajesComponent implements OnInit, OnDestroy {
 			// Aplicamos los filtros según los query params
 			if (queryParams.nombre) {
 				filtrados = filtrados.filter((v) =>
-					v.nombre_viaje
+					v.localizacion
 						.toLowerCase()
 						.includes(queryParams.nombre.toLowerCase()),
 				);
