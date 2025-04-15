@@ -5,5 +5,8 @@ export interface Usuario {
 	password: string;
 	fecha_registro: Date;
 	imagen?: string;
-	descripcion?: string
+	descripcion?: string,
+	gender?: 'masculino' | 'femenino' | 'otro';
+	hobbies?: string;
+	pets?: string;
 }
