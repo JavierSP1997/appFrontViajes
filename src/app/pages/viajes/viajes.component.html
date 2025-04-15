@@ -8,16 +8,9 @@
   <div class="row g-4">
     @for(viaje of arrViajes; track viaje.id_viaje) {
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div
-        class="card h-100 shadow-sm viaje-card"
-        (click)="irATrip(viaje.id_viaje)"
-      >
+      <div class="card h-100 shadow-sm viaje-card" (click)="irATrip(viaje.id_viaje)">
         <!-- Imagen del viaje -->
-        <!--           <img 
-            src="{{ viaje.image || 'assets/default-image.jpg' }}" 
-            class="card-img-top"
-            alt="Imagen del viaje"
-          /> a ver si va foto o no-->
+        <img src="{{ viaje.imagen || 'assets/default-image.jpg' }}" class="card-img-top" alt="Imagen del viaje" />
 
         <!-- Contenido -->
         <div class="card-body">
