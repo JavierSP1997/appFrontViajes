@@ -77,4 +77,8 @@ export class ViajesComponent implements OnInit, OnDestroy {
 	irATrip(idViaje: number): void {
 		this.router.navigate(["/viaje", idViaje]);
 	}
+
+	quitarFiltros() {
+		this.router.navigate(["/viajes"]);
+	}
 }
