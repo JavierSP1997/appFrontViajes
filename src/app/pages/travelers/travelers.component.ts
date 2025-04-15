@@ -1,5 +1,5 @@
 import { Component, inject } from "@angular/core";
-import type { Usuario } from "../../../../interfaces/usuario";
+import type { Usuario } from "../../../../interfaces/usuario.interface";
 import { UsuariosService } from "../../services/usuarios.service";
 
 @Component({
