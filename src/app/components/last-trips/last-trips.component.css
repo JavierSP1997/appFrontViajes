@@ -35,7 +35,7 @@ figure {
 
 button.info {
 	margin-bottom: 10px;
-	border: 1px solid var(--color-borde);
+	border: 2px solid var(--color-borde);
 	border-radius: 10px;
 	background-color: var(--color-boton-fondo);
 	color: var(--color-boton-texto);
@@ -82,7 +82,9 @@ span {
 	button.info {
 		width: 120px;
 		&:hover {
-			background-color: var(--color-boton-fondo);
+			background-color: var(--color-boton-texto);
+			color: var(--color-boton-fondo);
+			border: 2px solid var(--color-boton-fondo);
 		}
 	}
 }
@@ -91,9 +93,12 @@ span {
 	.viajes {
 		display: flex;
 	}
-
 	.viaje {
 		margin: 0 20px;
+		transition: 0.5s;
+		&:hover {
+			scale: 1.025;
+		}
 	}
 	figure {
 		height: 250px;

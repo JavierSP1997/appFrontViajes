@@ -5,31 +5,27 @@ h4 {
 .buttons {
 	button {
 		justify-content: space-evenly;
+		margin-bottom: 10px;
+		border-radius: 10px;
+		border: 2px solid var(--color-borde);
 		background-color: var(--color-boton-fondo);
-		border: 2px solid var(--color-boton-fondo);
 		border-radius: 10px;
 		width: 200px;
 		height: 50px;
-		margin: 5px;
+		color: var(--color-boton-texto);
+
+		&:hover {
+			background-color: var(--color-boton-texto);
+			color: var(--color-boton-fondo);
+			border: 2px solid var(--color-boton-fondo);
+		}
 	}
 }
 
-/* @media (min-width: 425px) {
+@media (min-width: 425px) {
 	.buttons {
 		button {
 			margin: 5px;
 		}
 	}
-} */
-
-@media (min-width: 768px) {
-}
-
-@media (min-width: 1024px) {
-}
-
-@media (min-width: 1200px) {
-}
-
-@media (min-width: 1440px) {
 }

@@ -1,0 +1,33 @@
+.login {
+	min-height: 60vh;
+}
+.card {
+	background-color: var(--color-fondo-principal);
+	color: var(--color-texto);
+}
+h3 {
+	color: var(--color-titulo-principal);
+}
+
+.button {
+	background-color: var(--color-boton-fondo);
+	color: var(--color-boton-texto);
+	padding: 5px;
+	border-radius: 10px;
+	transition: 0.5s;
+	border: none;
+}
+
+.button:hover {
+	transition: 0.5s;
+	background-color: var(--color-boton-hover-fondo);
+	color: var(--color-boton-hover);
+}
+p {
+	font-size: 0.8rem;
+	color: tomato;
+}
+
+.error {
+	height: 1.5rem;
+}

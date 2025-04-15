@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { UsuariosService } from "../../services/usuarios.service";
-import { Router } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import {
 	FormControl,
 	FormGroup,
@@ -10,7 +10,7 @@ import {
 import { GuideComponent } from "../../components/guide/guide.component";
 @Component({
 	selector: "app-login",
-	imports: [ReactiveFormsModule],
+	imports: [ReactiveFormsModule, RouterLink],
 	templateUrl: "./login.component.html",
 	styleUrl: "./login.component.css",
 })
@@ -20,7 +20,11 @@ export class LoginComponent {
 
 	formLogin: FormGroup = new FormGroup({
 		email: new FormControl("", [Validators.required, Validators.email]),
-		password: new FormControl("", Validators.required),
+		password: new FormControl("", [
+			Validators.required,
+			Validators.minLength(6),
+			Validators.pattern(/^[A-Z][A-Za-z\d]*\d+/),
+		]),
 	});
 
 	async onSubmit() {
@@ -36,5 +40,11 @@ export class LoginComponent {
 			alert("Error en usuario y/o password");
 			console.error(error);
 		}
+	}
+	checkError(field: string, validator: string): boolean | undefined {
+		return (
+			this.formLogin.get(field)?.hasError(validator) &&
+			this.formLogin.get(field)?.touched
+		);
 	}
 }
