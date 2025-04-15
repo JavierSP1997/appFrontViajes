@@ -11,8 +11,12 @@ export const routes: Routes = [
 	{ path: "", pathMatch: "full", component: HomeComponent },
 	{ path: "register", component: RegisterComponent },
 	{ path: "login", component: LoginComponent },
-	{ path: "viajes", component: ViajesComponent, canActivate: [authGuard] },
-	{ path: "viaje/:idViaje", component: ViajesComponent },
+	{ path: "viajes", component: ViajesComponent },
+	/* {
+		path: "viaje/:idViaje",
+		component: ViajeComponent,
+		canActivate: [authGuard],
+	}, */
 	{ path: "perfil-usuario/:id", component: MyProfileComponent },
 	{ path: "perfil-usuario/:id/editar", component: EditUserProfileComponent },
 	{ path: "**", component: HomeComponent },
