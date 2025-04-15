@@ -33,7 +33,7 @@ export class UsuariosService {
 		return lastValueFrom(this.httpClient.get<Usuario>(`${this.baseUrl}/${id}`));
 	}
 
-  update(id: number, body: Usuario) {
+  update(id: number, body: Usuario | FormData) {
     return lastValueFrom(
       this.httpClient.put<Usuario>(`${this.baseUrl}/${id}`, body)
     );
