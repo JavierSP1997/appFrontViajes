@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-edit-user-profile',
@@ -9,6 +10,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class EditUserProfileComponent {
   
+  usuariosService = inject(UsuariosService);
   perfilUsuarioForm: FormGroup = new FormGroup({
     name: new FormControl('Pepita', [
     ]),
@@ -39,4 +41,6 @@ export class EditUserProfileComponent {
   onSubmit() {
 
   }
-}
+  async ngOnInit() {}
+  }
+  

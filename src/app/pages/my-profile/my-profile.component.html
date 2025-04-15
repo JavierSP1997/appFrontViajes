@@ -121,16 +121,19 @@
             <h1 class="nombre-usuario">{{ usuario.nombre }}</h1>
           </div>
           <div class="col-4 text-end">
-            <img src="ruta/foto.jpg" alt="Foto de perfil" class="foto-perfil img-fluid rounded-circle" />
+            @if (usuario.imagen) {
+              <img [src]="usuario.imagen" alt="Foto de perfil" class="foto-perfil img-fluid rounded-circle" />
+            }
           </div>
         </div>
-        <div class="cubo-contenedor">
+        <p>{{ usuario.descripcion }}</p>
+        <!-- <div class="cubo-contenedor">
           <div class="cubo">
             <div class="cara cara-frontal">
               <p class="descripcion">Soy un viajero apasionado por descubrir culturas nuevas 🌍✈️</p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     }
     

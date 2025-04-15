@@ -4,5 +4,6 @@ export interface Usuario {
 	email: string;
 	password: string;
 	fecha_registro: Date;
-	imagen: string;
+	imagen?: string;
+	descripcion?: string
 }
