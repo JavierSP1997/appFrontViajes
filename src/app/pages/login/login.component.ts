@@ -22,6 +22,7 @@ export class LoginComponent {
 		email: new FormControl("", [Validators.required, Validators.email]),
 		password: new FormControl("", [
 			Validators.required,
+			Validators.minLength(6),
 			Validators.pattern(/^[A-Z][A-Za-z\d]*\d+/),
 		]),
 	});

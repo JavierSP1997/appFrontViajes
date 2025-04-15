@@ -1,5 +1,10 @@
 import { Component, inject } from "@angular/core";
-import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import {
+	FormControl,
+	FormGroup,
+	ReactiveFormsModule,
+	Validators,
+} from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
 import { UsuariosService } from "../../services/usuarios.service";
 
@@ -14,9 +19,13 @@ export class RegisterComponent {
 	usuariosService = inject(UsuariosService);
 
 	formRegister: FormGroup = new FormGroup({
-		nombre: new FormControl(),
-		email: new FormControl(),
-		password: new FormControl(),
+		nombre: new FormControl("", [Validators.required, Validators.minLength(3)]),
+		email: new FormControl("", [Validators.required, Validators.email]),
+		password: new FormControl("", [
+			Validators.required,
+			Validators.minLength(6),
+			Validators.pattern(/^[A-Z][A-Za-z\d]*\d+/),
+		]),
 	});
 
 	async onSubmit() {
