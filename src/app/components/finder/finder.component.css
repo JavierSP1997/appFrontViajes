@@ -1,0 +1,19 @@
+button {
+	margin-bottom: 10px;
+	border: 2px solid var(--color-borde);
+	border-radius: 10px;
+	background-color: var(--color-boton-fondo);
+	color: var(--color-boton-texto);
+
+	&:hover {
+		background-color: var(--color-boton-texto);
+		color: var(--color-boton-fondo);
+		border: 2px solid var(--color-boton-fondo);
+	}
+}
+
+h4 {
+	margin: 10px 0;
+	text-align: center;
+	color: var(--color-titulo-principal);
+}
