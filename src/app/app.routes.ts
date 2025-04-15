@@ -5,12 +5,14 @@ import { EditUserProfileComponent } from "./pages/edit-user-profile/edit-user-pr
 import { RegisterComponent } from "./pages/register/register.component";
 import { MyProfileComponent } from "./pages/my-profile/my-profile.component";
 import { ViajesComponent } from "./pages/viajes/viajes.component";
+import { authGuard } from "../guards/auth.guard";
 
 export const routes: Routes = [
 	{ path: "", pathMatch: "full", component: HomeComponent },
 	{ path: "register", component: RegisterComponent },
 	{ path: "login", component: LoginComponent },
-	{ path: "viajes", component: ViajesComponent },
+	{ path: "viajes", component: ViajesComponent, canActivate: [authGuard] },
+	{ path: "viaje/:idViaje", component: ViajesComponent },
 	{ path: "perfil-usuario/:id", component: MyProfileComponent },
 	{ path: "perfil-usuario/:id/editar", component: EditUserProfileComponent },
 	{ path: "**", component: HomeComponent },
