@@ -39,4 +39,11 @@ export class RegisterComponent {
 			console.log(error);
 		}
 	}
+
+	checkError(field: string, validator: string): boolean | undefined {
+		return (
+			this.formRegister.get(field)?.hasError(validator) &&
+			this.formRegister.get(field)?.touched
+		);
+	}
 }
