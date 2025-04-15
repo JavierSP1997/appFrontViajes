@@ -29,7 +29,7 @@ export class MyProfileComponent {
 		gender: new FormControl("", [Validators.required]),
 		hobbies: new FormControl("", [Validators.required]),
 		pets: new FormControl("", [Validators.required]),
-		photo: new FormControl("", [Validators.required]),
+		imagen: new FormControl("", [Validators.required]),
 	});
 
 	async ngOnInit() {
@@ -41,4 +41,5 @@ export class MyProfileComponent {
 			console.log("Formulario enviado correctamente");
 		}
 	}
+	
 }

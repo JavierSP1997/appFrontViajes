@@ -32,7 +32,15 @@ export class UsuariosService {
 	getById(id: number) {
 		return lastValueFrom(this.httpClient.get<Usuario>(`${this.baseUrl}/${id}`));
 	}
-}
+
+  update(id: number, body: Usuario) {
+    return lastValueFrom(
+      this.httpClient.put<Usuario>(`${this.baseUrl}/${id}`, body)
+    );
+  }
+  
+  }
+  
 
 
 
