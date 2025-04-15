@@ -9,6 +9,8 @@
 
 	/* Colores de botones */
 	--color-boton-fondo: #00bfae; /* Fondo de botones (verde menta brillante) */
+	--color-boton-hover-fondo: #3d5a5d;
+	--color-boton-hover: #ffffff;
 	--color-boton-texto: #ffffff; /* Texto de botones (blanco) */
 	--color-enlace: #ff7f50; /* Enlaces (coral suave) */
 	--color-enlace-hover: #ff6347; /* Enlaces al pasar el ratón (tomate suave) */
