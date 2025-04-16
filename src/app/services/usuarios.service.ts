@@ -19,7 +19,12 @@ export class UsuariosService {
 
 	login(body: Body) {
 		return lastValueFrom(
-			this.httpClient.post<LoginResponse>(`${this.baseUrl}/login`, body),
+			this.httpClient.post<LoginResponse>(`${this.baseUrl}/login`, body).pipe(
+				map((res) => {
+					localStorage.setItem("token", res.token); // <-- Guardamos el token
+					return res;
+				}),
+			),
 		);
 	}
 
@@ -29,16 +34,28 @@ export class UsuariosService {
 		);
 	}
 
+	getPerfilUsuario() {
+		const token = localStorage.getItem("token");
+
+		return lastValueFrom(
+			this.httpClient.get<Usuario>(`${this.baseUrl}`, {
+				headers: {
+					Authorization: token ?? "",
+				},
+			}),
+		);
+	}
+
 	getById(id: number) {
 		return lastValueFrom(this.httpClient.get<Usuario>(`${this.baseUrl}/${id}`));
 	}
 
-  update(id: number, body: Usuario | FormData) {
-    return lastValueFrom(
-      this.httpClient.put<Usuario>(`${this.baseUrl}/${id}`, body)
-    );
-  }
-  
+	update(id: number, body: Usuario | FormData) {
+		return lastValueFrom(
+			this.httpClient.put<Usuario>(`${this.baseUrl}/${id}`, body),
+		);
+	}
+
 	emailExiste(email: string) {
 		return lastValueFrom(
 			this.httpClient

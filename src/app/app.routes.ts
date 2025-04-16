@@ -5,7 +5,7 @@ import { EditUserProfileComponent } from "./pages/edit-user-profile/edit-user-pr
 import { RegisterComponent } from "./pages/register/register.component";
 import { MyProfileComponent } from "./pages/my-profile/my-profile.component";
 import { ViajesComponent } from "./pages/viajes/viajes.component";
-import { authGuard } from "../guards/auth.guard";
+import { authGuard } from "./guards/auth.guard";
 import { TripComponent } from "./pages/trip/trip.component";
 
 export const routes: Routes = [
@@ -18,7 +18,11 @@ export const routes: Routes = [
 		component: TripComponent,
 		canActivate: [authGuard],
 	},
-	{ path: "perfil-usuario/:id", component: MyProfileComponent },
+	{
+		path: "perfil-usuario",
+		component: MyProfileComponent,
+		canActivate: [authGuard],
+	},
 	{ path: "perfil-usuario/:id/editar", component: EditUserProfileComponent },
 	{ path: "**", component: HomeComponent },
 ];

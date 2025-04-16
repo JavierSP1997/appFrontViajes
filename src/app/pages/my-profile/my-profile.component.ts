@@ -16,8 +16,6 @@ import type { Usuario } from "../../../../interfaces/usuario.interface";
 	styleUrl: "./my-profile.component.css",
 })
 export class MyProfileComponent {
-	@Input() id = null;
-
 	usuariosService = inject(UsuariosService);
 	usuario: Usuario | null = null;
 
@@ -33,7 +31,19 @@ export class MyProfileComponent {
 	});
 
 	async ngOnInit() {
-		this.usuario = await this.usuariosService.getById(Number(this.id));
+		this.usuario = await this.usuariosService.getPerfilUsuario();
+
+		// Opcional: rellenar el formulario con los datos del usuario
+		this.perfilUsuarioForm.patchValue({
+			name: this.usuario.nombre,
+			email: this.usuario.email,
+			password: this.usuario.password,
+			description: this.usuario.descripcion,
+			gender: this.usuario.gender,
+			hobbies: this.usuario.hobbies,
+			pets: this.usuario.pets,
+			imagen: this.usuario.imagen,
+		});
 	}
 
 	onSubmit() {
@@ -41,5 +51,4 @@ export class MyProfileComponent {
 			console.log("Formulario enviado correctamente");
 		}
 	}
-	
 }
