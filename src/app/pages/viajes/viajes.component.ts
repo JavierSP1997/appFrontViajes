@@ -19,6 +19,7 @@ export class ViajesComponent implements OnInit, OnDestroy {
 
 	viajesService = inject(ViajesService);
 	router = inject(Router);
+
 	route = inject(ActivatedRoute);
 
 	ngOnInit(): void {
