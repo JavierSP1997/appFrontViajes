@@ -1,0 +1,26 @@
+<section class="container my-4">
+    @if (participantes.length > 0) {
+    <div class="d-flex flex-wrap gap-3 justify-content-center">
+        @for (p of participantes; track p.id_usuario) {
+        <div class="card text-center shadow-sm border-0" style="width: 8rem; cursor: pointer;"
+            [routerLink]="['/usuarios', p.id_usuario]">
+            <img [src]="p.imagen || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'"
+                class="card-img-top rounded-circle mt-2 mx-auto" alt="FOTO"
+                style="width: 60px; height: 60px; object-fit: cover;" />
+            <div class="card-body p-2">
+                <p class="card-text mb-1" style="font-size: 0.85rem;">{{ p.nombre }}</p>
+                <span class="badge" [ngClass]="{
+                  'bg-success': p.status === 'confirmado',
+                  'bg-warning text-dark': p.status === 'pendiente',
+                  'bg-danger': p.status === 'rechazado'
+                }">
+                    {{ p.status }}
+                </span>
+            </div>
+        </div>
+        }
+    </div>
+    } @else {
+    <p class="text-center text-muted text-bold">Aún no hay participantes.</p>
+    }
+</section>

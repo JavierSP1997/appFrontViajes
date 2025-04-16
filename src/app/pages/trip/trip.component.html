@@ -1,30 +1,38 @@
-@if (viaje !== null) {
-<div class="container d-flex justify-content-center align-items-center mt-5 mb-5 airport-flip">
-    <div class="card shadow-lg border-0 rounded-4" style="max-width: 800px; width: 100%;">
-        <img [src]="viaje.imagen" class="card-img-top rounded-top-4" alt="Imagen del viaje"
-            style="height: 350px; object-fit: cover;" />
+<section class="m-4 seccion container m-auto">
 
-        <div class="card-body p-4">
-            <h2 class="card-title fw-bold text-primary mb-3">{{ viaje.nombre_viaje }}</h2>
+    @if (viaje !== null) {
+    <div class="container d-flex justify-content-center align-items-center mt-5 mb-5 airport-flip">
+        <div class="card shadow-lg border-0 rounded-4" style="max-width: 800px; width: 100%;">
+            <img [src]="viaje.imagen" class="card-img-top rounded-top-4" alt="Imagen del viaje"
+                style="height: 350px; object-fit: cover;" />
 
-            <ul class="list-group list-group-flush mb-3">
-                <li class="list-group-item"><strong>📍 Localización:</strong> {{ viaje.localizacion }}</li>
-                <li class="list-group-item"><strong>📅 Fecha de inicio:</strong> {{ viaje.fecha_inicio | date:
-                    'longDate' }}</li>
-                <li class="list-group-item"><strong>📅 Fecha de fin:</strong> {{ viaje.fecha_fin | date: 'longDate' }}
-                </li>
-                <li class="list-group-item"><strong>💸 Coste por persona:</strong> {{ viaje.coste_por_persona }} €</li>
-                <li class="list-group-item"><strong>👥 Personas mínimas:</strong> {{ viaje.personas_minimas }}</li>
-                <li class="list-group-item"><strong>🧭 Itinerario:</strong> {{ viaje.itinerario }}</li>
-            </ul>
+            <div class="card-body p-4">
+                <h2 class="card-title fw-bold text-primary mb-3">{{ viaje.nombre_viaje }}</h2>
+
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item"><strong>📍 Localización:</strong> {{ viaje.localizacion }}</li>
+                    <li class="list-group-item"><strong>📅 Fecha de inicio:</strong> {{ viaje.fecha_inicio | date:
+                        'longDate' }}</li>
+                    <li class="list-group-item"><strong>📅 Fecha de fin:</strong> {{ viaje.fecha_fin | date: 'longDate'
+                        }}
+                    </li>
+                    <li class="list-group-item"><strong>💸 Coste por persona:</strong> {{ viaje.coste_por_persona }} €
+                    </li>
+                    <li class="list-group-item"><strong>👥 Personas mínimas:</strong> {{ viaje.personas_minimas }}</li>
+                    <li class="list-group-item"><strong>🧭 Itinerario:</strong> {{ viaje.itinerario }}</li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Sticky button -->
-<button class="btn btn-primary btn-sticky" (click)="redirectToViajes()">← Volver a viajes</button>
-} @else {
-<p class="text-center mt-5 text-muted">Cargando datos del viaje...</p>
-}
+    <app-participantes [participantes]="participantes"></app-participantes>
 
-<app-comentarios></app-comentarios>
+    <app-comentarios></app-comentarios>
+
+    <!-- Sticky button -->
+    <button class="btn btn-primary btn-sticky" (click)="redirectToViajes()">← Volver a viajes</button>
+    } @else {
+    <p class="text-center mt-5 text-muted">Cargando datos del viaje...</p>
+    }
+
+</section>
