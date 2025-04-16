@@ -1,6 +1,6 @@
 import { Component, inject, type OnInit, type OnDestroy } from "@angular/core";
 import { ViajesService } from "../../services/viajes.service";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute, RouterModule } from "@angular/router";
 import type { Viaje } from "../../../../interfaces/viaje.interface";
 import { FinderComponent } from "../../components/finder/finder.component";
 import type { Subscription } from "rxjs";
@@ -8,7 +8,7 @@ import { DatePipe } from "@angular/common";
 
 @Component({
 	selector: "app-viajes",
-	imports: [FinderComponent, DatePipe],
+	imports: [FinderComponent, DatePipe, RouterModule],
 	templateUrl: "./viajes.component.html",
 	styleUrls: ["./viajes.component.css"],
 })
@@ -75,7 +75,7 @@ export class ViajesComponent implements OnInit, OnDestroy {
 	}
 
 	irATrip(idViaje: number): void {
-		this.router.navigate(["/viaje", idViaje]);
+		this.router.navigate(["/viajes", idViaje]);
 	}
 
 	quitarFiltros() {

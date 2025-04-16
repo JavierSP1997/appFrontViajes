@@ -1,9 +1,12 @@
 button {
-	margin-bottom: 10px;
+	font-weight: bold;
+	padding: 0.5rem 1rem;
 	border: 2px solid var(--color-borde);
-	border-radius: 10px;
+	border-radius: 0.625rem;
 	background-color: var(--color-boton-fondo);
 	color: var(--color-boton-texto);
+	transition: all 0.3s ease;
+
 
 	&:hover {
 		background-color: var(--color-boton-texto);

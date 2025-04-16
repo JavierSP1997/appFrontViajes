@@ -5,30 +5,27 @@
 
 
 <div class="text-end">
-  <button id="clear" class="btn btn-secondary" (click)="quitarFiltros()">Quitar filtros</button>
+    <button id="clear" class="btn btn-secondary" (click)="quitarFiltros()">Quitar filtros</button>
 </div>
 <!-- Grid de cards -->
 
 <section class="m-4 seccion container m-auto">
-      <article class="viajes">
-          @for (viaje of arrViajes; track viaje.id_viaje) {
-              <section class="viaje">
-                  <figure>
-                      <figcaption><span>{{viaje.nombre_viaje}}</span></figcaption>
-                      <img src="{{viaje.imagen}}" alt="">
-                  </figure>
-                  <div class="parrafos">
-                      <ul class="list-unstyled">
-                          <li>Fecha del viaje <br> <span>{{viaje.fecha_inicio | date: 'dd-MM-YYYY'}} / {{viaje.fecha_fin | date: 'dd-MM-yyyy'}}</span> </li>
-                          <li>Precio <br> <span>{{viaje.coste_por_persona}}</span></li>
-                          <li>Destino <br> <span>{{viaje.localizacion}}</span></li>
-                          <li>Descripción  <br> <span> {{viaje.itinerario}}</span></li>
-                      </ul>
-                        </div>
-                  <button class="info" routerLink="viaje/:idViaje">+ INFO</button>
-              </section>
-              
-          }
-      </article>
-      
-</section>   
+    <article class="viajes">
+        @for (viaje of arrViajes; track viaje.id_viaje) {
+        <section class="viaje">
+            <figure>
+                <figcaption><span>{{viaje.nombre_viaje}}</span></figcaption>
+                <img src="{{viaje.imagen}}" alt="">
+            </figure>
+            <div class="parrafos">
+                <ul class="list-unstyled">
+                    <li>Fecha del viaje <br> <span>{{viaje.fecha_inicio | date: 'dd-MM-YYYY'}}</span> </li>
+                    <li>Destino <br> <span>{{viaje.localizacion}}</span></li>
+                </ul>
+            </div>
+            <button class="info" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
+        </section>
+        }
+    </article>
+
+</section>
