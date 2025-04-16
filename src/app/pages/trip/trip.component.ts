@@ -36,4 +36,8 @@ export class TripComponent {
 			this.error = true;
 		}
 	}
+
+	redirectToViajes() {
+		window.location.href = "/viajes";
+	}
 }
