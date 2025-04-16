@@ -8,6 +8,7 @@ import {
 	Validators,
 } from "@angular/forms";
 import { GuideComponent } from "../../components/guide/guide.component";
+import Swal from "sweetalert2";
 @Component({
 	selector: "app-login",
 	imports: [ReactiveFormsModule, RouterLink],
@@ -34,11 +35,22 @@ export class LoginComponent {
 		try {
 			const response = await this.usuariosService.login(this.formLogin.value);
 			localStorage.setItem("token", response.token);
-			alert("Login exitoso");
+			Swal.fire({
+				title: "LOGIN",
+				text: "Has iniciado sesion correctamente",
+				icon: "success",
+				confirmButtonText: "Cerrar",
+			});
 			this.router.navigate(["/"]);
-		} catch (error) {
-			alert("Error en usuario y/o password");
-			console.error(error);
+			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		} catch (msg: any) {
+			console.error("Error en el login", msg.error.error);
+			Swal.fire({
+				title: "Usuario o contraseña incorrectas",
+				text: msg.error.error,
+				icon: "error",
+				confirmButtonText: "Cerrar",
+			});
 		}
 	}
 	checkError(field: string, validator: string): boolean | undefined {
