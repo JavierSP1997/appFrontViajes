@@ -3,11 +3,12 @@ import { CommonModule } from "@angular/common";
 import { ActivatedRoute } from "@angular/router";
 import { ViajesService } from "../../services/viajes.service";
 import type { Viaje } from "../../../../interfaces/viaje.interface";
+import { ComentariosComponent } from "../../components/comentarios/comentarios.component";
 
 @Component({
 	selector: "app-trip",
 	standalone: true,
-	imports: [CommonModule],
+	imports: [CommonModule, ComentariosComponent],
 	templateUrl: "./trip.component.html",
 	styleUrl: "./trip.component.css",
 })
