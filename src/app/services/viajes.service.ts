@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { lastValueFrom, type Observable } from "rxjs";
 import type { Viaje } from "../../../interfaces/viaje.interface";
@@ -9,7 +9,6 @@ import type { Viaje } from "../../../interfaces/viaje.interface";
 export class ViajesService {
 	private httpClient = inject(HttpClient);
 	private baseUrl = "http://localhost:3000/api/viajes";
-	//mirar bien lo del enviroment
 
 	getLastViaje() {
 		return this.httpClient.get<Viaje[]>(`${this.baseUrl}`);
