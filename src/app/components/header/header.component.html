@@ -1,30 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-dark 
-">
+<nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container p-0">
-    <!-- Marca a la izquierda -->
     <a class="navbar-brand" href="#">Viajeros Unidos</a>
-
-    <!-- Botón hamburguesa para móviles -->
     <button class="navbar-toggler p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContenido"
       aria-controls="navbarContenido" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <!-- Contenido del menú -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarContenido">
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
-          <a routerLink="/" routerLinkActive="active" class="nav-link">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" data-bs-toggle="collapse" data-bs-target="#navbarContenido">
             <i class="fas fa-home"></i> Inicio
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/perfil-usuario" routerLinkActive="active" class="nav-link">
+          <a class="nav-link" routerLink="/perfil-usuario" routerLinkActive="active" data-bs-toggle="collapse" data-bs-target="#navbarContenido">
             <i class="fas fa-user"></i> Mi Perfil
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/viajes" routerLinkActive="active" class="nav-link">
+          <a class="nav-link" routerLink="/viajes" routerLinkActive="active" data-bs-toggle="collapse" data-bs-target="#navbarContenido">
             <i class="fas fa-plane"></i> Viajes
           </a>
         </li>
