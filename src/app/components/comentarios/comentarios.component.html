@@ -1,1 +1,4 @@
-<p>comentarios works!</p>
+@for (item of comentarios; track viajeId) {
+    <p>{{item.nombre}}</p>
+    <p>{{item.fecha_comentario}}</p>
+}
