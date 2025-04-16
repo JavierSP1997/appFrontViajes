@@ -18,7 +18,11 @@ export const routes: Routes = [
 		component: TripComponent,
 		canActivate: [authGuard],
 	},
-	{ path: "perfil-usuario/:id", component: MyProfileComponent },
+	{
+		path: "perfil-usuario",
+		component: MyProfileComponent,
+		canActivate: [authGuard],
+	},
 	{ path: "perfil-usuario/:id/editar", component: EditUserProfileComponent },
 	{ path: "**", component: HomeComponent },
 ];
