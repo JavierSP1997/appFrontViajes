@@ -20,7 +20,6 @@ figure {
 	overflow: hidden;
 	border-radius: 20px;
 
-
 	img {
 		width: 100%;
 		height: auto;
@@ -61,17 +60,20 @@ span {
 	font-weight: bold;
 }
 
+.vacio {
+	text-align: center;
+	color: var(--color-titulo-secundario);
+}
+
 @media (min-width: 425px) {
 	figure {
 		height: 300px;
 	}
-
 }
 
 @media (min-width: 768px) {
 	.viaje {
 		width: 80vw;
-
 	}
 	figure {
 		height: 400px;
