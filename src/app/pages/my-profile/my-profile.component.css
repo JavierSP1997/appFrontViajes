@@ -91,3 +91,22 @@
     text-align: center;
   }
   
+  .campo-vacio {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid #ced4da;
+    border-radius: 0.5rem;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+  }
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+  }
+  
