@@ -14,7 +14,7 @@ export const routes: Routes = [
 	{ path: "login", component: LoginComponent },
 	{ path: "viajes", component: ViajesComponent },
 	{
-		path: "viaje/:idViaje",
+		path: "viajes/:idViaje",
 		component: TripComponent,
 		canActivate: [authGuard],
 	},

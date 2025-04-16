@@ -1,1 +1,20 @@
-<p>trip works!</p>
+@if (viaje !== null) {
+<div class="trip-container">
+    <h1 class="trip-title">{{ viaje.nombre_viaje }}</h1>
+
+    <img [src]="viaje.imagen" alt="Imagen del viaje" class="trip-image" />
+
+    <div class="trip-details">
+        <p><strong>Localización:</strong> {{ viaje.localizacion }}</p>
+        <p><strong>Fecha de inicio:</strong> {{ viaje.fecha_inicio | date: 'longDate' }}</p>
+        <p><strong>Fecha de fin:</strong> {{ viaje.fecha_fin | date: 'longDate' }}</p>
+        <p><strong>Coste por persona:</strong> {{ viaje.coste_por_persona }} €</p>
+        <p><strong>Personas mínimas:</strong> {{ viaje.personas_minimas }}</p>
+        <p><strong>Itinerario:</strong> {{ viaje.itinerario }}</p>
+    </div>
+
+    <a routerLink="/viajes" class="btn-volver">← Volver a viajes</a>
+</div>
+} @else {
+<p>Cargando datos del viaje...</p>
+}
