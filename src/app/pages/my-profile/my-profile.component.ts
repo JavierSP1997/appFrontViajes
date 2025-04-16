@@ -1,7 +1,9 @@
 import { Component, inject } from "@angular/core";
 import { UsuariosService } from "../../services/usuarios.service";
 import type { Usuario } from "../../../../interfaces/usuario.interface";
+// biome-ignore lint/style/useImportType: <explanation>
 import { Router } from '@angular/router';
+
 
 @Component({
 	selector: "app-my-profile",
