@@ -26,4 +26,8 @@ export class ViajesService {
 			}),
 		);
 	}
+
+	getViajeById(id: number): Observable<Viaje> {
+		return this.httpClient.get<Viaje>(`${this.baseUrl}/${id}`);
+	}
 }
