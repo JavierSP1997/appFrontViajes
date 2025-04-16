@@ -17,7 +17,6 @@
 .seccion {
 	padding: 1.25rem;
 	text-align: center;
-	
 }
 
 .seccion hgroup {
@@ -54,7 +53,6 @@ figure figcaption {
 	font-size: 1.3rem;
 	font-weight: bold;
 	margin: 10px;
-
 }
 
 /* Botón de info */
@@ -92,7 +90,6 @@ ul {
 	padding: 0;
 	margin: 20px 0;
 	list-style: none;
-
 }
 
 ul li span {
