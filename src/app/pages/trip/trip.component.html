@@ -9,6 +9,17 @@
             <div class="card-body p-4">
                 <h2 class="card-title fw-bold text-primary mb-3">{{ viaje.nombre_viaje }}</h2>
 
+                @if (anfitrion !== null) {
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <img [src]="anfitrion.imagen || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'"
+                        alt="Foto del anfitrión" class="rounded-circle" width="50" height="50">
+                    <div>
+                        <small class="text-muted">Anfitrión</small><br />
+                        <strong>{{ anfitrion.nombre }}</strong>
+                    </div>
+                </div>
+                }
+
                 <ul class="list-group list-group-flush mb-3">
                     <li class="list-group-item"><strong>📍 Localización:</strong> {{ viaje.localizacion }}</li>
                     <li class="list-group-item"><strong>📅 Fecha de inicio:</strong> {{ viaje.fecha_inicio | date:

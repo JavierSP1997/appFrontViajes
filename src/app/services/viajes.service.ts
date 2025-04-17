@@ -14,8 +14,8 @@ export class ViajesService {
 		return this.httpClient.get<Viaje[]>(`${this.baseUrl}`);
 	}
 
-	getAllViajes(): Observable<Viaje[]> {
-		return this.httpClient.get<Viaje[]>(this.baseUrl);
+	getAllViajes(): Promise<Viaje[]> {
+		return lastValueFrom(this.httpClient.get<Viaje[]>(this.baseUrl));
 	}
 
 	getViajeByNombre(nombre: string) {
@@ -26,7 +26,7 @@ export class ViajesService {
 		);
 	}
 
-	getViajeById(id: number): Observable<Viaje> {
-		return this.httpClient.get<Viaje>(`${this.baseUrl}/${id}`);
+	getViajeById(id: number): Promise<Viaje> {
+		return lastValueFrom(this.httpClient.get<Viaje>(`${this.baseUrl}/${id}`));
 	}
 }

@@ -46,3 +46,19 @@
 .btn-sticky:hover {
 	background-color: #0b5ed7;
 }
+
+.rounded-circle {
+	object-fit: cover;
+}
+
+.card .anfitrion-info {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 1rem;
+}
+
+.card .anfitrion-info img {
+	border-radius: 50%;
+	object-fit: cover;
+}
