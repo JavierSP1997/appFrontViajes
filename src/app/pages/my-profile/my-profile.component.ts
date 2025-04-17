@@ -35,4 +35,8 @@ export class MyProfileComponent {
 			!u.imagen
 		);
 	}
+	cerrarSesion() {
+		localStorage.clear(); 
+		this.router.navigate(['/home']);
+	  }
 }

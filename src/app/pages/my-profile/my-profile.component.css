@@ -1,112 +1,40 @@
+.perfil-btn {
+  background-color: var(--color-boton-fondo);
+  color: var(--color-boton-texto);
+  border: 1px solid var(--color-borde);
+  border-radius: 50rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  white-space: nowrap;
+}
 
-  .cubo-header {
-    background-color: var(--color-fondo-seccion);
-    border-radius: 1rem;
-    box-shadow: 0 5px 15px var(--color-sombra);
-  }
-  
-  .nombre-usuario {
-    font-size: 1.5rem;
-    color: var(--color-titulo-principal);
-    margin: 0;
-  }
-  
-  .foto-perfil {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
-    border: 2px solid var(--color-borde);
-  }
-  :root {
-    --color-fondo-principal: #FAF9F6;
-    --color-titulo-principal: #3D5A5D;
-    --color-titulo-secundario: #f0a469;
-    --color-texto: #333333;
-    --color-boton-fondo: #00BFAE;
-    --color-boton-texto: #FFFFFF;
-    --color-enlace: #FF7F50;
-    --color-enlace-hover: #FF6347;
-    --color-fondo-seccion: #E9F6EF;
-    --color-fondo-tarjeta: #e9c307;
-    --color-fondo-pie-pagina: #3D5A5D;
-    --color-borde: #D9D9D9;
-    --color-sombra: rgba(0, 0, 0, 0.1);
-  }
-  
-  body {
-    background-color: var(--color-fondo-principal);
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Contenedor para centrar */
-  .cubo-contenedor {
-    perspective: 1000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 40px auto;
-    width: 300px;
-    height: 300px;
-  }
-  
-  /* Cubo giratorio 3D */
-  .cubo {
-    width: 200px;
-    height: 200px;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: girar 10s infinite linear;
-  }
-  
-  /* Cara frontal del cubo */
-  .cara {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-fondo-tarjeta);
-    border: 2px solid var(--color-borde);
-    box-shadow: 0 4px 8px var(--color-sombra);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    backface-visibility: hidden;
-    transform: rotateY(0deg) translateZ(100px);
-  }
-  
-  /* Animación */
-  @keyframes girar {
-    from {
-      transform: rotateY(0deg);
-    }
-    to {
-      transform: rotateY(360deg);
-    }
-  }
-  
-  /* Texto de descripción */
-  .descripcion {
-    padding: 10px;
-    font-size: 1rem;
-    color: var(--color-texto);
-    text-align: center;
-  }
-  
-  .campo-vacio {
-    background-color: #f8f9fa;
-    color: #6c757d;
-    padding: 0.75rem 1rem;
-    border-left: 4px solid #ced4da;
-    border-radius: 0.5rem;
-    font-style: italic;
-    display: flex;
-    align-items: center;
-  }
-  .btn-success {
-    background-color: #28a745;
-    border: none;
-  }
-  
-  .btn-success:hover {
-    background-color: #218838;
-  }
-  
+.perfil-btn:hover {
+  background-color: var(--color-boton-hover-fondo);
+  color: var(--color-boton-hover);
+  box-shadow: 0 4px 8px var(--color-sombra);
+  transform: translateY(-2px);
+}
+
+.profile-header {
+  background-color: var(--color-fondo-seccion);
+  padding: 2rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.profile-img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--color-borde);
+}
+
+.info-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-borde);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px var(--color-sombra);
+}
