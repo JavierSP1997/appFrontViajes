@@ -2,8 +2,7 @@ import { Component, inject } from "@angular/core";
 import { UsuariosService } from "../../services/usuarios.service";
 import type { Usuario } from "../../../../interfaces/usuario.interface";
 // biome-ignore lint/style/useImportType: <explanation>
-import { Router } from '@angular/router';
-
+import { Router } from "@angular/router";
 
 @Component({
 	selector: "app-my-profile",
@@ -21,18 +20,17 @@ export class MyProfileComponent {
 	}
 
 	editarPerfil() {
-		if (this.usuario?.id) {
-			this.router.navigate([`/perfil-usuario/${this.usuario.id}/editar`]);
+		if (this.usuario?.id_usuario) {
+			this.router.navigate([
+				`/perfil-usuario/${this.usuario.id_usuario}/editar`,
+			]);
 		}
 	}
 
 	get perfilIncompleto(): boolean {
 		const u = this.usuario;
-		return !!u && (
-			!u.gender ||
-			!u.hobbies?.length ||
-			!u.pets?.length ||
-			!u.imagen
+		return (
+			!!u && (!u.gender || !u.hobbies?.length || !u.pets?.length || !u.imagen)
 		);
 	}
 	cerrarSesion() {

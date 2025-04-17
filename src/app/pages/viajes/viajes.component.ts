@@ -42,7 +42,7 @@ export class ViajesComponent implements OnInit, OnDestroy {
 
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	obtenerViajesFiltrados(queryParams: any): void {
-		this.viajesService.getAllViajes().subscribe((viajes: Viaje[]) => {
+		this.viajesService.getAllViajes().then((viajes: Viaje[]) => {
 			let filtrados = [...viajes];
 
 			// Aplicamos los filtros según los query params
