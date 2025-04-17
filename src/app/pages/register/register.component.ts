@@ -8,6 +8,7 @@ import {
 import { Router, RouterLink } from "@angular/router";
 import { UsuariosService } from "../../services/usuarios.service";
 import { emailExisteValidator } from "../../validators/checkEmail.validator";
+import Swal from "sweetalert2";
 
 @Component({
 	selector: "app-register",
@@ -38,7 +39,12 @@ export class RegisterComponent {
 			const staff = await this.usuariosService.register(
 				this.formRegister.value,
 			);
-			alert("Registro correcto");
+			Swal.fire({
+				title: "REGISTRO COMPLETADO",
+				text: "Te has registrado correctamente",
+				icon: "success",
+				confirmButtonText: "Cerrar",
+			});
 			this.router.navigateByUrl("/login");
 		} catch (error) {
 			console.log(error);
