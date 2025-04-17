@@ -1,5 +1,6 @@
 <section class="m-4 seccion container m-auto">
 
+    @if (cargado) {
     @if (viaje !== null) {
     <div class="container d-flex justify-content-center align-items-center mt-5 mb-5 airport-flip">
         <div class="card shadow-lg border-0 rounded-4" style="max-width: 800px; width: 100%;">
@@ -26,13 +27,22 @@
                     <li class="list-group-item"><strong>📅 Fecha de inicio:</strong> {{ viaje.fecha_inicio | date:
                         'longDate' }}</li>
                     <li class="list-group-item"><strong>📅 Fecha de fin:</strong> {{ viaje.fecha_fin | date: 'longDate'
-                        }}
-                    </li>
+                        }}</li>
                     <li class="list-group-item"><strong>💸 Coste por persona:</strong> {{ viaje.coste_por_persona }} €
                     </li>
                     <li class="list-group-item"><strong>👥 Personas mínimas:</strong> {{ viaje.personas_minimas }}</li>
                     <li class="list-group-item"><strong>🧭 Itinerario:</strong> {{ viaje.itinerario }}</li>
                 </ul>
+                <div class="text-center mt-4">
+                    @if (esAnfitrion) {
+                    <button class="btn btn-warning me-2" [routerLink]="['/viajes', viaje.id_viaje, 'editar']">✏️
+                        Editar viaje</button>
+                    } @else if (esParticipante) {
+                    <button class="btn btn-danger me-2" (click)="abandonar()">🚪 Abandonar viaje</button>
+                    } @else {
+                    <button class="btn btn-success me-2" (click)="unirse()">➕ Unirse al viaje</button>
+                    }
+                </div>
             </div>
         </div>
     </div>
@@ -44,6 +54,10 @@
 
     <!-- Sticky button -->
     <button class="btn btn-primary btn-sticky" (click)="redirectToViajes()">← Volver a viajes</button>
+
+    } @else {
+    <p class="text-center mt-5 text-muted">No se encontró el viaje.</p>
+    }
     } @else {
     <p class="text-center mt-5 text-muted">Cargando datos del viaje...</p>
     }
