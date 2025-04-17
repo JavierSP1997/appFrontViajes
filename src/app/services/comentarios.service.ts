@@ -1,33 +1,31 @@
-import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
-import type { Comentario } from "../../../interfaces/comentario";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable, inject } from "@angular/core";
 import { lastValueFrom } from "rxjs";
+import type { Comentario } from "../../../interfaces/comentario.interface";
 
 @Injectable({
 	providedIn: "root",
 })
 export class ComentariosService {
 	private httpClient = inject(HttpClient);
-	private baseUrl = "http://localhost:3000/api/viajes";
+	private apiUrl = "http://localhost:3000/api/viajes";
 
 	obtenerComentarios(viajeId: number) {
 		return lastValueFrom(
 			this.httpClient.get<Comentario[]>(
-				`${this.baseUrl}/${viajeId}/comentarios`,
+				`${this.apiUrl}/${viajeId}/comentarios`,
 			),
 		);
 	}
 
-	crearComentario(
-		viajeId: number,
-		body: {
-			usuarios_id_usuario: number;
-			viajes_id_viaje: number;
-			comentario: string;
-		},
-	) {
+	agregarComentario(viajeId: number, comentario: string, token: string) {
+		const headers = new HttpHeaders().set("Authorization", token);
 		return lastValueFrom(
-			this.httpClient.post(`${this.baseUrl}/${viajeId}/comentarios`, body),
+			this.httpClient.post(
+				`${this.apiUrl}/${viajeId}/comentarios`,
+				{ comentario },
+				{ headers },
+			),
 		);
 	}
 }

@@ -1,66 +1,50 @@
-import { Component, inject, Input } from "@angular/core";
-import type { Comentario } from "../../../../interfaces/comentario";
-import type { Usuario } from "../../../../interfaces/usuario.interface";
+import { Component, Input, inject, type OnInit } from "@angular/core";
+import type { Comentario } from "../../../../interfaces/comentario.interface";
 import { ComentariosService } from "../../services/comentarios.service";
-import { UsuariosService } from "../../services/usuarios.service";
-import { ActivatedRoute } from "@angular/router";
 
 @Component({
 	selector: "app-comentarios",
-	imports: [],
 	templateUrl: "./comentarios.component.html",
-	styleUrl: "./comentarios.component.css",
 })
-export class ComentariosComponent {
+export class ComentariosComponent implements OnInit {
 	@Input() viajeId!: number;
 
-	private route = inject(ActivatedRoute);
-
+	private comentariosService = inject(ComentariosService);
 	comentarios: Comentario[] = [];
 	nuevoComentario = "";
-	usuario: Usuario | null = null;
-
-	private comentariosService = inject(ComentariosService);
-	private usuariosService = inject(UsuariosService);
+	token: string = localStorage.getItem("token") || "";
 
 	async ngOnInit() {
-		await this.obtenerUsuario();
-		await this.obtenerComentarios();
-	}
-
-	async obtenerUsuario() {
-		try {
-			this.usuario = await this.usuariosService.getPerfilUsuario();
-		} catch (error) {
-			console.error("Error al obtener usuario:", error);
+		if (this.viajeId) {
+			await this.cargarComentarios();
+		} else {
+			console.error("No se recibió viajeId");
 		}
 	}
 
-	async obtenerComentarios() {
+	async cargarComentarios() {
 		try {
 			this.comentarios = await this.comentariosService.obtenerComentarios(
 				this.viajeId,
 			);
 		} catch (error) {
-			console.error("Error al obtener comentarios");
+			console.error("Error cargando comentarios", error);
 		}
 	}
 
 	async enviarComentario() {
-		if (!this.nuevoComentario.trim() || !this.usuario) return;
-
-		const body = {
-			usuarios_id_usuario: this.usuario.id,
-			viajes_id_viaje: this.viajeId,
-			comentario: this.nuevoComentario.trim(),
-		};
+		if (!this.nuevoComentario.trim()) return;
 
 		try {
-			await this.comentariosService.crearComentario(this.viajeId, body);
+			await this.comentariosService.agregarComentario(
+				this.viajeId,
+				this.nuevoComentario,
+				this.token,
+			);
 			this.nuevoComentario = "";
-			await this.obtenerComentarios();
+			await this.cargarComentarios();
 		} catch (error) {
-			console.error("Error al enviar comentario:", error);
+			console.error("Error al enviar comentario", error);
 		}
 	}
 }

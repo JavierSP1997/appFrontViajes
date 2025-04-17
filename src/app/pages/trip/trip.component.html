@@ -27,7 +27,7 @@
 
     <app-participantes [participantes]="participantes"></app-participantes>
 
-    <app-comentarios></app-comentarios>
+    <app-comentarios [viajeId]="viaje.id_viaje"></app-comentarios>
 
     <!-- Sticky button -->
     <button class="btn btn-primary btn-sticky" (click)="redirectToViajes()">← Volver a viajes</button>
