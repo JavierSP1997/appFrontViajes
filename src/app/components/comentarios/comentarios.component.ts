@@ -1,10 +1,14 @@
 import { Component, Input, inject, type OnInit } from "@angular/core";
 import type { Comentario } from "../../../../interfaces/comentario.interface";
 import { ComentariosService } from "../../services/comentarios.service";
+import { DatePipe } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 
 @Component({
 	selector: "app-comentarios",
+	imports: [DatePipe, FormsModule],
 	templateUrl: "./comentarios.component.html",
+	styleUrls: ["./comentarios.component.css"],
 })
 export class ComentariosComponent implements OnInit {
 	@Input() viajeId!: number;
@@ -24,8 +28,13 @@ export class ComentariosComponent implements OnInit {
 
 	async cargarComentarios() {
 		try {
-			this.comentarios = await this.comentariosService.obtenerComentarios(
+			const comentarios = await this.comentariosService.obtenerComentarios(
 				this.viajeId,
+			);
+			this.comentarios = comentarios.sort(
+				(a, b) =>
+					new Date(a.fecha_comentario).getTime() -
+					new Date(b.fecha_comentario).getTime(),
 			);
 		} catch (error) {
 			console.error("Error cargando comentarios", error);

@@ -1,4 +1,39 @@
-@for (item of comentarios; track viajeId) {
-    <p>{{item.nombre}}</p>
-    <p>{{item.fecha_comentario}}</p>
-}
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-4">
+      <div class="card-body p-4">
+        <h4 class="fw-bold text-primary mb-4 text-center">💬 Comentarios</h4>
+        <div
+          class="chat-container mb-4 p-3 rounded"
+          style="background-color: #f9f9f9; max-height: 400px; overflow-y: auto;">
+  
+          @for (comentario of comentarios; track $index) {
+            <div class="mb-3 p-3 rounded-3" style="background-color: #ffffff; border: 1px solid #e0e0e0;">
+              <div class="d-flex justify-content-between mb-1">
+                <strong class="text-dark">{{ comentario.nombre }}</strong>
+                <span class="text-muted small">{{ comentario.fecha_comentario | date:'short' }}</span>
+              </div>
+              <p class="mb-0 text-dark">{{ comentario.comentario }}</p>
+            </div>
+          }
+        </div>
+        <div class="border-top pt-3">
+          <label for="nuevoComentario" class="form-label fw-semibold text-secondary">Escribe tu comentario</label>
+          <textarea
+            [(ngModel)]="nuevoComentario"
+            id="nuevoComentario"
+            rows="3"
+            class="form-control mb-3 shadow-sm"
+            placeholder="¿Qué te ha parecido el viaje?"
+          ></textarea>
+  
+          <button
+            class="btn btn-primary rounded-pill px-4"
+            style="align-self: flex-end;"
+            (click)="enviarComentario()">
+            🚀 Enviar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

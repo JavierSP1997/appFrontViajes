@@ -1,0 +1,6 @@
+.chat-container div {
+	transition: background 0.3s ease;
+}
+.chat-container div:hover {
+	background-color: #f1f1f1;
+}

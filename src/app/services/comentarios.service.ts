@@ -8,13 +8,11 @@ import type { Comentario } from "../../../interfaces/comentario.interface";
 })
 export class ComentariosService {
 	private httpClient = inject(HttpClient);
-	private apiUrl = "http://localhost:3000/api/viajes";
+	private apiUrl = "http://localhost:3000/api/comentarios";
 
 	obtenerComentarios(viajeId: number) {
 		return lastValueFrom(
-			this.httpClient.get<Comentario[]>(
-				`${this.apiUrl}/${viajeId}/comentarios`,
-			),
+			this.httpClient.get<Comentario[]>(`${this.apiUrl}/${viajeId}`),
 		);
 	}
 
@@ -22,7 +20,7 @@ export class ComentariosService {
 		const headers = new HttpHeaders().set("Authorization", token);
 		return lastValueFrom(
 			this.httpClient.post(
-				`${this.apiUrl}/${viajeId}/comentarios`,
+				`${this.apiUrl}/${viajeId}`,
 				{ comentario },
 				{ headers },
 			),
