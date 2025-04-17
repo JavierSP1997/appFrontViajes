@@ -10,7 +10,8 @@
                 <h2 class="card-title fw-bold text-primary mb-3">{{ viaje.nombre_viaje }}</h2>
 
                 @if (anfitrion !== null) {
-                <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="d-flex align-items-center gap-3 mb-3" style="cursor: pointer;"
+                    [routerLink]="['/usuarios', anfitrion.id]">
                     <img [src]="anfitrion.imagen || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'"
                         alt="Foto del anfitrión" class="rounded-circle" width="50" height="50">
                     <div>
@@ -36,6 +37,7 @@
         </div>
     </div>
 
+    <h3 class="text-center fw-bold text-primary">Participantes</h3>
     <app-participantes [participantes]="participantes"></app-participantes>
 
     <app-comentarios [viajeId]="viaje.id_viaje"></app-comentarios>

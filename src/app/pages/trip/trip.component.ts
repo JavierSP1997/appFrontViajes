@@ -1,29 +1,32 @@
 import { Component, inject } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 import { ViajesService } from "../../services/viajes.service";
-import { UsuariosService } from "../../services/usuarios.service";
 import type { Viaje } from "../../../../interfaces/viaje.interface";
 import { ComentariosComponent } from "../../components/comentarios/comentarios.component";
 import { ParticipantesComponent } from "../../components/participantes/participantes.component";
 import type { Participante } from "../../../../interfaces/participante.interface";
-import type { Usuario } from "../../../../interfaces/usuario.interface";
+import type { Anfitrion } from "../../../../interfaces/anfitrion.interface";
 
 @Component({
 	selector: "app-trip",
 	standalone: true,
-	imports: [CommonModule, ComentariosComponent, ParticipantesComponent],
+	imports: [
+		CommonModule,
+		ComentariosComponent,
+		ParticipantesComponent,
+		RouterModule,
+	],
 	templateUrl: "./trip.component.html",
 	styleUrls: ["./trip.component.css"],
 })
 export class TripComponent {
 	private viajesService = inject(ViajesService);
-	private usuariosService = inject(UsuariosService);
 	private route = inject(ActivatedRoute);
 
 	viaje: Viaje | null = null;
 	participantes: Participante[] = [];
-	anfitrion: Usuario | null = null;
+	anfitrion: Anfitrion | null = null;
 	error = false;
 
 	ngOnInit(): void {
@@ -32,21 +35,14 @@ export class TripComponent {
 		if (id) {
 			this.viajesService
 				.getViajeById(id)
-				.then(async (res) => {
+				.then((res) => {
 					console.log("Viaje recibido:", res);
 					this.viaje = res;
 					this.participantes = res.participantes ?? [];
-					console.log(this.participantes);
+					this.anfitrion = res.anfitrion;
 
-					// Traemos datos del anfitrión
-					try {
-						console.log("ID del anfitrión:", res.usuarios_id_usuario);
-						this.anfitrion = await this.usuariosService.getById(
-							res.usuarios_id_usuario,
-						);
-					} catch (error) {
-						console.error("Error al obtener el anfitrión", error);
-					}
+					console.log("Participantes:", this.participantes);
+					console.log("Anfitrión:", this.anfitrion);
 				})
 				.catch((err) => {
 					console.error("Error al cargar el viaje", err);

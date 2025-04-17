@@ -1,4 +1,5 @@
 import type { Participante } from "./participante.interface";
+import type { Anfitrion } from "./anfitrion.interface";
 
 export interface Viaje {
 	id_viaje: number;
@@ -12,4 +13,5 @@ export interface Viaje {
 	itinerario: string;
 	imagen: string;
 	participantes: Participante[];
+	anfitrion: Anfitrion; // ← nuevo campo
 }
