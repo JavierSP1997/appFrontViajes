@@ -1,39 +1,41 @@
-<div class="container mt-4">
-    <div class="card shadow-lg border-0 rounded-4">
-      <div class="card-body p-4">
-        <h4 class="fw-bold text-primary mb-4 text-center">💬 Comentarios</h4>
-        <div
-          class="chat-container mb-4 p-3 rounded"
-          style="background-color: #f9f9f9; max-height: 400px; overflow-y: auto;">
-  
+<div class="container mt-5">
+  <div class="card shadow border-0 rounded-4">
+    <div class="card-body p-4">
+      <h4 class="text-center text-primary fw-bold mb-4">Comentarios</h4>
+      <div
+        class="chat-container mb-4 p-3 bg-body-tertiary rounded-4"
+        #chatContainer
+        style="max-height: 400px; overflow-y: auto;"
+      >
+        <ul class="list-unstyled m-0">
           @for (comentario of comentarios; track $index) {
-            <div class="mb-3 p-3 rounded-3" style="background-color: #ffffff; border: 1px solid #e0e0e0;">
-              <div class="d-flex justify-content-between mb-1">
-                <strong class="text-dark">{{ comentario.nombre }}</strong>
-                <span class="text-muted small">{{ comentario.fecha_comentario | date:'short' }}</span>
+            <li class="mb-3">
+              <div class="bg-white shadow-sm p-3 rounded-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <strong class="text-dark">{{ comentario.nombre }}</strong>
+                  <small class="text-muted">{{ comentario.fecha_comentario | date: 'short' }}</small>
+                </div>
+                <p class="mb-0 text-secondary">{{ comentario.comentario }}</p>
               </div>
-              <p class="mb-0 text-dark">{{ comentario.comentario }}</p>
-            </div>
+            </li>
           }
-        </div>
-        <div class="border-top pt-3">
-          <label for="nuevoComentario" class="form-label fw-semibold text-secondary">Escribe tu comentario</label>
-          <textarea
-            [(ngModel)]="nuevoComentario"
-            id="nuevoComentario"
-            rows="3"
-            class="form-control mb-3 shadow-sm"
-            placeholder="¿Qué te ha parecido el viaje?"
-          ></textarea>
-  
-          <button
-            class="btn btn-primary rounded-pill px-4"
-            style="align-self: flex-end;"
-            (click)="enviarComentario()">
-            🚀 Enviar
-          </button>
-        </div>
+        </ul>
+      </div>
+      <div class="d-flex flex-column">
+        <textarea
+          [(ngModel)]="nuevoComentario"
+          rows="3"
+          class="form-control mb-3 shadow-sm rounded-3"
+          placeholder="Escribe tu comentario..."
+        ></textarea>
+
+        <button
+          class="btn btn-primary mx-auto px-5 py-2 rounded-pill fw-semibold"
+          (click)="enviarComentario()"
+        >
+          Enviar
+        </button>
       </div>
     </div>
   </div>
-  
+</div>

@@ -1,4 +1,11 @@
-import { Component, Input, inject, type OnInit } from "@angular/core";
+import {
+	Component,
+	type ElementRef,
+	Input,
+	ViewChild,
+	inject,
+	type OnInit,
+} from "@angular/core";
 import type { Comentario } from "../../../../interfaces/comentario.interface";
 import { ComentariosService } from "../../services/comentarios.service";
 import { DatePipe } from "@angular/common";
@@ -12,17 +19,17 @@ import { FormsModule } from "@angular/forms";
 })
 export class ComentariosComponent implements OnInit {
 	@Input() viajeId!: number;
+	@ViewChild("chatContainer") chatContainer!: ElementRef;
 
-	private comentariosService = inject(ComentariosService);
 	comentarios: Comentario[] = [];
 	nuevoComentario = "";
+	private comentariosService = inject(ComentariosService);
 	token: string = localStorage.getItem("token") || "";
 
 	async ngOnInit() {
 		if (this.viajeId) {
 			await this.cargarComentarios();
-		} else {
-			console.error("No se recibió viajeId");
+			this.scrollToBottom();
 		}
 	}
 
@@ -36,6 +43,7 @@ export class ComentariosComponent implements OnInit {
 					new Date(a.fecha_comentario).getTime() -
 					new Date(b.fecha_comentario).getTime(),
 			);
+			setTimeout(() => this.scrollToBottom(), 0);
 		} catch (error) {
 			console.error("Error cargando comentarios", error);
 		}
@@ -54,6 +62,13 @@ export class ComentariosComponent implements OnInit {
 			await this.cargarComentarios();
 		} catch (error) {
 			console.error("Error al enviar comentario", error);
+		}
+	}
+
+	private scrollToBottom() {
+		if (this.chatContainer) {
+			const el = this.chatContainer.nativeElement;
+			el.scrollTop = el.scrollHeight;
 		}
 	}
 }
