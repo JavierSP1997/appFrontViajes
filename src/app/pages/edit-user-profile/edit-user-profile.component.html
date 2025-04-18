@@ -3,7 +3,6 @@
 
   <form [formGroup]="perfilUsuarioForm" (ngSubmit)="onSubmit()">
     <div class="row gy-4">
-      
       <div class="col-md-6">
         <div class="info-card shadow-sm">
           <label for="name" class="form-label"><i class="bi bi-person-fill me-2"></i>Nombre</label>
@@ -25,13 +24,22 @@
               type="checkbox"
               id="toggle-password"
               class="form-check-input"
+              [checked]="mostrarPassword"
+              (change)="mostrarPassword = !mostrarPassword"
             />
             <label for="toggle-password" class="form-check-label">¿Quieres cambiar tu contraseña?</label>
           </div>
       
-      
+          @if (mostrarPassword) {
+            <input
+              type="text"
+              class="form-control"
+              formControlName="password"
+              placeholder="Escribe tu nueva contraseña"
+            />
+          }
+        </div>
       </div>
-      
       
 
       <div class="col-md-6">
@@ -54,12 +62,15 @@
           </select>
         </div>
       </div>
+
+
       <div class="col-md-6">
         <div class="info-card shadow-sm">
           <label for="hobbies" class="form-label"><i class="bi bi-controller me-2"></i>Hobbies</label>
           <input id="hobbies" type="text" class="form-control" formControlName="hobbies" />
         </div>
       </div>
+
 
       <div class="col-md-6">
         <div class="info-card shadow-sm">
@@ -73,8 +84,20 @@
           />
         </div>
       </div>
-  
+
+      <!-- Imagen -->
+      <div class="col-md-6">
+        <div class="info-card shadow-sm">
+          <label for="photo" class="form-label"><i class="bi bi-image me-2"></i>Foto de perfil</label>
+          <input id="photo" type="text" class="form-control mb-3" placeholder="URL de la imagen" formControlName="photo" />
+          
+          @if (imagenPreview || perfilUsuarioForm.value.photo) {
+            <img [src]="imagenPreview || perfilUsuarioForm.value.photo" alt="Preview" class="profile-img mt-3" />
+          }          
         </div>
+      </div>
+    </div>
+
     <div class="d-flex justify-content-end gap-3 mt-4">
       <button type="submit" class="btn perfil-btn">
         <i class="bi bi-save me-2"></i>Guardar edicion
@@ -83,4 +106,5 @@
         <i class="bi bi-x-circle me-2"></i>Cancelar
       </button>
     </div>
-
+  </form>
+</div>

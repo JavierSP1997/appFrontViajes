@@ -14,9 +14,10 @@ import { CommonModule } from '@angular/common';
 export class EditUserProfileComponent {
   usuarioId: number | null = null;
   usuarioOriginal: Usuario | null = null;
+  imagenPreview: string | null = null;
   usuariosService = inject(UsuariosService);
   private router = inject(Router);
-
+  mostrarPassword = false;
 
   perfilUsuarioForm: FormGroup = new FormGroup({
     name: new FormControl('Pepita'),
@@ -41,12 +42,29 @@ export class EditUserProfileComponent {
         gender: usuario.gender || '',
         hobbies: usuario.hobbies || '',
         pets: usuario.pets || false,
-        imagen: usuario.imagen || '',
+        photo: usuario.imagen || '',
       });
     }}
 
   async onSubmit() {
-    
+    if (this.perfilUsuarioForm.valid && this.usuarioId !== null && this.usuarioOriginal !== null) {
+      const formData: Usuario = {
+        id_usuario: this.usuarioId,
+        nombre: this.perfilUsuarioForm.value.name,
+        email: this.perfilUsuarioForm.value.email,
+        password: this.perfilUsuarioForm.value.password,
+        descripcion: this.perfilUsuarioForm.value.description,
+        gender: this.perfilUsuarioForm.value.gender,
+        hobbies: this.perfilUsuarioForm.value.hobbies,
+        pets: this.perfilUsuarioForm.value.pets,
+        imagen: this.perfilUsuarioForm.value.photo,
+        fecha_registro: this.usuarioOriginal.fecha_registro,
+      };
+  
+      await this.usuariosService.update(this.usuarioId, formData);
+
+      this.router.navigate(['/perfil-usuario']); 
+    }
   }
 
     cancelarEdicion() {
@@ -54,6 +72,15 @@ export class EditUserProfileComponent {
     }
 
     onImagenSeleccionada(event: Event): void {
-     
+      const file = (event.target as HTMLInputElement)?.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imagenPreview = reader.result as string;
+        };
+        reader.readAsDataURL(file);
+        // Opcional: guardar archivo para enviarlo al backend
+        // this.formulario.patchValue({ imagen: file });
+      }
     }
   }
