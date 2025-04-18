@@ -1,101 +1,86 @@
+<div class="container my-5">
+  <h2 class="mb-4 text-success">Editar perfil</h2>
 
-<div class="text-center mt-4">
-    <h1>Editar perfil</h1>
-  </div>
-  <div class="container mt-4">
-    <form
-    [formGroup]="perfilUsuarioForm"
-    (ngSubmit)="onSubmit()"
-    class="p-4 border rounded"
-  >
-    <div class="mb-3">
-      <label for="name" class="form-label">Nombre</label>
-      <input
-        type="text"
-        id="name"
-        formControlName="name"
-        class="form-control"
-        placeholder="Ingresa tu nombre"
-      />
+  <form [formGroup]="perfilUsuarioForm" (ngSubmit)="onSubmit()">
+    <div class="row gy-4">
+      
+      <div class="col-md-6">
+        <div class="info-card shadow-sm">
+          <label for="name" class="form-label"><i class="bi bi-person-fill me-2"></i>Nombre</label>
+          <input id="name" type="text" class="form-control" formControlName="name" />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card shadow-sm">
+          <label for="email" class="form-label"><i class="bi bi-envelope-fill me-2"></i>Email</label>
+          <input id="email" type="email" class="form-control" formControlName="email" />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card shadow-sm">
+          <div class="form-check mb-2">
+            <input
+              type="checkbox"
+              id="toggle-password"
+              class="form-check-input"
+            />
+            <label for="toggle-password" class="form-check-label">¿Quieres cambiar tu contraseña?</label>
+          </div>
+      
+      
+      </div>
+      
+      
+
+      <div class="col-md-6">
+        <div class="info-card shadow-sm">
+          <label for="description" class="form-label"><i class="bi bi-card-text me-2"></i>Sobre ti</label>
+          <textarea id="description" rows="3" class="form-control" formControlName="description" placeholder="Cuéntanos un poco más de ti."></textarea>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card shadow-sm">
+          <label for="gender" class="form-label">
+            <i class="bi bi-gender-ambiguous me-2"></i>Género
+          </label>
+          <select id="gender" class="form-select" formControlName="gender">
+            <option value="" disabled selected>Selecciona tu género</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-card shadow-sm">
+          <label for="hobbies" class="form-label"><i class="bi bi-controller me-2"></i>Hobbies</label>
+          <input id="hobbies" type="text" class="form-control" formControlName="hobbies" />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="info-card shadow-sm">
+          <label for="pets" class="form-label"><i class="bi bi-house-heart me-2"></i>¿Tienes mascotas?</label>
+          <input
+            id="pets"
+            type="text"
+            class="form-control"
+            formControlName="pets"
+            placeholder="Cuéntanos más sobre tu mascota"
+          />
+        </div>
+      </div>
+  
+        </div>
+    <div class="d-flex justify-content-end gap-3 mt-4">
+      <button type="submit" class="btn perfil-btn">
+        <i class="bi bi-save me-2"></i>Guardar edicion
+      </button>
+      <button type="button" class="btn perfil-btn" (click)="cancelarEdicion()">
+        <i class="bi bi-x-circle me-2"></i>Cancelar
+      </button>
     </div>
-  
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input
-        type="email"
-        id="email"
-        formControlName="email"
-        class="form-control"
-        placeholder="Ingresa tu email"
-      />
-    </div>
-  
-    <div class="mb-3">
-      <label for="password" class="form-label">Contraseña</label>
-      <input
-        type="password"
-        id="password"
-        formControlName="password"
-        class="form-control"
-        placeholder="Ingresa tu contraseña"
-      />
-    </div>
-  
-    <div class="mb-3">
-      <label for="description" class="form-label">Descripción</label>
-      <textarea
-        id="description"
-        formControlName="description"
-        class="form-control"
-        rows="3"
-        placeholder="Describe algo sobre ti"
-      ></textarea>
-    </div>
-  
-    <div class="mb-3">
-      <label for="gender" class="form-label">Género</label>
-      <select id="gender" formControlName="gender" class="form-select">
-        <option value="" disabled selected>Selecciona tu género</option>
-        <option value="masculino">Masculino</option>
-        <option value="femenino">Femenino</option>
-        <option value="otro">Otro</option>
-      </select>
-    </div>
-  
-    <div class="mb-3">
-      <label for="hobbies" class="form-label">Hobbies</label>
-      <input
-        type="text"
-        id="hobbies"
-        formControlName="hobbies"
-        class="form-control"
-        placeholder="Ingresa tus hobbies"
-      />
-    </div>
-  
-    <div class="form-check mb-3">
-      <input
-        type="checkbox"
-        id="pets"
-        formControlName="pets"
-        class="form-check-input"
-      />
-      <label for="pets" class="form-check-label">¿Quieres mascotas?</label>
-    </div>
-  
-    <div class="mb-3">
-      <label for="photo" class="form-label">Foto</label>
-      <input
-        type="file"
-        id="photo"
-        formControlName="photo"
-        class="form-control"
-      />
-    </div>
-  
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <button type="submit" class="btn btn-primary">Editar</button>
-  </form>
-  
-  </div>
-  
+
