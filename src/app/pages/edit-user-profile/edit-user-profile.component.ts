@@ -41,7 +41,7 @@ export class EditUserProfileComponent {
         description: usuario.descripcion || '',
         gender: usuario.gender || '',
         hobbies: usuario.hobbies || '',
-        pets: usuario.pets || false,
+        pets: usuario.pets || '',
         photo: usuario.imagen || '',
       });
     }}
