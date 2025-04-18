@@ -1,5 +1,7 @@
 <header class="bg-light border-bottom shadow-sm py-3">
-  <nav class="container d-flex justify-content-between align-items-center flex-wrap gap-3">
+  <nav
+    class="container d-flex justify-content-between align-items-center flex-wrap gap-3"
+  >
     <h2 class="mb-0 text-success">Mi Perfil</h2>
 
     <div class="d-flex flex-wrap gap-2 justify-content-center">
@@ -19,70 +21,85 @@
   </nav>
 </header>
 @if (usuario) {
-  <div class="container my-5">
+<div class="container my-5">
+  <div
+    class="profile-header shadow-sm mb-5 bg-white p-4 rounded d-flex align-items-center justify-content-between flex-wrap"
+  >
+    <div>
+      <h1 class="fw-bold text-success mb-0">{{ usuario.nombre }}</h1>
+    </div>
 
-<div class="profile-header shadow-sm mb-5 bg-white p-4 rounded d-flex align-items-center justify-content-between flex-wrap">
-  <div>
-    <h1 class="fw-bold text-success mb-0">{{ usuario.nombre }}</h1>
-  </div>
-
-  <div>
-    @if (usuario.imagen) {
-      <img [src]="usuario.imagen" alt="Foto de perfil" class="rounded-circle border profile-img" />
-    } @else {
+    <div>
+      @if (usuario.imagen) {
+      <img
+        [src]="usuario.imagen"
+        alt="Foto de perfil"
+        class="rounded-circle border profile-img"
+      />
+      } @else {
       <p class="text-muted mt-2">
         <i class="bi bi-exclamation-circle me-2"></i>Aún no tienes fotito
       </p>
-    }
+      }
+    </div>
   </div>
-</div>
 
-
-  
-<div class="row gy-4 justify-content-center">
-  <div class="col-md-6">
-    <div class="info-card shadow-sm">
-      <h5><i class="bi bi-card-text me-2"></i>Descripción</h5>
-      @if (usuario.descripcion) {
+  <div class="row gy-4 justify-content-center">
+    <div class="col-md-6">
+      <div class="info-card shadow-sm">
+        <h5><i class="bi bi-card-text me-2"></i>Descripción</h5>
+        @if (usuario.descripcion) {
         <p class="mt-2">{{ usuario.descripcion }}</p>
-      } @else {
-        <p class="text-muted mt-2"><i class="bi bi-exclamation-circle me-2"></i>Aún no tienes nada en este campo</p>
-      }
+        } @else {
+        <p class="text-muted mt-2">
+          <i class="bi bi-exclamation-circle me-2"></i>Aún no tienes nada en
+          este campo
+        </p>
+        }
+      </div>
     </div>
-  </div>
 
-  <div class="col-md-6">
-    <div class="info-card shadow-sm">
-      <h5><i class="bi bi-gender-ambiguous me-2"></i>Género</h5>
-      @if (usuario.gender) {
+    <div class="col-md-6">
+      <div class="info-card shadow-sm">
+        <h5><i class="bi bi-gender-ambiguous me-2"></i>Género</h5>
+        @if (usuario.gender) {
         <p class="mt-2">{{ usuario.gender }}</p>
-      } @else {
-        <p class="text-muted mt-2"><i class="bi bi-exclamation-circle me-2"></i>Aún no tienes nada en este campo</p>
-      }
+        } @else {
+        <p class="text-muted mt-2">
+          <i class="bi bi-exclamation-circle me-2"></i>Aún no tienes nada en
+          este campo
+        </p>
+        }
+      </div>
     </div>
-  </div>
 
-  <div class="col-md-6">
-    <div class="info-card shadow-sm">
-      <h5><i class="bi bi-controller me-2"></i>Hobbies</h5>
-      @if (usuario.hobbies) {
+    <div class="col-md-6">
+      <div class="info-card shadow-sm">
+        <h5><i class="bi bi-controller me-2"></i>Hobbies</h5>
+        @if (usuario.hobbies) {
         <p class="mt-2">{{ usuario.hobbies }}</p>
-      } @else {
-        <p class="text-muted mt-2"><i class="bi bi-exclamation-circle me-2"></i>Aún no tienes nada en este campo</p>
-      }
+        } @else {
+        <p class="text-muted mt-2">
+          <i class="bi bi-exclamation-circle me-2"></i>Aún no tienes nada en
+          este campo
+        </p>
+        }
+      </div>
     </div>
-  </div>
 
-  <div class="col-md-6">
-    <div class="info-card shadow-sm">
-      <h5><i class="bi bi-house-heart me-2"></i>¿Tienes mascotas?</h5>
-      @if (usuario.pets !== null && usuario.pets !== undefined) {
-        <p class="mt-2">{{ usuario.pets ? 'Sí' : 'No' }}</p>
-      } @else {
-        <p class="text-muted mt-2"><i class="bi bi-exclamation-circle me-2"></i>Aún no tienes nada en este campo</p>
-      }
+    <div class="col-md-6">
+      <div class="info-card shadow-sm">
+        <h5><i class="bi bi-house-heart me-2"></i>¿Tienes mascotas?</h5>
+        @if (usuario.pets !== null && usuario.pets !== undefined) {
+        <p class="mt-2">{{ usuario.pets }}</p>
+        } @else {
+        <p class="text-muted mt-2">
+          <i class="bi bi-exclamation-circle me-2"></i>Aún no tienes nada en
+          este campo
+        </p>
+        }
+      </div>
     </div>
   </div>
 </div>
-  </div>
 }
