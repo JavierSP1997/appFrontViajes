@@ -1,6 +1,6 @@
 import { Component, inject } from "@angular/core";
 import { UsuariosService } from "../../services/usuarios.service";
-import { Usuario } from "../../../../interfaces/usuario.interface";
+import type { Usuario } from "../../../../interfaces/usuario.interface";
 import { ActivatedRoute } from "@angular/router";
 
 @Component({
