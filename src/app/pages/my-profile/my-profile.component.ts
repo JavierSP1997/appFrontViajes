@@ -35,6 +35,6 @@ export class MyProfileComponent {
 	}
 	cerrarSesion() {
 		localStorage.clear(); 
-		this.router.navigate(['/home']);
+		this.router.navigate(['/']);
 	  }
 }
