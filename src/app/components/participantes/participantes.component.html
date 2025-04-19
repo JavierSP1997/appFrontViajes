@@ -3,7 +3,7 @@
     <div class="d-flex flex-wrap gap-3 justify-content-center">
         @for (p of participantes; track p.id_usuario) {
         <div class="card text-center shadow-sm border-0" style="width: 8rem; cursor: pointer;"
-            [routerLink]="['/usuarios', p.id_usuario]">
+            [routerLink]="['/perfil-usuario', p.id_usuario]">
             <img [src]="p.imagen || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'"
                 class="card-img-top rounded-circle mt-2 mx-auto" alt="FOTO"
                 style="width: 60px; height: 60px; object-fit: cover;" />

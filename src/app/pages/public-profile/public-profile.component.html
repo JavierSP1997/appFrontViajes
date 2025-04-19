@@ -1,0 +1,89 @@
+@if (usuario) {
+    <div class="container my-5">
+      <div
+        class="profile-header shadow-sm mb-5 bg-white p-4 rounded d-flex align-items-center justify-content-between flex-wrap"
+      >
+        <div>
+          <h1 class="fw-bold text-success mb-0">Perfil público: {{ usuario.nombre }}</h1>
+        </div>
+    
+        <div>
+          @if (usuario.imagen) {
+          <img
+            [src]="usuario.imagen"
+            alt="Foto de perfil"
+            class="rounded-circle border profile-img"
+          />
+          } @else {
+          <p class="text-muted mt-2">
+            <i class="bi bi-exclamation-circle me-2"></i>{{ usuario.nombre }} no añadió imagen
+          </p>
+          }
+        </div>
+      </div>
+    
+      <div class="row gy-4 justify-content-center">
+        <div class="col-md-6">
+          <div class="info-card shadow-sm">
+            <h5><i class="bi bi-card-text me-2"></i>Descripción</h5>
+            @if (usuario.descripcion) {
+            <p class="mt-2">{{ usuario.descripcion }}</p>
+            } @else {
+            <p class="text-muted mt-2">
+              <i class="bi bi-exclamation-circle me-2"></i>{{ usuario.nombre }} no añadió descripción
+            </p>
+            }
+          </div>
+        </div>
+    
+        <div class="col-md-6">
+          <div class="info-card shadow-sm">
+            <h5><i class="bi bi-gender-ambiguous me-2"></i>Género</h5>
+            @if (usuario.gender) {
+            <p class="mt-2">{{ usuario.gender }}</p>
+            } @else {
+            <p class="text-muted mt-2">
+              <i class="bi bi-exclamation-circle me-2"></i>{{ usuario.nombre }} no especificó género
+            </p>
+            }
+          </div>
+        </div>
+    
+        <div class="col-md-6">
+          <div class="info-card shadow-sm">
+            <h5><i class="bi bi-controller me-2"></i>Hobbies</h5>
+            @if (usuario.hobbies) {
+            <p class="mt-2">{{ usuario.hobbies }}</p>
+            } @else {
+            <p class="text-muted mt-2">
+              <i class="bi bi-exclamation-circle me-2"></i>{{ usuario.nombre }} no añadió hobbies
+            </p>
+            }
+          </div>
+        </div>
+    
+        <div class="col-md-6">
+          <div class="info-card shadow-sm">
+            <h5><i class="bi bi-house-heart me-2"></i>Mascotas</h5>
+            @if (usuario.pets !== null && usuario.pets !== undefined) {
+            <p class="mt-2">{{ usuario.pets }}</p>
+            } @else {
+            <p class="text-muted mt-2">
+              <i class="bi bi-exclamation-circle me-2"></i>{{ usuario.nombre }} no añadió mascotas
+            </p>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    } @else {
+        <div class="container my-5">
+            <div
+              class="profile-header shadow-sm mb-5 bg-white p-4 rounded d-flex align-items-center justify-content-between flex-wrap"
+            >
+              <div>
+                <h1 class="fw-bold text-success mb-0">Usuario no encontrado :(</h1>
+              </div>
+            </div>
+        </div>
+    }

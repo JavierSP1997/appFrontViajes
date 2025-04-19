@@ -7,6 +7,7 @@ import { MyProfileComponent } from "./pages/my-profile/my-profile.component";
 import { ViajesComponent } from "./pages/viajes/viajes.component";
 import { authGuard } from "./guards/auth.guard";
 import { TripComponent } from "./pages/trip/trip.component";
+import { PublicProfileComponent } from "./pages/public-profile/public-profile.component";
 
 export const routes: Routes = [
 	{ path: "", pathMatch: "full", component: HomeComponent },
@@ -21,6 +22,11 @@ export const routes: Routes = [
 	{
 		path: "perfil-usuario",
 		component: MyProfileComponent,
+		canActivate: [authGuard],
+	},
+	{	
+		path: "perfil-usuario/:id",
+		component: PublicProfileComponent,
 		canActivate: [authGuard],
 	},
 	{ path: "perfil-usuario/:id/editar", component: EditUserProfileComponent },
