@@ -62,5 +62,9 @@ export class UsuariosService {
 				.get<{ existe: boolean }>(`${this.baseUrl}/check-email?email=${email}`)
 				.pipe(map((res) => res.existe)),
 		);
+	}  
+	eliminarUsuario(id: number) {
+		return lastValueFrom(this.httpClient.delete(`${this.baseUrl}/${id}`));
 	}
+	
 }
