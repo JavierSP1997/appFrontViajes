@@ -83,4 +83,18 @@ export class EditUserProfileComponent {
         // this.formulario.patchValue({ imagen: file });
       }
     }
+    async eliminarPerfil() {
+      const confirmacion = confirm('¿Estás seguro de que quieres eliminar tu perfil? Esta acción no se puede deshacer.');
+    
+      if (confirmacion && this.usuarioId) {
+        try {
+          await this.usuariosService.eliminarUsuario(this.usuarioId);
+          alert('Perfil eliminado correctamente.');
+          this.router.navigate(['/']);
+        } catch (error) {
+          console.error(error);
+          alert('Hubo un error al eliminar el perfil.');
+        }
+      }
+    }    
   }

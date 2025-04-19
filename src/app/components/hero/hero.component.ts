@@ -7,4 +7,10 @@ import { RouterLink } from "@angular/router";
 	templateUrl: "./hero.component.html",
 	styleUrl: "./hero.component.css",
 })
-export class HeroComponent {}
+export class HeroComponent {
+	isLoggedIn = false;
+
+	ngOnInit(): void {
+		this.isLoggedIn = !localStorage.getItem("token");
+	}
+}
