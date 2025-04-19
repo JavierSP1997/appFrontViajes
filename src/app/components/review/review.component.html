@@ -1,0 +1,39 @@
+<div class="container mt-5">
+    <div class="card shadow border-0 rounded-4">
+      <div class="card-body p-4">
+        <h4 class="text-center text-primary fw-bold mb-4">Reseñas</h4>
+  
+        <div class="mb-4">
+          <ul class="list-unstyled">
+            @for ( review of reviews; track $index) {
+              <li class="mb-3">
+                <div class="bg-white shadow-sm p-3 rounded-3">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <strong class="text-dark">{{ review.nombre_usuario}}</strong>
+                    <small class="text-muted">{{ review.fecha | date: 'short' }}</small>
+                  </div>
+                  <p class="mb-0 text-secondary">{{ review.review }}</p>
+                </div>
+              </li>
+            }
+          </ul>
+        </div>
+        <div class="d-flex flex-column">
+          <textarea
+            [(ngModel)]="nuevaReview"
+            rows="3"
+            class="form-control mb-3 shadow-sm rounded-3"
+            placeholder="Escribe tu reseña..."
+          ></textarea>
+          </div>
+          <button
+            class="btn btn-primary mx-auto px-5 py-2 rounded-pill fw-semibold"
+            (click)="enviarReview()"
+          >
+            Enviar
+          </button>
+        </div>
+      </div>
+    </div>
+  
+  
