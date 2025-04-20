@@ -13,5 +13,5 @@ export interface Viaje {
 	itinerario: string;
 	imagen: string;
 	participantes: Participante[];
-	anfitrion: Anfitrion; // ← nuevo campo
+	anfitrion: Anfitrion;
 }

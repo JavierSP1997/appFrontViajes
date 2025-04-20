@@ -1,4 +1,3 @@
-// anfitrion.interface.ts
 export interface Anfitrion {
 	id: number;
 	nombre: string;
