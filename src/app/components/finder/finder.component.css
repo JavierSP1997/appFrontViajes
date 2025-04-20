@@ -7,11 +7,10 @@ button {
 	color: var(--color-boton-texto);
 	transition: all 0.3s ease;
 
-
 	&:hover {
-		background-color: var(--color-boton-texto);
+		background-color: var(--color-titulo-secundario);
+		border: 2px solid var(--color-titulo-secundario);
 		color: var(--color-boton-fondo);
-		border: 2px solid var(--color-boton-fondo);
 	}
 }
 
