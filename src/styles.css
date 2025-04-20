@@ -2,25 +2,18 @@
 
 :root {
 	/* Colores principales */
-	--color-fondo-principal: #faf9f6; /* Fondo principal (hueso suave claro) */
-	--color-titulo-principal: #3d5a5d; /* Título principal (verde oscuro y sofisticado) */
-	--color-titulo-secundario: #f0a469; /* Título secundario (naranja cálido) */
-	--color-texto: #333333; /* Texto principal (gris oscuro para buen contraste) */
-
-	/* Colores de botones */
-	--color-boton-fondo: #00bfae; /* Fondo de botones (verde menta brillante) */
+	--color-fondo-principal: #f7f1e5;
+	--color-titulo-principal: #3d5a5d;
+	--color-titulo-secundario: #f0a469;
+	--color-texto: #333333;
+	--color-boton: #e28b3a;
 	--color-boton-hover-fondo: #3d5a5d;
 	--color-boton-hover: #ffffff;
-	--color-boton-texto: #ffffff; /* Texto de botones (blanco) */
-	--color-enlace: #ff7f50; /* Enlaces (coral suave) */
-	--color-enlace-hover: #ff6347; /* Enlaces al pasar el ratón (tomate suave) */
-
-	/* Fondos y secciones */
-	--color-fondo-seccion: #e9f6ef; /* Fondo de secciones (verde suave pastel) */
-	--color-fondo-tarjeta: #e9c307; /* Fondo de tarjetas (amarillo suave y cálido) */
-	--color-fondo-pie-pagina: #3d5a5d; /* Fondo del pie de página (verde oscuro) */
-
-	/* Colores de bordes y sombras */
-	--color-borde: #d9d9d9; /* Bordes suaves (gris claro) */
-	--color-sombra: rgba(0, 0, 0, 0.1); /* Sombra sutil (ligera) */
+	--color-boton-texto: #100c0cd7;
+	--color-enlace-hover: #ff6347;
+	--color-fondo-seccion: #e9f6ef;
+	--color-fondo-tarjeta: #e9c307;
+	--color-fondo-pie-pagina: #3d5a5d;
+	--color-borde: #d9d9d9;
+	--color-sombra: rgba(0, 0, 0, 0.1);
 }

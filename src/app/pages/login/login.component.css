@@ -10,7 +10,7 @@ h3 {
 }
 
 .button {
-	background-color: var(--color-boton-fondo);
+	background-color: var(--color-boton);
 	color: var(--color-boton-texto);
 	padding: 5px;
 	border-radius: 10px;
@@ -20,7 +20,7 @@ h3 {
 
 .button:hover {
 	transition: 0.5s;
-	background-color: var(--color-boton-hover-fondo);
+	background-color: var(--color-titulo-secundario);
 	color: var(--color-boton-hover);
 }
 p {
