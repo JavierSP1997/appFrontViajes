@@ -1,23 +1,32 @@
+.hero {
+	background-image: url(../../../images/hero.png);
+	height: 300px;
+	align-content: center;
+}
+
 h4 {
-	color: var(--color-titulo-secundario);
+	color: white;
+	font-size: 40px;
+	background-color: rgba(0, 0, 0, 0.553);
 }
 
 .buttons {
 	button {
+		font-weight: bold;
+		transition: 0.3s;
 		justify-content: space-evenly;
 		margin-bottom: 10px;
 		border-radius: 10px;
-		border: 2px solid var(--color-borde);
-		background-color: var(--color-boton-fondo);
+		border: 2px solid var(--color-boron-fondo);
+		background-color: var(--color-boton);
 		border-radius: 10px;
 		width: 200px;
 		height: 50px;
-		color: var(--color-boton-texto);
+		color: var(color-boton-texto);
 
 		&:hover {
-			background-color: var(--color-boton-texto);
-			color: var(--color-boton-fondo);
-			border: 2px solid var(--color-boton-fondo);
+			background-color: var(--color-titulo-secundario);
+			color: var(--color-boton-hover);
 		}
 	}
 }
