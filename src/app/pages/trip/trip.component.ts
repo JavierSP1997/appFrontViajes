@@ -9,6 +9,7 @@ import { ParticipantesComponent } from "../../components/participantes/participa
 import type { Participante } from "../../../../interfaces/participante.interface";
 import type { Anfitrion } from "../../../../interfaces/anfitrion.interface";
 import type { Usuario } from "../../../../interfaces/usuario.interface";
+import { ReviewsComponent } from "../../components/review/review.component";
 
 @Component({
 	selector: "app-trip",
@@ -18,6 +19,7 @@ import type { Usuario } from "../../../../interfaces/usuario.interface";
 		ComentariosComponent,
 		ParticipantesComponent,
 		RouterModule,
+		ReviewsComponent,
 	],
 	templateUrl: "./trip.component.html",
 	styleUrls: ["./trip.component.css"],
