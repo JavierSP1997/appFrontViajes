@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { lastValueFrom, type Observable } from "rxjs";
 import type { Viaje } from "../../../interfaces/viaje.interface";
@@ -28,6 +28,20 @@ export class ViajesService {
 
 	getViajeById(id: number): Promise<Viaje> {
 		return lastValueFrom(this.httpClient.get<Viaje>(`${this.baseUrl}/${id}`));
+	}
+
+	crearViaje(nuevoViaje: Viaje): Promise<Viaje> {
+		const token = localStorage.getItem("token");
+
+		const headers = new HttpHeaders({
+			Authorization: `Bearer ${token}`,
+		});
+
+		return lastValueFrom(
+			this.httpClient.post<Viaje>(`${this.baseUrl}/nuevo`, nuevoViaje, {
+				headers,
+			}),
+		);
 	}
 
 	unirseAlViaje(idViaje: number, idUsuario: number) {
