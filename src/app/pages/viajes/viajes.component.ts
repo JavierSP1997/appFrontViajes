@@ -5,6 +5,7 @@ import type { Viaje } from "../../../../interfaces/viaje.interface";
 import { FinderComponent } from "../../components/finder/finder.component";
 import type { Subscription } from "rxjs";
 import { DatePipe } from "@angular/common";
+import { ParticipantesService } from "../../services/participantes.service";
 
 @Component({
 	selector: "app-viajes",
@@ -18,8 +19,8 @@ export class ViajesComponent implements OnInit, OnDestroy {
 	private queryParamsSubscription: Subscription | null = null;
 
 	viajesService = inject(ViajesService);
+	participantesService = inject(ParticipantesService);
 	router = inject(Router);
-
 	route = inject(ActivatedRoute);
 
 	ngOnInit(): void {
@@ -82,4 +83,14 @@ export class ViajesComponent implements OnInit, OnDestroy {
 	quitarFiltros() {
 		this.router.navigate(["/viajes"]);
 	}
-}
+	async unirseAlViaje(idViaje: number) {
+		try {
+			await this.participantesService.unirseAlViaje(idViaje);
+			alert("Solicitud de participación enviada");
+		} catch (error) {
+			console.error("Error al unirse al viaje", error);
+		}
+	}
+	
+	}
+
