@@ -1,0 +1,44 @@
+<form [formGroup]="viajeForm" (ngSubmit)="onSubmit()" class="p-4">
+    <div class="mb-3">
+        <label for="nombre_viaje">Nombre del viaje</label>
+        <input type="text" id="nombre_viaje" class="form-control" formControlName="nombre_viaje" />
+    </div>
+
+    <div class="mb-3">
+        <label for="fecha_inicio">Fecha de inicio</label>
+        <input type="date" id="fecha_inicio" class="form-control" formControlName="fecha_inicio" />
+    </div>
+    
+    <div class="mb-3">
+        <label for="fecha_fin">Fecha de fin</label>
+        <input type="date" id="fecha_fin" class="form-control" formControlName="fecha_fin" />
+    </div>
+    
+    <div class="mb-3">
+        <label for="coste_por_persona">Coste por persona (€)</label>
+        <input type="number" id="coste_por_persona" class="form-control" formControlName="coste_por_persona" />
+    </div>
+    
+    <div class="mb-3">
+        <label for="personas_minimas">Personas mínimas</label>
+        <input type="number" id="personas_minimas" class="form-control" formControlName="personas_minimas" />
+    </div>
+    
+    <div class="mb-3">
+        <label for="localizacion">Localización</label>
+        <input type="text" id="localizacion" class="form-control" formControlName="localizacion" />
+    </div>
+    
+    <div class="mb-3">
+        <label for="itinerario">Itinerario</label>
+        <textarea id="itinerario" rows="3" class="form-control" formControlName="itinerario"></textarea>
+    </div>
+    
+    <div class="mb-3">
+        <label for="imagen">Imagen (URL)</label>
+        <input type="text" id="imagen" class="form-control" formControlName="imagen" />
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Publicar viaje</button>
+    </form>
+
