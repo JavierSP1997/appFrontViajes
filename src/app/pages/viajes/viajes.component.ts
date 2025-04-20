@@ -19,7 +19,6 @@ export class ViajesComponent implements OnInit, OnDestroy {
 	private queryParamsSubscription: Subscription | null = null;
 
 	viajesService = inject(ViajesService);
-	participantesService = inject(ParticipantesService);
 	router = inject(Router);
 	route = inject(ActivatedRoute);
 
@@ -82,14 +81,6 @@ export class ViajesComponent implements OnInit, OnDestroy {
 
 	quitarFiltros() {
 		this.router.navigate(["/viajes"]);
-	}
-	async unirseAlViaje(idViaje: number) {
-		try {
-			await this.participantesService.unirseAlViaje(idViaje);
-			alert("Solicitud de participación enviada");
-		} catch (error) {
-			console.error("Error al unirse al viaje", error);
-		}
 	}
 	
 	}

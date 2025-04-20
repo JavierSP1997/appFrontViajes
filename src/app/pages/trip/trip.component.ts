@@ -10,6 +10,7 @@ import type { Participante } from "../../../../interfaces/participante.interface
 import type { Anfitrion } from "../../../../interfaces/anfitrion.interface";
 import type { Usuario } from "../../../../interfaces/usuario.interface";
 import { ReviewsComponent } from "../../components/review/review.component";
+import { ParticipantesService } from "../../services/participantes.service";
 
 @Component({
 	selector: "app-trip",
@@ -28,7 +29,7 @@ export class TripComponent {
 	private viajesService = inject(ViajesService);
 	private usuariosService = inject(UsuariosService);
 	private route = inject(ActivatedRoute);
-
+	participantesService = inject(ParticipantesService);
 	viaje: Viaje | null = null;
 	participantes: Participante[] = [];
 	anfitrion: Anfitrion | null = null;
@@ -103,5 +104,13 @@ export class TripComponent {
 
 	redirectToViajes() {
 		window.location.href = "/viajes";
+	}
+	async unirseAlViaje(idViaje: number) {
+		try {
+			await this.participantesService.unirseAlViaje(idViaje);
+			alert("Solicitud de participación enviada");
+		} catch (error) {
+			console.error("Error al unirse al viaje", error);
+		}
 	}
 }
