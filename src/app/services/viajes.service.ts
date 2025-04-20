@@ -30,13 +30,6 @@ export class ViajesService {
 		return lastValueFrom(this.httpClient.get<Viaje>(`${this.baseUrl}/${id}`));
 	}
 
-	unirseAlViaje(idViaje: number, idUsuario: number) {
-		return this.httpClient.post("/api/participantes", {
-			id_viaje: idViaje,
-			id_usuario: idUsuario,
-			status: "pendiente",
-		});
-	}
 
 	abandonarViaje(idViaje: number, idUsuario: number) {
 		return this.httpClient.delete(`/api/participantes/${idViaje}/${idUsuario}`);
