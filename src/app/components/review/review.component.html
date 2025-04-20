@@ -9,6 +9,14 @@
           class="form-control mb-3 shadow-sm rounded-3"
           placeholder="Escribe tu reseña..."
         ></textarea>
+        <input
+          type="number"
+          [(ngModel)]="puntuacion"
+          class="form-control mb-3"
+          min="1"
+          max="5"
+          placeholder="Puntuación (1-5)"
+        />     
         <button
           class="btn btn-primary mx-auto px-5 py-2 rounded-pill fw-semibold mb-3"
           (click)="enviarReview()"
@@ -36,29 +44,75 @@
                 <div class="bg-light shadow-sm p-3 rounded-3">
                   <div class="d-flex justify-content-between align-items-center mb-1">
                     <strong class="text-dark">{{ review.nombre_usuario }}</strong>
-                    <small class="text-muted">{{ review.fecha | date: 'short' }}</small>
+                    <small class="text-secondary">Puntuación: {{ review.puntuacion }}</small>
                   </div>
+                  <small class="text-muted d-block mb-2">{{ review.fecha | date: 'dd/MM/yyyy' }}</small>
 
-                  <div class="d-flex justify-content-between align-items-center">
-                    <p class="mb-0 text-secondary">{{ review.review }}</p>
-
-                    @if (review.id_usuario=== usuarioId) {
-                      <div class="dropdown ms-2">
-                        <button
-                          class="btn p-0 border-0 bg-transparent"
-                          data-bs-toggle="dropdown"
-                          aria-expanded="false"
-                        >
-                          <i class="fa-solid fa-ellipsis fs-5"></i>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li>
-                            <button class="dropdown-item">Editar</button>
-                          </li>
-                          <li>
-                            <button class="dropdown-item text-danger">Eliminar</button>
-                          </li>
-                        </ul>
+                  <div class="mb-2">
+                    @if (editandoReviewId === review.id_review) {
+                      <div class="w-100">
+                        <textarea
+                          [(ngModel)]="reviewEditada"
+                          class="form-control mb-2"
+                          rows="2"
+                        ></textarea>
+                        
+                        <!-- Campo para editar la puntuación -->
+                        <input
+                          type="number"
+                          class="form-control mb-2"
+                          [(ngModel)]="puntuacionEditada"
+                          min="1"
+                          max="5"
+                        />
+                        
+                        <div class="d-flex justify-content-end gap-2">
+                          <button
+                            class="btn btn-success btn-sm"
+                            (click)="guardarEdicion(review)"
+                          >
+                            Guardar
+                          </button>
+                          <button
+                            class="btn btn-secondary btn-sm"
+                            (click)="cancelarEdicion()"
+                          >
+                            Cancelar
+                          </button>
+                        </div>
+                      </div>
+                    } @else {
+                      <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-0 text-secondary flex-grow-1">{{ review.review }}</p>
+                        @if (review.usuarios_id_usuario === usuarioId) {
+                          <div class="dropdown ms-2">
+                            <button
+                              class="btn p-0 border-0 bg-transparent"
+                              data-bs-toggle="dropdown"
+                              aria-expanded="false"
+                            >
+                              <i class="fa-solid fa-ellipsis fs-5"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li>
+                                <button
+                                  class="dropdown-item"
+                                  (click)="activarEdicion(review)"
+                                >
+                                  Editar
+                                </button>
+                              </li>
+                              <li>
+                                <button
+                                  class="dropdown-item text-danger"
+                                  (click)="review.id_review !== undefined && eliminarReview(review.id_review)"
+                                >
+                                  Eliminar
+                                </button>
+                              </li>
+                            </ul>
+                          </div>
+                        }
                       </div>
                     }
                   </div>

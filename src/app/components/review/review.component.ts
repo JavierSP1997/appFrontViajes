@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { ReviewService } from "../../services/review.service";
 import { UsuariosService } from "../../services/usuarios.service";
 import { DatePipe } from "@angular/common";
+import Swal from "sweetalert2";
 
 @Component({
 	selector: "app-review",
@@ -18,6 +19,9 @@ export class ReviewsComponent implements OnInit {
 	nuevaReview = "";
 	puntuacion = 5;
 	mostrarResenas = false;
+	editandoReviewId: number | null = null;
+	reviewEditada = "";
+	puntuacionEditada = 5;
 	private reviewService = inject(ReviewService);
 	private usuariosService = inject(UsuariosService);
 	token: string = localStorage.getItem("token") || "";
@@ -49,34 +53,92 @@ export class ReviewsComponent implements OnInit {
 
 		try {
 			if (this.usuarioId) {
-				await this.reviewService.createReview({
-					id_usuario: this.usuarioId,
+				const reviewPayload = {
+					usuarios_id_usuario: this.usuarioId,
 					viajes_id_viaje: this.viajeId,
 					puntuacion: this.puntuacion,
 					review: this.nuevaReview,
 					fecha: new Date().toISOString().split("T")[0],
-					id_review: 0,
-					nombre_usuario: "",
-				});
+				};
+				console.log("📤 Enviando review:", reviewPayload);
+
+				await this.reviewService.createReview(reviewPayload);
 				this.nuevaReview = "";
+				this.puntuacion = 5; // Resetear la puntuación a 5
 				await this.cargarReviews();
 			}
 		} catch (error) {
-			console.error("Error al enviar la reseña", error);
+			console.log("Error al enviar la reseña", error);
+		}
+	}
+
+	activarEdicion(review: Review) {
+		this.editandoReviewId = review.id_review ?? null;
+		this.reviewEditada = review.review;
+		this.puntuacionEditada = review.puntuacion;
+	}
+
+	cancelarEdicion() {
+		this.editandoReviewId = null;
+		this.reviewEditada = "";
+		this.puntuacionEditada = 5;
+	}
+
+	async guardarEdicion(review: Review) {
+		try {
+			if (this.editandoReviewId !== null) {
+				const payload = {
+					puntuacion: this.puntuacionEditada,
+					review: this.reviewEditada,
+					fecha: new Date().toISOString().split("T")[0],
+					usuarios_id_usuario: review.usuarios_id_usuario,
+					viajes_id_viaje: review.viajes_id_viaje,
+				};
+				console.log(
+					"📤 Editando review con ID:",
+					this.editandoReviewId,
+					payload,
+				);
+				await this.reviewService.updateReview(this.editandoReviewId, payload);
+				this.editandoReviewId = null;
+				await this.cargarReviews();
+			}
+		} catch (error) {
+			console.error(" Error al editar la reseña", error);
 		}
 	}
 
 	async eliminarReview(id: number) {
 		try {
-			const review = this.reviews.find((r) => r.id_review === id);
-			if (review && review.id_usuario === this.usuarioId) {
+			const result = await Swal.fire({
+				title: "¿Quieres eliminar la reseña?",
+				text: "No podrás revertir esto",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Eliminar",
+				cancelButtonText: "Cancelar",
+			});
+
+			if (result.isConfirmed) {
 				await this.reviewService.deleteReview(id);
-				await this.cargarReviews();
-			} else {
-				console.error("No tienes permiso para eliminar esta reseña");
+				this.reviews = this.reviews.filter((review) => review.id_review !== id);
+				console.log("Reseña eliminada correctamente.");
+
+				Swal.fire({
+					title: "Eliminada",
+					text: "Reseña eliminada correctamente",
+					icon: "success",
+				});
 			}
 		} catch (error) {
-			console.error("Error al eliminar la reseña", error);
+			if ((error as { status: number }).status === 404) {
+				console.error("No se encontró la reseña para eliminar.");
+			} else {
+				console.error("Error al eliminar la reseña", error);
+			}
+			alert("Hubo un problema al eliminar la reseña. Inténtalo nuevamente.");
 		}
 	}
 }
