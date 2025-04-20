@@ -50,7 +50,7 @@ export class ReviewsComponent implements OnInit {
 		try {
 			if (this.usuarioId) {
 				await this.reviewService.createReview({
-					usuarios_id_usuario: this.usuarioId,
+					id_usuario: this.usuarioId,
 					viajes_id_viaje: this.viajeId,
 					puntuacion: this.puntuacion,
 					review: this.nuevaReview,
@@ -69,7 +69,7 @@ export class ReviewsComponent implements OnInit {
 	async eliminarReview(id: number) {
 		try {
 			const review = this.reviews.find((r) => r.id_review === id);
-			if (review && review.usuarios_id_usuario === this.usuarioId) {
+			if (review && review.id_usuario === this.usuarioId) {
 				await this.reviewService.deleteReview(id);
 				await this.cargarReviews();
 			} else {
