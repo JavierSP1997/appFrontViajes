@@ -17,6 +17,7 @@ export class ReviewsComponent implements OnInit {
 	reviews: Review[] = [];
 	nuevaReview = "";
 	puntuacion = 5;
+	mostrarResenas = false;
 	private reviewService = inject(ReviewService);
 	private usuariosService = inject(UsuariosService);
 	token: string = localStorage.getItem("token") || "";
@@ -26,6 +27,7 @@ export class ReviewsComponent implements OnInit {
 		if (this.viajeId) {
 			const usuario = await this.usuariosService.getPerfilUsuario();
 			this.usuarioId = usuario.id_usuario;
+			console.log("🧑‍💻 ID del usuario logueado:", this.usuarioId);
 			await this.cargarReviews();
 		}
 	}
@@ -48,7 +50,7 @@ export class ReviewsComponent implements OnInit {
 		try {
 			if (this.usuarioId) {
 				await this.reviewService.createReview({
-					id_usuario: this.usuarioId,
+					usuarios_id_usuario: this.usuarioId,
 					viajes_id_viaje: this.viajeId,
 					puntuacion: this.puntuacion,
 					review: this.nuevaReview,
@@ -67,7 +69,7 @@ export class ReviewsComponent implements OnInit {
 	async eliminarReview(id: number) {
 		try {
 			const review = this.reviews.find((r) => r.id_review === id);
-			if (review && review.id_usuario === this.usuarioId) {
+			if (review && review.usuarios_id_usuario === this.usuarioId) {
 				await this.reviewService.deleteReview(id);
 				await this.cargarReviews();
 			} else {

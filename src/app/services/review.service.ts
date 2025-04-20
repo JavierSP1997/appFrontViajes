@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { lastValueFrom, map } from "rxjs";
+import { lastValueFrom } from "rxjs";
 import type { Review } from "../../../interfaces/review.interface";
 
 @Injectable({
@@ -25,7 +25,7 @@ export class ReviewService {
 		return lastValueFrom(
 			this.httpClient.post<Review>(`${this.baseUrl}`, body, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: token ?? "",
 				},
 			}),
 		);
@@ -36,7 +36,7 @@ export class ReviewService {
 		return lastValueFrom(
 			this.httpClient.put<Review>(`${this.baseUrl}/${id}`, body, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: token ?? "",
 				},
 			}),
 		);
@@ -47,7 +47,7 @@ export class ReviewService {
 		return lastValueFrom(
 			this.httpClient.delete(`${this.baseUrl}/${id}`, {
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: token ?? "",
 				},
 			}),
 		);
