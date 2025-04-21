@@ -50,4 +50,11 @@ export class PublicarViajeComponent {
 			console.log(this.viajeForm);
 		}
 	}
+
+	checkError(controlName: string, error: string) {
+		return (
+			this.viajeForm.get(controlName)?.touched &&
+			this.viajeForm.get(controlName)?.hasError(error)
+		);
+	}
 }
