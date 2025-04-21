@@ -1,26 +1,86 @@
 <div class="container mt-5">
-  <div class="card shadow border-0 rounded-4">
+  <div class="card shadow-lg border-0 rounded-4">
     <div class="card-body p-4">
       <h4 class="text-center text-primary fw-bold mb-4">Chat de viaje</h4>
       <div
-        class="chat-container mb-4 p-3 bg-body-tertiary rounded-4"
+        class="chat-container mb-4 p-3 bg-light rounded-4"
         #chatContainer
         style="max-height: 400px; overflow-y: auto;"
       >
         <ul class="list-unstyled m-0">
           @for (comentario of comentarios; track $index) {
             <li class="mb-3">
-              <div class="bg-white shadow-sm p-3 rounded-3">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                  <strong class="text-dark">{{ comentario.nombre }}</strong>
-                  <small class="text-muted">{{ comentario.fecha_comentario | date: 'short' }}</small>
+              @if (comentario.usuarios_id_usuario === usuarioId) {
+                <div class="d-flex justify-content-end">
+                  <div class="bg-white shadow-sm p-3 rounded-3 w-75">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <strong class="text-dark">{{ comentario.nombre }}</strong>
+                      <small class="text-muted" style="font-size: 0.85rem; font-style: italic;">
+                        {{ comentario.fecha_comentario | date: 'dd/MM/yyyy HH:mm' }}
+                      </small>
+                    </div>
+                    @if (comentarioEditandoId === comentario.id_comentario) {
+                      <textarea
+                        [(ngModel)]="comentarioEditado"
+                        rows="2"
+                        class="form-control mb-2 rounded-3"
+                      ></textarea>
+                      <div class="d-flex gap-2">
+                        <button
+                          class="btn btn-sm btn-success"
+                          (click)="editarComentario(comentario.id_comentario)"
+                        >
+                          Guardar
+                        </button>
+                        <button
+                          class="btn btn-sm btn-secondary"
+                          (click)="comentarioEditandoId = null"
+                        >
+                          Cancelar
+                        </button>
+                      </div>
+                    } @else {
+                      <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-0 text-secondary">{{ comentario.comentario }}</p>
+                        <div class="dropdown">
+                          <button class="btn btn-sm btn-outline-secondary border-0" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li>
+                              <button class="dropdown-item" (click)="activarEdicion(comentario)">
+                                Editar
+                              </button>
+                            </li>
+                            <li>
+                              <button class="dropdown-item text-danger" (click)="eliminarComentario(comentario.id_comentario)">
+                                Eliminar
+                              </button>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    }
+                  </div>
                 </div>
-                <p class="mb-0 text-secondary">{{ comentario.comentario }}</p>
-              </div>
+              } @else {
+                <div class="d-flex justify-content-start">
+                  <div class="bg-white shadow-sm p-3 rounded-3 w-75">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <strong class="text-dark">{{ comentario.nombre }}</strong>
+                      <small class="text-muted" style="font-size: 0.85rem; font-style: italic;">
+                        {{ comentario.fecha_comentario | date: 'dd/MM/yyyy HH:mm' }}
+                      </small>
+                    </div>
+                    <p class="mb-0 text-secondary">{{ comentario.comentario }}</p>
+                  </div>
+                </div>
+              }
             </li>
           }
         </ul>
       </div>
+
       <div class="d-flex flex-column">
         <textarea
           [(ngModel)]="nuevoComentario"

@@ -16,7 +16,7 @@ nav {
 }
 
 .navbar-brand:hover {
-	color: var(--color-enlace);
+	color: var(--color-boton-hover-fondo);
 	text-decoration: none;
 }
 
@@ -27,7 +27,7 @@ nav {
 }
 
 .nav-link:hover {
-	color: var(--color-enlace);
+	color: var(--color-boton-hover-fondo);
 	text-decoration: none;
 }
 

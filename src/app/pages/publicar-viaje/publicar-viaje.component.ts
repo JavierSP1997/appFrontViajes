@@ -15,6 +15,60 @@ import { ViajesService } from "../../services/viajes.service";
 	styleUrl: "./publicar-viaje.component.css",
 })
 export class PublicarViajeComponent {
+	ciudadesSpain: string[] = [
+		"Almería",
+		"Cádiz",
+		"Córdoba",
+		"Granada",
+		"Huelva",
+		"Jaén",
+		"Málaga",
+		"Sevilla",
+		"Huesca",
+		"Teruel",
+		"Zaragoza",
+		"Oviedo",
+		"Santander",
+		"A Coruña",
+		"Lugo",
+		"Ourense",
+		"Pontevedra",
+		"Palma de Mallorca",
+		"Las Palmas de Gran Canaria",
+		"Santa Cruz de Tenerife",
+		"Ceuta",
+		"Melilla",
+		"Ávila",
+		"Burgos",
+		"León",
+		"Palencia",
+		"Salamanca",
+		"Segovia",
+		"Soria",
+		"Valladolid",
+		"Zamora",
+		"Albacete",
+		"Ciudad Real",
+		"Cuenca",
+		"Guadalajara",
+		"Toledo",
+		"Barcelona",
+		"Girona",
+		"Lleida",
+		"Tarragona",
+		"Alicante",
+		"Castellón de la Plana",
+		"Valencia",
+		"Badajoz",
+		"Cáceres",
+		"Logroño",
+		"Madrid",
+		"Pamplona",
+		"San Sebastián",
+		"Bilbao",
+		"Vitoria-Gasteiz",
+		"Murcia",
+	];
 	private viajesService = inject(ViajesService);
 	private router = inject(Router);
 
@@ -49,5 +103,12 @@ export class PublicarViajeComponent {
 			console.warn("⚠️ Formulario inválido");
 			console.log(this.viajeForm);
 		}
+	}
+
+	checkError(controlName: string, error: string) {
+		return (
+			this.viajeForm.get(controlName)?.touched &&
+			this.viajeForm.get(controlName)?.hasError(error)
+		);
 	}
 }

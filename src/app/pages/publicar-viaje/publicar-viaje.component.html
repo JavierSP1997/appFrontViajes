@@ -1,38 +1,80 @@
-<div class="container">
+<div class="container formulario my-4">
     <form [formGroup]="viajeForm" (ngSubmit)="onSubmit()" class="p-4">
-        <div class="mb-3">
+        <div class="mb-1">
             <label for="nombre_viaje" class="form-label">Nombre del viaje</label>
             <input type="text" id="nombre_viaje" class="form-control" formControlName="nombre_viaje" />
+            <div class="text-danger">
+                @if (checkError('nombre_viaje', 'required')) {
+                        <small>Este campo es obligatorio.</small>
+                    }
+            </div>
         </div>
     
-        <div class="mb-3">
+        <div class="mb-1">
             <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
             <input type="date" id="fecha_inicio" class="form-control" formControlName="fecha_inicio" />
+                <div class="text-danger">
+                    @if (checkError('fecha_inicio', 'required')) {
+                            <small>Este campo es obligatorio.</small>
+                        }
+                </div>
         </div>
         
-        <div class="mb-3">
+        <div class="mb-1">
             <label for="fecha_fin" class="form-label">Fecha de fin</label>
             <input type="date" id="fecha_fin" class="form-control" formControlName="fecha_fin" />
+                <div class="text-danger">
+                    @if (checkError('fecha_fin', 'required')) {
+                            <small>Este campo es obligatorio.</small>
+                        }
+                </div>
         </div>
         
-        <div class="mb-3">
+        <div class="mb-1">
             <label for="coste_por_persona" class="form-label">Coste por persona (€)</label>
             <input type="number" id="coste_por_persona" class="form-control" formControlName="coste_por_persona" />
+                <div class="text-danger">
+                    @if (checkError('coste_por_persona', 'required')) {
+                            <small>Este campo es obligatorio.</small>
+                        }
+                </div>  
         </div>
         
-        <div class="mb-3">
+        <div class="mb-1">
             <label for="personas_minimas" class="form-label">Personas mínimas</label>
             <input type="number" id="personas_minimas" class="form-control" formControlName="personas_minimas" />
+                <div class="text-danger">
+                    @if (checkError('personas_minimas', 'required')) {
+                            <small>Este campo es obligatorio.</small>
+                        }
+                </div>
         </div>
         
-        <div class="mb-3">
-            <label for="localizacion" class="form-label">Localización</label>
-            <input type="text" id="localizacion" class="form-control" formControlName="localizacion" />
+        <div class="mb-1">
+            <label for="localizacion" class="form-label">Localizacion</label>
+            <select id="localizacion" class="form-control" formControlName="localizacion">
+                <option value="">Selecciona una ciudad</option>
+                @for (ciudad of ciudadesSpain; track ciudad) {
+                    <option>{{ ciudad }}</option>
+                }
+                <option>Otro...</option>
+            </select>
+                <div class="text-danger">
+                    @if (checkError('ciudad', 'required')) {
+                            <small>Este campo es obligatorio.</small>
+                        }
+                </div>  
         </div>
         
-        <div class="mb-3">
+        <div class="mb-1">
             <label for="itinerario" class="form-label">Itinerario</label>
-            <textarea id="itinerario" rows="3" class="form-control" formControlName="itinerario"></textarea>
+            <textarea id="itinerario" rows="3" class="form-control" formControlName="itinerario">
+                <!-- <div class="text-danger">
+                    @if (checkError('itinerario', 'required')) {
+                            <small>Este campo es obligatorio.</small>
+                        }
+                </div>   -->
+            </textarea>
         </div>
         
         <div class="mb-3">
@@ -40,10 +82,12 @@
             <input type="text" id="imagen" class="form-control" formControlName="imagen" />
         </div>
         
-        <button type="submit" class="btn btn-primary">Publicar viaje</button>
+        <button type="submit" class="btn btn-primary" [disabled]="viajeForm.invalid">Publicar viaje</button>
     </form>
 </div>
 
 <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed a dolor alias minima vel est itaque animi maiores tempore ullam iste, ad, reiciendis velit quia deserunt illum debitis nostrum. Iure, itaque veritatis et eos iste sunt corporis cumque maxime nisi pariatur accusantium maiores nulla alias tempore unde voluptates quasi quia repellendus! Necessitatibus, fugiat! Cumque sint quod harum beatae velit. Suscipit delectus cupiditate eum earum quasi quam temporibus illum dolorum, voluptates, iusto vitae unde soluta eius sed harum fuga facere voluptate id consequuntur quod iste minima? Autem atque id ipsam? Laboriosam atque aut quia at odio odit nemo totam accusantium officia.</p> -->
+
+
 
 
