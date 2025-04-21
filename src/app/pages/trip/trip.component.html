@@ -54,9 +54,13 @@
         [viajeId]="viaje.id_viaje"></app-participantes>
 
     @if (puedeComentar) {
-    <app-review [viajeId]="viaje.id_viaje"></app-review>
     <app-comentarios [viajeId]="viaje.id_viaje"></app-comentarios>
+    } @else { <h5 class="text-center mt-5 text-muted p-5">Tienes que ser aceptado en el viaje para comentar.</h5>}
+
+    @if (esFinalizado) {
+    <app-review [viajeId]="viaje.id_viaje"></app-review>
     }
+
 
     <!-- Sticky button -->
     <button class="btn btn-primary btn-sticky" (click)="redirectToViajes()">← Volver a viajes</button>

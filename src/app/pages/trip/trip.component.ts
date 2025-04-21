@@ -37,6 +37,7 @@ export class TripComponent {
 	usuarioLogado: Usuario | null = null;
 	esAnfitrion = false;
 	esParticipante = false;
+	esFinalizado = false;
 	puedeComentar = false;
 	cargado = false;
 	error = false;
