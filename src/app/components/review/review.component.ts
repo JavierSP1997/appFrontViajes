@@ -1,4 +1,13 @@
-import { Component, Input, type OnInit, inject } from "@angular/core";
+import {
+	Component,
+	Input,
+	type OnInit,
+	inject,
+	ViewChildren,
+	type QueryList,
+	type ElementRef,
+	ChangeDetectorRef,
+} from "@angular/core";
 import type { Review } from "../../../../interfaces/review.interface";
 import { FormsModule } from "@angular/forms";
 import { ReviewService } from "../../services/review.service";
@@ -26,6 +35,9 @@ export class ReviewsComponent implements OnInit {
 	private usuariosService = inject(UsuariosService);
 	token: string = localStorage.getItem("token") || "";
 	usuarioId: number | null = null;
+
+	@ViewChildren("ultimaResenaRef") resenaElements!: QueryList<ElementRef>; // Seleccionamos las reseñas
+	private cdr = inject(ChangeDetectorRef); // Inyectamos ChangeDetectorRef
 
 	async ngOnInit() {
 		if (this.viajeId) {
@@ -69,10 +81,27 @@ export class ReviewsComponent implements OnInit {
 				this.nuevaReview = "";
 				this.puntuacion = 1;
 				await this.cargarReviews();
+				this.mostrarResenas = true; // Abrir el desplegable de reseñas
+				this.cdr.detectChanges(); // Forzamos la detección de cambios para asegurar que el DOM esté actualizado
+				this.scrollToLastReview(); // Desplazarse a la última reseña
 			}
 		} catch (error) {
 			console.log("Error al enviar la reseña", error);
 		}
+	}
+
+	// Desplazarse hacia la última reseña
+	scrollToLastReview() {
+		setTimeout(() => {
+			const elementos = this.resenaElements.toArray();
+			if (elementos.length > 0) {
+				const ultima = elementos[elementos.length - 1];
+				ultima.nativeElement.scrollIntoView({
+					behavior: "smooth",
+					block: "start",
+				});
+			}
+		}, 100); // pequeño delay para asegurar que el DOM ya se actualizó
 	}
 
 	activarEdicion(review: Review) {

@@ -44,7 +44,7 @@
         <div class="mt-3" [class.d-none]="!mostrarResenas">
           <ul class="list-unstyled">
             @for (review of reviews; track $index) {
-              <li class="mb-3 px-3">
+              <li class="mb-3 px-3" #ultimaResenaRef>
                 <div class="bg-light shadow-sm p-3 rounded-3">
                   <div class="d-flex justify-content-between align-items-center mb-1">
                     <strong class="text-dark">{{ review.nombre_usuario }}</strong>
@@ -142,3 +142,4 @@
     </div>
   </div>
 </div>
+
