@@ -22,8 +22,23 @@ export class ParticipantesService {
 	abandonarViaje(viajeId: number, token: string) {
 		const headers = new HttpHeaders().set("Authorization", token);
 		return lastValueFrom(
-		  this.httpClient.delete(`${this.baseUrl}/abandonar/${viajeId}`, { headers })
+			this.httpClient.delete(`${this.baseUrl}/abandonar/${viajeId}`, {
+				headers,
+			}),
 		);
-	  }
-	  
+	}
+
+	cambiarEstadoParticipante(
+		id_usuario: number,
+		status: string,
+		id_viaje: number,
+	) {
+		const body = { estado: status };
+		return lastValueFrom(
+			this.httpClient.put(
+				`${this.baseUrl}/${id_usuario}/viaje/${id_viaje}`,
+				body,
+			),
+		);
+	}
 }

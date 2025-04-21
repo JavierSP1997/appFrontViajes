@@ -1,9 +1,12 @@
 {
 	"editor.defaultFormatter": "biomejs.biome",
 	"github.copilot.enable": {
-		"*": true,
+		"*": false,
 		"plaintext": false,
 		"markdown": true,
-		"scminput": false
+		"scminput": false,
+		"javascript": false,
+		"typescript": false,
+		"html": false
 	}
 }

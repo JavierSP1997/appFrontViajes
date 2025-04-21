@@ -67,19 +67,16 @@ button.info {
 }
 
 button.info:hover {
-	background-color: var(--color-boton-texto);
+	background-color: var(--color-boton-hover-fondo);
 	color: var(--color-boton-fondo);
-	border-color: var(--color-boton-fondo);
+	border-color: var(--color-boton-hover-fondo);
 }
 
 /* Detalle del viaje */
 .viaje {
-	border-bottom: 2px solid rgb(95, 94, 94);
 	padding: 1rem;
 	border-radius: 1rem;
-	background-color: var(--color-fondo-seccion);
 	margin-bottom: 1.5rem;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 /* Lista de detalles */
