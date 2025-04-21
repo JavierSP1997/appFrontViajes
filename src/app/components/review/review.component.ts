@@ -17,7 +17,7 @@ export class ReviewsComponent implements OnInit {
 
 	reviews: Review[] = [];
 	nuevaReview = "";
-	puntuacion = 5;
+	puntuacion = 1;
 	mostrarResenas = false;
 	editandoReviewId: number | null = null;
 	reviewEditada = "";
@@ -31,6 +31,7 @@ export class ReviewsComponent implements OnInit {
 		if (this.viajeId) {
 			const usuario = await this.usuariosService.getPerfilUsuario();
 			this.usuarioId = usuario.id_usuario;
+
 			await this.cargarReviews();
 		}
 	}
@@ -60,9 +61,13 @@ export class ReviewsComponent implements OnInit {
 					fecha: new Date().toISOString().split("T")[0],
 				};
 
-				await this.reviewService.createReview(reviewPayload);
+				await this.reviewService.createReview(
+					this.viajeId,
+					{ review: this.nuevaReview, puntuacion: this.puntuacion },
+					reviewPayload,
+				);
 				this.nuevaReview = "";
-				this.puntuacion = 5;
+				this.puntuacion = 1;
 				await this.cargarReviews();
 			}
 		} catch (error) {
