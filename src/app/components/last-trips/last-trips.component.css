@@ -1,9 +1,9 @@
 .seccion {
-	padding: 20px;
 	text-align: center;
+	padding: 25px;
 	hgroup {
 		text-align: center;
-		/* padding-bottom: 20px; */
+		margin: 25px;
 		h3 {
 			color: var(--color-titulo-principal);
 		}
@@ -36,19 +36,21 @@ figure figcaption {
 button.info {
 	font-weight: bold;
 	padding: 0.5rem 1rem;
-	border: 2px solid var(--color-borde);
+	border: 2px solid var(--color-boton);
 	border-radius: 0.625rem;
 	background-color: var(--color-boton);
 	color: var(--color-boton-texto);
 	transition: all 0.3s ease;
+
+	&:hover {
+		background-color: var(--color-boton-hover-fondo);
+		/* color: var(--color-boton-fondo); */
+		border: 2px solid var(--color-boton-hover-fondo);
+	}
 }
 
 .viaje {
-	/* border-bottom: 2px solid rgb(95, 94, 94); */
-	/* background-color: var(--color-fondo-seccion); */
 	padding: 20px;
-	border-radius: 10px;
-	margin: 20px;
 }
 
 ul {
@@ -58,6 +60,7 @@ ul {
 
 span {
 	font-weight: bold;
+	color: var(--color-texto);
 }
 
 .vacio {
@@ -92,11 +95,6 @@ span {
 
 	button.info {
 		width: 120px;
-		&:hover {
-			background-color: var(--color-titulo-secundario);
-			color: var(--color-boton-fondo);
-			border: 2px solid var(--color-boton-fondo);
-		}
 	}
 }
 

@@ -1,8 +1,8 @@
 .section-container {
-	margin: auto;
+	margin: 50px;
 	/* background: var(--color-fondo-principal); */
 	padding: 2rem 1.5rem;
-	box-shadow: 0 10px 30px var(--color-sombra);
+	/* box-shadow: 0 10px 30px var(--color-sombra); */
 	border-radius: 1rem;
 	text-align: center;
 	position: relative;

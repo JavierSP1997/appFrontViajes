@@ -1,21 +1,27 @@
+.finder {
+	margin: 80px 0;
+}
+
 button {
 	font-weight: bold;
 	padding: 0.5rem 1rem;
-	border: 2px solid var(--color-borde);
+	border: 2px solid var(--color-boton);
 	border-radius: 0.625rem;
-	background-color: var(--color-boton-fondo);
+	background-color: var(--color-boton);
 	color: var(--color-boton-texto);
 	transition: all 0.3s ease;
 
 	&:hover {
 		background-color: var(--color-titulo-secundario);
 		border: 2px solid var(--color-titulo-secundario);
-		color: var(--color-boton-fondo);
+		color: var(--color-boton-texto);
 	}
 }
 
 h4 {
-	margin: 10px 0;
+	margin: 50px 0;
+	font-size: 1.75rem;
 	text-align: center;
+	align-content: center;
 	color: var(--color-titulo-principal);
 }
