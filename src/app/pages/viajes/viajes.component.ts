@@ -82,6 +82,4 @@ export class ViajesComponent implements OnInit, OnDestroy {
 	quitarFiltros() {
 		this.router.navigate(["/viajes"]);
 	}
-	
-	}
-
+}
