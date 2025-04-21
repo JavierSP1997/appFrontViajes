@@ -57,7 +57,6 @@ export class ViajesService {
 			status: "pendiente",
 		});
 	}
-
 	abandonarViaje(idViaje: number, idUsuario: number) {
 		return this.httpClient.delete(`/api/participantes/${idViaje}/${idUsuario}`);
 	}
