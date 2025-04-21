@@ -102,14 +102,6 @@ export class TripComponent {
 				);
 				this.participantes = viajeActualizado.participantes ?? [];
 				this.esParticipante = this.participantes.some(
-					// el some es como hacer :
-					// let encontrado = false;
-					// for (const p of this.participantes) {
-					// 	if (p.id_usuario === this.usuarioLogado?.id_usuario) {
-					// 		encontrado = true;
-					// 	}
-					// }
-					// this.esParticipante = encontrado;
 					(p) => p.id_usuario === this.usuarioLogado?.id_usuario,
 				);
 				// setTimeout(() => location.reload(), 3000);
