@@ -57,6 +57,25 @@ export class ViajesService {
 			status: "pendiente",
 		});
 	}
+	updateViaje(idViaje: number, datosActualizados: Partial<Viaje>): Promise<Viaje> {
+		const token = localStorage.getItem("token");
+		const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
+		const datosFormateados = {
+			...datosActualizados,
+			fecha_inicio: datosActualizados.fecha_inicio
+				? new Date(datosActualizados.fecha_inicio).toISOString().split("T")[0]
+				: undefined,
+			fecha_fin: datosActualizados.fecha_fin
+				? new Date(datosActualizados.fecha_fin).toISOString().split("T")[0]
+				: undefined,
+		};
+	
+		return lastValueFrom(
+			this.httpClient.put<Viaje>(`${this.baseUrl}/${idViaje}`, datosFormateados, { headers })
+		);
+	}
+	
+	  
 	abandonarViaje(idViaje: number, idUsuario: number) {
 		return this.httpClient.delete(`/api/participantes/${idViaje}/${idUsuario}`);
 	}
