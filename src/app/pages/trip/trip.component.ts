@@ -75,6 +75,7 @@ export class TripComponent {
 		} finally {
 			this.cargado = true;
 		}
+		console.log(this.viaje);
 	}
 
 	async unirse() {
