@@ -2,21 +2,38 @@
     @if (participantes.length > 0) {
     <div class="d-flex flex-wrap gap-3 justify-content-center">
         @for (p of participantes; track p.id_usuario) {
-        <div class="card text-center shadow-sm border-0" style="width: 8rem; cursor: pointer;"
-            [routerLink]="['/perfil-usuario', p.id_usuario]">
-            <img [src]="p.imagen || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'"
-                class="card-img-top rounded-circle mt-2 mx-auto" alt="FOTO"
-                style="width: 60px; height: 60px; object-fit: cover;" />
-            <div class="card-body p-2">
-                <p class="card-text mb-1" style="font-size: 0.85rem;">{{ p.nombre }}</p>
-                <span class="badge" [ngClass]="{
+        <div class="card text-center shadow-sm border-0" style="width: 8rem;">
+            <div style="cursor: pointer;" [routerLink]="['/perfil-usuario', p.id_usuario]">
+                <img [src]="p.imagen || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'"
+                    class="card-img-top rounded-circle mt-2 mx-auto" alt="FOTO"
+                    style="width: 60px; height: 60px; object-fit: cover;" />
+                <div class="card-body p-2">
+                    <p class="card-text mb-1" style="font-size: 0.85rem;">{{ p.nombre }}</p>
+                    <span class="badge" [ngClass]="{
                   'bg-success': p.status === 'confirmado',
                   'bg-warning text-dark': p.status === 'pendiente',
                   'bg-danger': p.status === 'rechazado'
                 }">
-                    {{ p.status }}
-                </span>
+                        {{ p.status }}
+                    </span>
+                </div>
             </div>
+
+            <!-- Mostrar selector si es anfitrión -->
+            @if (esAnfitrion) {
+            <div class="p-2">
+                <label for="estado-{{ p.id_usuario }}" style="font-size: 0.75rem;" class="text-muted">
+                    Cambiar estado:
+                </label>
+                <select class="form-select form-select-sm mt-1" id="estado-{{ p.id_usuario }}" [value]="p.status"
+                    (change)="cambiarEstado($event, p.id_usuario)">
+                    <option value="pendiente">Pendiente</option>
+                    <option value="confirmado">Confirmado</option>
+                    <option value="rechazado">Rechazado</option>
+                </select>
+
+            </div>
+            }
         </div>
         }
     </div>

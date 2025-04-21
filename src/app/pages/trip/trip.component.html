@@ -26,7 +26,8 @@
                     <li class="list-group-item"><strong>📍 Localización:</strong> {{ viaje.localizacion }}</li>
                     <li class="list-group-item"><strong>📅 Fecha de inicio:</strong> {{ viaje.fecha_inicio | date:
                         'dd-MM-YYYY' }}</li>
-                    <li class="list-group-item"><strong>📅 Fecha de fin:</strong> {{ viaje.fecha_fin | date: 'dd-MM-YYYY'
+                    <li class="list-group-item"><strong>📅 Fecha de fin:</strong> {{ viaje.fecha_fin | date:
+                        'dd-MM-YYYY'
                         }}</li>
                     <li class="list-group-item"><strong>💸 Coste por persona:</strong> {{ viaje.coste_por_persona }} €
                     </li>
@@ -48,7 +49,9 @@
     </div>
 
     <h3 class="text-center fw-bold text-primary">Participantes</h3>
-    <app-participantes [participantes]="participantes"></app-participantes>
+
+    <app-participantes [participantes]="participantes" [esAnfitrion]="esAnfitrion"
+        [viajeId]="viaje.id_viaje"></app-participantes>
 
     <app-review [viajeId]="viaje.id_viaje"></app-review>
     <app-comentarios [viajeId]="viaje.id_viaje"></app-comentarios>
