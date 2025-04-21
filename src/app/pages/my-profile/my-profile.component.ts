@@ -27,6 +27,14 @@ export class MyProfileComponent {
 			]);
 		}
 	}
+	traductorDeGenero(gender: string): string {
+		const genderMap: { [key: string]: string } = {
+			male: "Masculino",
+			female: "Femenino",
+			other: "Otro",
+		};
+		return genderMap[gender];
+	}
 
 	get perfilIncompleto(): boolean {
 		const u = this.usuario;
@@ -35,7 +43,7 @@ export class MyProfileComponent {
 		);
 	}
 	cerrarSesion() {
-		localStorage.removeItem("token"); 
+		localStorage.removeItem("token");
 		this.router.navigate(["/"]);
-	  }	  
+	}
 }
