@@ -22,6 +22,11 @@ export const routes: Routes = [
 		canActivate: [authGuard],
 	},
 	{
+		path: "viajes/:idViaje/editar",
+		component: PublicarViajeComponent,
+		canActivate: [authGuard],
+	  },	  
+	{
 		path: "perfil-usuario",
 		component: MyProfileComponent,
 		canActivate: [authGuard],

@@ -36,6 +36,6 @@ export class ParticipantesComponent {
 			select.value,
 			this.viajeId,
 		);
-		console.log(response);
+		p.status = select.value as "pendiente" | "confirmado" | "rechazado";
 	}
 }
