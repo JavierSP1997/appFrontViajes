@@ -91,7 +91,7 @@ export class TripComponent {
 				);
 				this.participantes = viajeActualizado.participantes ?? [];
 				this.esParticipante = this.participantes.some(
-					// el some es como hacer : 
+					// el some es como hacer :
 					// let encontrado = false;
 					// for (const p of this.participantes) {
 					// 	if (p.id_usuario === this.usuarioLogado?.id_usuario) {
@@ -120,19 +120,42 @@ export class TripComponent {
 
 	async abandonar() {
 		if (this.viaje && this.usuarioLogado) {
-			try {
-				await this.viajesService.abandonarViaje(
-					this.viaje.id_viaje,
-					this.usuarioLogado.id_usuario,
-				);
-				alert("Has abandonado el viaje");
-				location.reload();
-			} catch (err) {
-				console.error("Error al abandonar el viaje:", err);
-				alert("No se pudo abandonar el viaje");
-			}
+		  try {
+			await this.participantesService.abandonarViaje(this.viaje.id_viaje, this.token);
+	  
+			Swal.fire({
+			  title: "¡Has abandonado el viaje!",
+			  text: "Esperamos que te unas a otro pronto.",
+			  icon: "success",
+			  toast: true,
+			  position: "top-end",
+			  timer: 3000,
+			  showConfirmButton: false,
+			  background: "#fefce8",
+			  color: "#713f12",
+			});
+	  
+			const viajeActualizado = await this.viajesService.getViajeById(this.viaje.id_viaje);
+			this.participantes = viajeActualizado.participantes ?? [];
+	  
+			this.esParticipante = this.participantes.some(
+			  (p) => p.id_usuario === this.usuarioLogado?.id_usuario
+			);
+		  } catch (err) {
+			Swal.fire({
+			  title: "¡Error!",
+			  text: "No se pudo abandonar el viaje.",
+			  icon: "error",
+			  toast: true,
+			  position: "top-end",
+			  timer: 3000,
+			  showConfirmButton: false,
+			  background: "#fef2f2",
+			  color: "#991b1b",
+			});
+		  }
 		}
-	}
+	  }	  
 
 	redirectToViajes() {
 		window.location.href = "/viajes";
