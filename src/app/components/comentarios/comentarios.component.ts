@@ -11,6 +11,7 @@ import { ComentariosService } from "../../services/comentarios.service";
 import { UsuariosService } from "../../services/usuarios.service";
 import { DatePipe } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import Swal from "sweetalert2";
 
 @Component({
 	selector: "app-comentarios",
@@ -98,15 +99,41 @@ export class ComentariosComponent implements OnInit {
 	}
 
 	async eliminarComentario(idComentario: number) {
-		try {
-			await this.comentariosService.eliminarComentario(
-				this.viajeId,
-				idComentario,
-				this.token,
-			);
-			await this.cargarComentarios();
-		} catch (error) {
-			console.error("Error al eliminar comentario", error);
+		const resultado = await Swal.fire({
+			title: "¿Estás seguro?",
+			text: "Esta acción eliminará tu comentario permanentemente.",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#d33",
+			cancelButtonColor: "#6c757d",
+			confirmButtonText: "Sí, eliminar",
+			cancelButtonText: "Cancelar",
+		});
+
+		if (resultado.isConfirmed) {
+			try {
+				await this.comentariosService.eliminarComentario(
+					this.viajeId,
+					idComentario,
+					this.token,
+				);
+				await this.cargarComentarios();
+
+				Swal.fire({
+					title: "¡Eliminado!",
+					text: "Tu comentario ha sido eliminado.",
+					icon: "success",
+					timer: 1500,
+					showConfirmButton: false,
+				});
+			} catch (error) {
+				console.error("Error al eliminar comentario", error);
+				Swal.fire({
+					title: "Error",
+					text: "Ocurrió un error al intentar eliminar el comentario.",
+					icon: "error",
+				});
+			}
 		}
 	}
 
