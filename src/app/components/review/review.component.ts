@@ -1,4 +1,13 @@
-import { Component, Input, type OnInit, inject } from "@angular/core";
+import {
+	Component,
+	Input,
+	type OnInit,
+	inject,
+	ViewChildren,
+	type QueryList,
+	type ElementRef,
+	ChangeDetectorRef,
+} from "@angular/core";
 import type { Review } from "../../../../interfaces/review.interface";
 import { FormsModule } from "@angular/forms";
 import { ReviewService } from "../../services/review.service";
@@ -17,7 +26,7 @@ export class ReviewsComponent implements OnInit {
 
 	reviews: Review[] = [];
 	nuevaReview = "";
-	puntuacion = 5;
+	puntuacion = 1;
 	mostrarResenas = false;
 	editandoReviewId: number | null = null;
 	reviewEditada = "";
@@ -27,11 +36,14 @@ export class ReviewsComponent implements OnInit {
 	token: string = localStorage.getItem("token") || "";
 	usuarioId: number | null = null;
 
+	@ViewChildren("ultimaResenaRef") resenaElements!: QueryList<ElementRef>; // Seleccionamos las reseñas
+	private cdr = inject(ChangeDetectorRef); // Inyectamos ChangeDetectorRef
+
 	async ngOnInit() {
 		if (this.viajeId) {
 			const usuario = await this.usuariosService.getPerfilUsuario();
 			this.usuarioId = usuario.id_usuario;
-			console.log("🧑‍💻 ID del usuario logueado:", this.usuarioId);
+
 			await this.cargarReviews();
 		}
 	}
@@ -39,7 +51,7 @@ export class ReviewsComponent implements OnInit {
 	async cargarReviews() {
 		try {
 			const reviews = await this.reviewService.getByViajeId(this.viajeId);
-			console.log("📦 Reviews cargadas:", reviews);
+
 			this.reviews = reviews.sort(
 				(a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime(),
 			);
@@ -60,16 +72,36 @@ export class ReviewsComponent implements OnInit {
 					review: this.nuevaReview,
 					fecha: new Date().toISOString().split("T")[0],
 				};
-				console.log("📤 Enviando review:", reviewPayload);
 
-				await this.reviewService.createReview(reviewPayload);
+				await this.reviewService.createReview(
+					this.viajeId,
+					{ review: this.nuevaReview, puntuacion: this.puntuacion },
+					reviewPayload,
+				);
 				this.nuevaReview = "";
-				this.puntuacion = 5; // Resetear la puntuación a 5
+				this.puntuacion = 1;
 				await this.cargarReviews();
+				this.mostrarResenas = true; // Abrir el desplegable de reseñas
+				this.cdr.detectChanges(); // Forzamos la detección de cambios para asegurar que el DOM esté actualizado
+				this.scrollToLastReview(); // Desplazarse a la última reseña
 			}
 		} catch (error) {
 			console.log("Error al enviar la reseña", error);
 		}
+	}
+
+	// Desplazarse hacia la última reseña
+	scrollToLastReview() {
+		setTimeout(() => {
+			const elementos = this.resenaElements.toArray();
+			if (elementos.length > 0) {
+				const ultima = elementos[elementos.length - 1];
+				ultima.nativeElement.scrollIntoView({
+					behavior: "smooth",
+					block: "start",
+				});
+			}
+		}, 100); // pequeño delay para asegurar que el DOM ya se actualizó
 	}
 
 	activarEdicion(review: Review) {
