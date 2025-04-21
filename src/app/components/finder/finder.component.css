@@ -4,24 +4,36 @@
 
 button {
 	font-weight: bold;
-	padding: 0.5rem 1rem;
 	border: 2px solid var(--color-boton);
 	border-radius: 0.625rem;
 	background-color: var(--color-boton);
-	color: var(--color-boton-texto);
-	transition: all 0.3s ease;
+	color: var(--color-texto-botones);
+	transition: all 0.5s ease;
 
 	&:hover {
-		background-color: var(--color-titulo-secundario);
-		border: 2px solid var(--color-titulo-secundario);
+		background-color: var(--color-boton-bgc-hover);
+		border: 2px solid var(--color-boton-bgc-hover);
 		color: var(--color-boton-texto);
+		transform: scale(1.05);
 	}
 }
 
-h4 {
+hgroup {
 	margin: 50px 0;
 	font-size: 1.75rem;
 	text-align: center;
 	align-content: center;
-	color: var(--color-titulo-principal);
+
+	h4 {
+		color: var(--color-titulo-principal);
+		font-size: 26px;
+	}
+	h5 {
+		color: var(--color-titulo-secundario);
+	}
+}
+
+span {
+	font-weight: bold;
+	color: var(--color-texto-botones);
 }

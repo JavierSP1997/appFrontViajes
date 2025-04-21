@@ -17,7 +17,7 @@ h4 {
 .buttons {
 	button {
 		font-weight: bold;
-		transition: 0.3s;
+		transition: 0.5s;
 		justify-content: space-evenly;
 		margin-bottom: 10px;
 		border-radius: 10px;
@@ -25,12 +25,13 @@ h4 {
 		background-color: var(--color-boton);
 		border-radius: 10px;
 		width: 200px;
-		height: 50px;
-		color: var(color-boton-texto);
+		height: 40px;
+		color: var(--color-texto-botones);
 
 		&:hover {
-			background-color: var(--color-titulo-secundario);
+			background-color: var(--color-boton-bgc-hover);
 			color: var(--color-boton-hover);
+			transform: scale(1.05);
 		}
 	}
 }

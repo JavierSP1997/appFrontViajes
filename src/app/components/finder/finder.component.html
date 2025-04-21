@@ -1,34 +1,38 @@
 <section class="finder">
-  <h4>ENCUENTRA LO QUE BUSCAS</h4>
+  <hgroup>
+    <h4>ENCUENTRA LO QUE BUSCAS</h4>
+    <h5>Busca entre toda la variedad de viajes que nuestros usuarios pueden ofrecer. ¡No te quedes en casa!</h5>
+
+  </hgroup>
 
   <div class="container">
     <form class="row row-cols-1 row-cols-md-auto g-3 align-items-end justify-content-center" (submit)="onSubmit($event)">
   
       <div class="col">
-        <label for="nombre" class="form-label">Destino</label>
+        <label for="nombre" class="form-label"> <span> Destino</span></label>
         <input type="text" class="form-control" id="nombre" placeholder="Ingrese destino" [(ngModel)]="destino"
           name="destino" />
       </div>
   
       <div class="col">
-        <label for="fecha-ida" class="form-label">Fecha de Ida</label>
+        <label for="fecha-ida" class="form-label"> <span>Fecha de Ida</span></label>
         <input type="date" id="fecha-ida" class="form-control" [(ngModel)]="fechaIda" name="fechaIda" />
       </div>
   
       <div class="col">
-        <label for="fecha-vuelta" class="form-label">Fecha de Vuelta</label>
+        <label for="fecha-vuelta" class="form-label"><span>Fecha de Vuelta</span></label>
         <input type="date" id="fecha-vuelta" class="form-control" [(ngModel)]="fechaVuelta" name="fechaVuelta" />
       </div>
   
       <div class="col">
-        <label for="viajeros" class="form-label">Número de Viajeros</label>
+        <label for="viajeros" class="form-label"><span>Nº max. viajeros</span></label>
         <input type="number" id="viajeros" class="form-control" min="1" max="10" placeholder="1-10" [(ngModel)]="viajeros"
           name="viajeros" />
       </div>
   
       <div class="col">
         <button type="submit" class="btn btn-primary mt-md-4 mt-2 w-100">
-          Buscar
+          Go!
         </button>
       </div>
   
