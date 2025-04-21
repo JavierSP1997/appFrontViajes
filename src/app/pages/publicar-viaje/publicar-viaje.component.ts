@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ViajesService } from "../../services/viajes.service";
+import { UsuariosService } from "../../services/usuarios.service";
 
 @Component({
 	selector: "app-publicar-viaje",
@@ -70,6 +71,7 @@ export class PublicarViajeComponent {
 		"Murcia",
 	];
 	private viajesService = inject(ViajesService);
+	private usuariosService = inject(UsuariosService);
 	private router = inject(Router);
 
 	viajeForm: FormGroup = new FormGroup({
@@ -83,25 +85,20 @@ export class PublicarViajeComponent {
 		imagen: new FormControl(""),
 	});
 
-	onSubmit() {
+	async onSubmit() {
 		if (this.viajeForm.valid) {
-			const nuevoViaje = {
-				...this.viajeForm.value,
-				usuarios_id_usuario: 27, // más adelante sacaremos esto del token
-			};
+			try {
+				const usuario = await this.usuariosService.getPerfilUsuario();
+				const nuevoViaje = {
+					...this.viajeForm.value,
+					usuarios_id_usuario: usuario.id_usuario,
+				};
 
-			this.viajesService
-				.crearViaje(nuevoViaje)
-				.then((viajeCreado) => {
-					console.log("✅ Viaje creado:", viajeCreado);
-					this.router.navigate(["/viajes", viajeCreado.id_viaje]);
-				})
-				.catch((err) => {
-					console.error("❌ Error al crear viaje:", err);
-				});
-		} else {
-			console.warn("⚠️ Formulario inválido");
-			console.log(this.viajeForm);
+				const viajeCreado = await this.viajesService.crearViaje(nuevoViaje);
+				this.router.navigate([`/viaje/${viajeCreado.id_viaje}`]);
+			} catch (error) {
+				console.error("Error al crear el viaje:", error);
+			}
 		}
 	}
 
