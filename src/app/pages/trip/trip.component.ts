@@ -37,6 +37,7 @@ export class TripComponent {
 	usuarioLogado: Usuario | null = null;
 	esAnfitrion = false;
 	esParticipante = false;
+	puedeComentar = false;
 	cargado = false;
 	error = false;
 	token: string = localStorage.getItem("token") || "";
@@ -61,6 +62,14 @@ export class TripComponent {
 					(p) => p.id_usuario === this.usuarioLogado?.id_usuario,
 				);
 			}
+			// Lógica para determinar si puede comentar
+			this.puedeComentar =
+				this.esAnfitrion ||
+				this.participantes.some(
+					(p) =>
+						p.id_usuario === this.usuarioLogado?.id_usuario &&
+						p.status === "confirmado",
+				);
 		} catch (err) {
 			this.error = true;
 		} finally {
@@ -120,42 +129,47 @@ export class TripComponent {
 
 	async abandonar() {
 		if (this.viaje && this.usuarioLogado) {
-		  try {
-			await this.participantesService.abandonarViaje(this.viaje.id_viaje, this.token);
-	  
-			Swal.fire({
-			  title: "¡Has abandonado el viaje!",
-			  text: "Esperamos que te unas a otro pronto.",
-			  icon: "success",
-			  toast: true,
-			  position: "top-end",
-			  timer: 3000,
-			  showConfirmButton: false,
-			  background: "#fefce8",
-			  color: "#713f12",
-			});
-	  
-			const viajeActualizado = await this.viajesService.getViajeById(this.viaje.id_viaje);
-			this.participantes = viajeActualizado.participantes ?? [];
-	  
-			this.esParticipante = this.participantes.some(
-			  (p) => p.id_usuario === this.usuarioLogado?.id_usuario
-			);
-		  } catch (err) {
-			Swal.fire({
-			  title: "¡Error!",
-			  text: "No se pudo abandonar el viaje.",
-			  icon: "error",
-			  toast: true,
-			  position: "top-end",
-			  timer: 3000,
-			  showConfirmButton: false,
-			  background: "#fef2f2",
-			  color: "#991b1b",
-			});
-		  }
+			try {
+				await this.participantesService.abandonarViaje(
+					this.viaje.id_viaje,
+					this.token,
+				);
+
+				Swal.fire({
+					title: "¡Has abandonado el viaje!",
+					text: "Esperamos que te unas a otro pronto.",
+					icon: "success",
+					toast: true,
+					position: "top-end",
+					timer: 3000,
+					showConfirmButton: false,
+					background: "#fefce8",
+					color: "#713f12",
+				});
+
+				const viajeActualizado = await this.viajesService.getViajeById(
+					this.viaje.id_viaje,
+				);
+				this.participantes = viajeActualizado.participantes ?? [];
+
+				this.esParticipante = this.participantes.some(
+					(p) => p.id_usuario === this.usuarioLogado?.id_usuario,
+				);
+			} catch (err) {
+				Swal.fire({
+					title: "¡Error!",
+					text: "No se pudo abandonar el viaje.",
+					icon: "error",
+					toast: true,
+					position: "top-end",
+					timer: 3000,
+					showConfirmButton: false,
+					background: "#fef2f2",
+					color: "#991b1b",
+				});
+			}
 		}
-	  }	  
+	}
 
 	redirectToViajes() {
 		window.location.href = "/viajes";

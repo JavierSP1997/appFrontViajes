@@ -53,8 +53,10 @@
     <app-participantes [participantes]="participantes" [esAnfitrion]="esAnfitrion"
         [viajeId]="viaje.id_viaje"></app-participantes>
 
+    @if (puedeComentar) {
     <app-review [viajeId]="viaje.id_viaje"></app-review>
     <app-comentarios [viajeId]="viaje.id_viaje"></app-comentarios>
+    }
 
     <!-- Sticky button -->
     <button class="btn btn-primary btn-sticky" (click)="redirectToViajes()">← Volver a viajes</button>
