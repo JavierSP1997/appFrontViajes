@@ -1,9 +1,9 @@
 .seccion {
-	padding: 20px;
 	text-align: center;
+	padding: 25px;
 	hgroup {
 		text-align: center;
-		/* padding-bottom: 20px; */
+		margin: 25px;
 		h3 {
 			color: var(--color-titulo-principal);
 		}
@@ -43,16 +43,13 @@ button.info {
 	transition: all 0.3s ease;
 
 	&:hover {
-		background-color: var(--color-titulo-secundario);
-		/* color: var(--color-boton-fondo);
-		border: 2px solid var(--color-boton-fondo); */
+		background-color: var(--color-boton-bgc-hover);
+		border: 2px solid var(--color-boton-bgc-hover);
 	}
 }
 
 .viaje {
 	padding: 20px;
-	border-radius: 10px;
-	margin: 20px;
 }
 
 ul {
@@ -60,12 +57,9 @@ ul {
 	grid-template-columns: repeat(2, 1fr);
 }
 
-li {
-	min-height: 80px;
-}
-
 span {
 	font-weight: bold;
+	color: var(--color-texto);
 }
 
 .vacio {
@@ -100,11 +94,6 @@ span {
 
 	button.info {
 		width: 120px;
-		&:hover {
-			background-color: var(--color-titulo-secundario);
-			color: var(--color-boton-fondo);
-			border: 2px solid var(--color-boton-fondo);
-		}
 	}
 }
 
