@@ -35,7 +35,7 @@ export class MyProfileComponent {
 		);
 	}
 	cerrarSesion() {
-		localStorage.clear();
+		localStorage.removeItem("token"); 
 		this.router.navigate(["/"]);
-	}
+	  }	  
 }
