@@ -45,7 +45,7 @@ button.info {
 	&:hover {
 		background-color: var(--color-boton-hover-fondo);
 		/* color: var(--color-boton-fondo); */
-		border: 2px solid var(--color-boton-hover-fondo);
+		/* border: 2px solid var(--color-boton-hover-fondo); */
 	}
 }
 
