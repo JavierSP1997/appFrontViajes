@@ -5,10 +5,11 @@
 	--color-fondo-principal: #f7f1e5;
 	--color-titulo-principal: #3d5a5d;
 	--color-titulo-secundario: #f0a469;
-	--color-texto: #333333;
-	--color-boton: #e28b3a;
-	--color-boton-hover-fondo: #f0a469;
-	--color-boton-hover: #ffffff;
+	--color-texto-botones: #3b332d;
+	--color-boton-bgc-hover: #f0a369cc;
+	--color-boton: #e4944a;
+	--color-boton-texto-hover: #3a3128;
+	--color-boton-fondo-hover: #f0a469;
 	--color-boton-texto: #100c0cd7;
 	--color-enlace-hover: #ff6347;
 	--color-fondo-seccion: #e9f6ef;
