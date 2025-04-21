@@ -26,4 +26,29 @@ export class ComentariosService {
 			),
 		);
 	}
+
+	editarComentario(
+		viajeId: number,
+		comentarioId: number,
+		comentario: string,
+		token: string,
+	) {
+		const headers = new HttpHeaders().set("Authorization", token);
+		return lastValueFrom(
+			this.httpClient.put(
+				`${this.apiUrl}/${viajeId}/${comentarioId}`,
+				{ comentario },
+				{ headers },
+			),
+		);
+	}
+
+	eliminarComentario(viajeId: number, comentarioId: number, token: string) {
+		const headers = new HttpHeaders().set("Authorization", token);
+		return lastValueFrom(
+			this.httpClient.delete(`${this.apiUrl}/${viajeId}/${comentarioId}`, {
+				headers,
+			}),
+		);
+	}
 }

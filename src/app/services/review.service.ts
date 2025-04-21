@@ -20,7 +20,11 @@ export class ReviewService {
 		);
 	}
 
-	createReview(body: Review) {
+	createReview(
+		viajeId: number,
+		p0: { review: string; puntuacion: number },
+		body: Review,
+	) {
 		const token = localStorage.getItem("token");
 		return lastValueFrom(
 			this.httpClient.post<Review>(`${this.baseUrl}`, body, {

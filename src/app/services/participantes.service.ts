@@ -19,4 +19,11 @@ export class ParticipantesService {
 			),
 		);
 	}
+	abandonarViaje(viajeId: number, token: string) {
+		const headers = new HttpHeaders().set("Authorization", token);
+		return lastValueFrom(
+		  this.httpClient.delete(`${this.baseUrl}/abandonar/${viajeId}`, { headers })
+		);
+	  }
+	  
 }
