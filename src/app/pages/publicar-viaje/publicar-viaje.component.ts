@@ -26,7 +26,7 @@ export class PublicarViajeComponent {
 		personas_minimas: new FormControl("", [Validators.required]),
 		localizacion: new FormControl("", [Validators.required]),
 		itinerario: new FormControl("", [Validators.required]),
-		imagen: new FormControl("", [Validators.required]),
+		imagen: new FormControl(""),
 	});
 
 	onSubmit() {

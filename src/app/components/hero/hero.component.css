@@ -1,13 +1,17 @@
 .hero {
 	background-image: url(../../../images/hero.png);
-	height: 300px;
+	height: 400px;
 	align-content: center;
+	background-size: cover;
+	background-position: center;
+	background-blend-mode: multiply;
+	background-color: rgb(168, 168, 168);
 }
 
 h4 {
 	color: white;
 	font-size: 40px;
-	background-color: rgba(0, 0, 0, 0.553);
+	/* background-color: #f0a369ee; */
 }
 
 .buttons {
