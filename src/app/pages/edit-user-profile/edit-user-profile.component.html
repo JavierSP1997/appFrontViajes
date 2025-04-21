@@ -5,15 +5,29 @@
     <div class="row gy-4">
       <div class="col-md-6">
         <div class="info-card shadow-sm">
-          <label for="name" class="form-label"><i class="bi bi-person-fill me-2"></i>Nombre</label>
-          <input id="name" type="text" class="form-control" formControlName="name" />
+          <label for="name" class="form-label"
+            ><i class="bi bi-person-fill me-2"></i>Nombre</label
+          >
+          <input
+            id="name"
+            type="text"
+            class="form-control"
+            formControlName="name"
+          />
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="info-card shadow-sm">
-          <label for="email" class="form-label"><i class="bi bi-envelope-fill me-2"></i>Email</label>
-          <input id="email" type="email" class="form-control" formControlName="email" />
+          <label for="email" class="form-label"
+            ><i class="bi bi-envelope-fill me-2"></i>Email</label
+          >
+          <input
+            id="email"
+            type="email"
+            class="form-control"
+            formControlName="email"
+          />
         </div>
       </div>
 
@@ -25,27 +39,36 @@
               id="toggle-password"
               class="form-check-input"
               [checked]="mostrarPassword"
-              (change)="mostrarPassword = !mostrarPassword"
+              (change)="togglePassword()"
             />
-            <label for="toggle-password" class="form-check-label">¿Quieres cambiar tu contraseña?</label>
+            <label for="toggle-password" class="form-check-label"
+              >¿Quieres cambiar tu contraseña?</label
+            >
           </div>
-      
+
           @if (mostrarPassword) {
-            <input
-              type="text"
-              class="form-control"
-              formControlName="password"
-              placeholder="Escribe tu nueva contraseña"
-            />
+          <input
+            type="text"
+            class="form-control"
+            formControlName="password"
+            placeholder="Escribe tu nueva contraseña"
+          />
           }
         </div>
       </div>
-      
 
       <div class="col-md-6">
         <div class="info-card shadow-sm">
-          <label for="description" class="form-label"><i class="bi bi-card-text me-2"></i>Sobre ti</label>
-          <textarea id="description" rows="3" class="form-control" formControlName="description" placeholder="Cuéntanos un poco más de ti."></textarea>
+          <label for="description" class="form-label"
+            ><i class="bi bi-card-text me-2"></i>Sobre ti</label
+          >
+          <textarea
+            id="description"
+            rows="3"
+            class="form-control"
+            formControlName="description"
+            placeholder="Cuéntanos un poco más de ti."
+          ></textarea>
         </div>
       </div>
 
@@ -55,7 +78,7 @@
             <i class="bi bi-gender-ambiguous me-2"></i>Género
           </label>
           <select id="gender" class="form-select" formControlName="gender">
-            <option value="" disabled selected>Selecciona tu género</option>
+            <option value="" disabled>Selecciona tu género</option>
             <option value="male">Masculino</option>
             <option value="female">Femenino</option>
             <option value="other">Otro</option>
@@ -63,18 +86,25 @@
         </div>
       </div>
 
-
       <div class="col-md-6">
         <div class="info-card shadow-sm">
-          <label for="hobbies" class="form-label"><i class="bi bi-controller me-2"></i>Hobbies</label>
-          <input id="hobbies" type="text" class="form-control" formControlName="hobbies" />
+          <label for="hobbies" class="form-label"
+            ><i class="bi bi-controller me-2"></i>Hobbies</label
+          >
+          <input
+            id="hobbies"
+            type="text"
+            class="form-control"
+            formControlName="hobbies"
+          />
         </div>
       </div>
 
-
       <div class="col-md-6">
         <div class="info-card shadow-sm">
-          <label for="pets" class="form-label"><i class="bi bi-house-heart me-2"></i>¿Tienes mascotas?</label>
+          <label for="pets" class="form-label"
+            ><i class="bi bi-house-heart me-2"></i>¿Tienes mascotas?</label
+          >
           <input
             id="pets"
             type="text"
@@ -87,12 +117,24 @@
 
       <div class="col-md-6">
         <div class="info-card shadow-sm">
-          <label for="photo" class="form-label"><i class="bi bi-image me-2"></i>Foto de perfil</label>
-          <input id="photo" type="text" class="form-control mb-3" placeholder="URL de la imagen" formControlName="photo" />
-          
+          <label for="photo" class="form-label"
+            ><i class="bi bi-image me-2"></i>Foto de perfil</label
+          >
+          <input
+            id="photo"
+            type="text"
+            class="form-control mb-3"
+            placeholder="URL de la imagen"
+            formControlName="photo"
+          />
+
           @if (imagenPreview || perfilUsuarioForm.value.photo) {
-            <img [src]="imagenPreview || perfilUsuarioForm.value.photo" alt="Preview" class="profile-img mt-3" />
-          }          
+          <img
+            [src]="imagenPreview || perfilUsuarioForm.value.photo"
+            alt="Preview"
+            class="profile-img mt-3"
+          />
+          }
         </div>
       </div>
     </div>
@@ -111,5 +153,4 @@
       <i class="bi bi-trash-fill me-2"></i>Eliminar perfil
     </button>
   </div>
-  
 </div>

@@ -18,6 +18,12 @@ export class ViajesService {
 		return lastValueFrom(this.httpClient.get<Viaje[]>(this.baseUrl));
 	}
 
+	getViajesByUsuario(idUsuario: number) {
+		return lastValueFrom(
+			this.httpClient.get<Viaje[]>(`${this.baseUrl}/usuario/${idUsuario}`),
+		);
+	}
+
 	getViajeByNombre(nombre: string) {
 		return lastValueFrom(
 			this.httpClient.get<Viaje[]>(`${this.baseUrl}/viajes`, {

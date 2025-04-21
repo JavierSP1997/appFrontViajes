@@ -9,6 +9,7 @@ import { authGuard } from "./guards/auth.guard";
 import { TripComponent } from "./pages/trip/trip.component";
 import { PublicProfileComponent } from "./pages/public-profile/public-profile.component";
 import { PublicarViajeComponent } from "./pages/publicar-viaje/publicar-viaje.component";
+import { MisViajesComponent } from "./pages/mis-viajes/mis-viajes.component";
 
 export const routes: Routes = [
 	{ path: "", pathMatch: "full", component: HomeComponent },
@@ -36,6 +37,6 @@ export const routes: Routes = [
 		component: PublicarViajeComponent,
 		canActivate: [authGuard],
 	},
-
+	{ path: "mis-viajes", component: MisViajesComponent },
 	{ path: "**", component: HomeComponent },
 ];

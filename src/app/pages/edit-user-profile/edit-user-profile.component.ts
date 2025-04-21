@@ -27,7 +27,6 @@ export class EditUserProfileComponent {
 	perfilUsuarioForm: FormGroup = new FormGroup({
 		name: new FormControl(""),
 		email: new FormControl(""),
-		password: new FormControl(""),
 		description: new FormControl(""),
 		gender: new FormControl(""),
 		hobbies: new FormControl(""),
@@ -39,40 +38,50 @@ export class EditUserProfileComponent {
 		if (usuario) {
 			this.usuarioId = usuario.id_usuario;
 			this.usuarioOriginal = usuario;
-			this.perfilUsuarioForm.setValue({
-				name: usuario.nombre || "",
-				email: usuario.email || "",
-				password: "",
-				description: usuario.descripcion || "",
-				gender: usuario.gender || "",
-				hobbies: usuario.hobbies || "",
-				pets: usuario.pets || "",
-				photo: usuario.imagen || "",
+			this.perfilUsuarioForm.patchValue({
+				name: usuario.nombre,
+				email: usuario.email,
+				description: usuario.descripcion,
+				gender: usuario.gender,
+				hobbies: usuario.hobbies,
+				pets: usuario.pets,
+				photo: usuario.imagen,
 			});
 		}
 	}
+	togglePassword() {
+		this.mostrarPassword = !this.mostrarPassword;
 
+		if (this.mostrarPassword) {
+			this.perfilUsuarioForm.addControl("password", new FormControl(""));
+		} else {
+			this.perfilUsuarioForm.removeControl("password");
+		}
+	}
 	async onSubmit() {
 		if (
 			this.perfilUsuarioForm.valid &&
 			this.usuarioId !== null &&
 			this.usuarioOriginal !== null
 		) {
+			const formValue = this.perfilUsuarioForm.value;
 			const formData: Usuario = {
 				id_usuario: this.usuarioId,
-				nombre: this.perfilUsuarioForm.value.name,
-				email: this.perfilUsuarioForm.value.email,
-				password: this.perfilUsuarioForm.value.password,
-				descripcion: this.perfilUsuarioForm.value.description,
-				gender: this.perfilUsuarioForm.value.gender,
-				hobbies: this.perfilUsuarioForm.value.hobbies,
-				pets: this.perfilUsuarioForm.value.pets,
-				imagen: this.perfilUsuarioForm.value.photo,
+				nombre: formValue.name || "",
+				email: formValue.email || "",
+				descripcion: formValue.description || "",
+				gender: formValue.gender || null,
+				hobbies: formValue.hobbies || "",
+				pets: formValue.pets || "",
+				imagen: formValue.photo || "",
 				fecha_registro: this.usuarioOriginal.fecha_registro,
+				password: this.usuarioOriginal.password,
 			};
+			if (this.mostrarPassword && formValue.password?.trim()) {
+				formData.password = formValue.password;
+			}
 
 			await this.usuariosService.update(this.usuarioId, formData);
-
 			this.router.navigate(["/perfil-usuario"]);
 		}
 	}
