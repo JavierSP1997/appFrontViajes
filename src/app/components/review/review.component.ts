@@ -31,7 +31,6 @@ export class ReviewsComponent implements OnInit {
 		if (this.viajeId) {
 			const usuario = await this.usuariosService.getPerfilUsuario();
 			this.usuarioId = usuario.id_usuario;
-			console.log("🧑‍💻 ID del usuario logueado:", this.usuarioId);
 			await this.cargarReviews();
 		}
 	}
@@ -39,7 +38,7 @@ export class ReviewsComponent implements OnInit {
 	async cargarReviews() {
 		try {
 			const reviews = await this.reviewService.getByViajeId(this.viajeId);
-			console.log("📦 Reviews cargadas:", reviews);
+
 			this.reviews = reviews.sort(
 				(a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime(),
 			);
@@ -60,11 +59,10 @@ export class ReviewsComponent implements OnInit {
 					review: this.nuevaReview,
 					fecha: new Date().toISOString().split("T")[0],
 				};
-				console.log("📤 Enviando review:", reviewPayload);
 
 				await this.reviewService.createReview(reviewPayload);
 				this.nuevaReview = "";
-				this.puntuacion = 5; // Resetear la puntuación a 5
+				this.puntuacion = 5;
 				await this.cargarReviews();
 			}
 		} catch (error) {
