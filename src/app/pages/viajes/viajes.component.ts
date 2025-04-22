@@ -5,7 +5,6 @@ import type { Viaje } from "../../../../interfaces/viaje.interface";
 import { FinderComponent } from "../../components/finder/finder.component";
 import type { Subscription } from "rxjs";
 import { DatePipe } from "@angular/common";
-import { ParticipantesService } from "../../services/participantes.service";
 
 @Component({
 	selector: "app-viajes",

@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Editar perfil</h2>
+  <h2>Editar perfil</h2>
 
 <div class="gradiente"></div>
 
@@ -8,33 +8,18 @@
       <div class="col-md-6">
         <div>
           <label for="name" class="form-label">Nombre</label>
-          <input
-            id="name"
-            type="text"
-            class="form-control"
-            formControlName="name"
-            placeholder="Dinos tu nombre"
-          />
+          <input id="name" type="text" class="form-control" formControlName="name" placeholder="Dinos tu nombre" />
         </div>
       </div>
 
       <div class="col-md-6">
         <div>
           <label for="photo" class="form-label">Foto de perfil</label>
-          <input
-            id="photo"
-            type="text"
-            class="form-control"
-            placeholder="URL de la imagen"
-            formControlName="photo"
-          />
+          <input id="photo" type="text" class="form-control" placeholder="URL de la imagen" formControlName="photo" />
 
           @if (imagenPreview || perfilUsuarioForm.value.photo) {
-          <img
-            [src]="imagenPreview || perfilUsuarioForm.value.photo"
-            alt="Preview"
-            class="profile-img mt-3 w-100 h-auto"
-          />
+          <img [src]="imagenPreview || perfilUsuarioForm.value.photo" alt="Preview"
+            class="profile-img mt-3 w-100 h-auto" />
           }
         </div>
       </div>
@@ -42,41 +27,23 @@
       <div class="col-md-6">
         <div>
           <label for="description" class="form-label">Descripción</label>
-          <textarea
-            id="description"
-            rows="4"
-            class="form-control"
-            formControlName="description"
-            placeholder="Cuéntanos un poco más de ti"
-          ></textarea>
+          <textarea id="description" rows="4" class="form-control" formControlName="description"
+            placeholder="Cuéntanos un poco más de ti"></textarea>
         </div>
       </div>
 
       <div class="col-md-6">
         <div>
           <label for="hobbies" class="form-label">Hobbies</label>
-          <textarea
-            id="hobbies"
-            rows="4"
-            type="text"
-            class="form-control"
-            formControlName="hobbies"
-            placeholder="Cuéntanos sobre lo que te gusta"
-          ></textarea>
+          <textarea id="hobbies" rows="4" type="text" class="form-control" formControlName="hobbies"
+            placeholder="Cuéntanos sobre lo que te gusta"></textarea>
         </div>
       </div>
 
       <div class="col-md-6">
         <div>
-          <label for="email" class="form-label"
-            ><i class="bi bi-envelope-fill me-2"></i>Email</label
-          >
-          <input
-            id="email"
-            type="email"
-            class="form-control"
-            formControlName="email"
-          />
+          <label for="email" class="form-label"><i class="bi bi-envelope-fill me-2"></i>Email</label>
+          <input id="email" type="email" class="form-control" formControlName="email" />
         </div>
       </div>
 
@@ -99,21 +66,14 @@
 
       <div class="col-md-6">
         <div>
-          <label for="pets" class="form-label"
-            ><i class="bi bi-house-heart me-2"></i>¿Tienes mascotas?</label
-          >
-          <input
-            id="pets"
-            type="text"
-            class="form-control"
-            formControlName="pets"
-            placeholder="Cuéntanos más sobre tus mascotas"
-          />
+          <label for="pets" class="form-label"><i class="bi bi-house-heart me-2"></i>¿Tienes mascotas?</label>
+          <input id="pets" type="text" class="form-control" formControlName="pets"
+            placeholder="Cuéntanos más sobre tus mascotas" />
         </div>
       </div>
 
     </div>
-    
+
     <div class="d-flex justify-content-center gap-4 mt-5 p-3 botones">
       <button class="guardar" type="submit">Guardar cambios
       </button>
@@ -123,6 +83,5 @@
       <button class="eliminar" type="button" (click)="eliminarPerfil()">Eliminar perfil
       </button>
     </div>
-    
-  </form>
 
+  </form>

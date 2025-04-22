@@ -1,10 +1,10 @@
 .finder {
-	margin: 80px 0;
+	margin-top: 60px;
+	margin-bottom: 60px;
 }
 .title {
 	text-align: center;
 	margin: 0 auto;
-	padding-bottom: 20px;
 }
 
 button {
@@ -24,7 +24,6 @@ button {
 }
 
 hgroup {
-	margin: 50px 0;
 	font-size: 1.75rem;
 	text-align: center;
 	align-content: center;
@@ -32,9 +31,11 @@ hgroup {
 	h4 {
 		color: var(--color-titulo-principal);
 		font-size: 26px;
+		margin-bottom: 15px;
 	}
 	h5 {
 		color: var(--color-titulo-secundario);
+		margin-bottom: 15px;
 	}
 }
 

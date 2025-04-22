@@ -6,7 +6,7 @@
 	background-size: 100% 3px;
 	background-repeat: no-repeat;
 	background-position: bottom;
-	padding-bottom: 70px;
+	padding-bottom: 50px;
 
 	hgroup {
 		text-align: center;
@@ -38,6 +38,10 @@ figure {
 			transform: scale(0.95);
 		}
 	}
+}
+
+ul {
+	min-height: 100px;
 }
 li {
 	margin-top: 25px;
