@@ -10,7 +10,7 @@ import { UsuariosService } from "../../services/usuarios.service";
 import { Router } from "@angular/router";
 import type { Usuario } from "../../../../interfaces/usuario.interface";
 import { CommonModule } from "@angular/common";
-
+import Swal from "sweetalert2";
 @Component({
 	selector: "app-edit-user-profile",
 	imports: [ReactiveFormsModule, CommonModule, FormsModule],
@@ -77,8 +77,25 @@ export class EditUserProfileComponent {
 	}
 
 	cancelarEdicion() {
-		this.router.navigate(["/perfil-usuario"]);
+		Swal.fire({
+			toast: true,
+			position: "top-end",
+			icon: "info",
+			title: "Cambios no guardados",
+			text: "Se descartarán los cambios realizados.",
+			showConfirmButton: false,
+			timer: 2000,
+			timerProgressBar: true,
+			background:"#ffe0c2", 
+			color: "#383d41",     
+			iconColor: "#17a2b8",  
+		});
+	
+		setTimeout(() => {
+			this.router.navigate(["/perfil-usuario"]);
+		}, 2000);
 	}
+	
 
 	onImagenSeleccionada(event: Event): void {
 		const file = (event.target as HTMLInputElement)?.files?.[0];
@@ -89,23 +106,70 @@ export class EditUserProfileComponent {
 			};
 			reader.readAsDataURL(file);		}
 	}
-			// Opcional: guardar archivo para enviarlo al backend
-			// this.formulario.patchValue({ imagen: file });
-
-	async eliminarPerfil() {
-		const confirmacion = confirm(
-			"¿Estás seguro de que quieres eliminar tu perfil? Esta acción no se puede deshacer.",
-		);
-
-		if (confirmacion && this.usuarioId) {
-			try {
-				await this.usuariosService.eliminarUsuario(this.usuarioId);
-				alert("Perfil eliminado correctamente.");
-				this.router.navigate(["/"]);
-			} catch (error) {
-				console.error(error);
-				alert("Hubo un error al eliminar el perfil.");
+		
+			async eliminarPerfil() {
+				if (!this.usuarioId) return;
+			
+				const ToastConfirm = Swal.mixin({
+					toast: true,
+					position: "top-end",
+					showConfirmButton: true,
+					showCancelButton: true,
+					confirmButtonText: "Sí, eliminar",
+					cancelButtonText: "Cancelar",
+					background: "#fff3cd", 
+					color: "#856404",      
+					iconColor: "#ffc107", 
+					customClass: {
+						popup: "colored-toast",
+						confirmButton: "swal2-confirm swal2-styled",
+						cancelButton: "swal2-cancel swal2-styled",
+					},
+				});
+			
+				const resultado = await ToastConfirm.fire({
+					icon: "warning",
+					title: "¿Eliminar perfil?",
+					text: "Esta acción no se puede deshacer.",
+				});
+			
+				if (resultado.isConfirmed) {
+					try {
+						await this.usuariosService.eliminarUsuario(this.usuarioId);
+			
+						Swal.fire({
+							toast: true,
+							position: "top-end",
+							icon: "success",
+							title: "Perfil eliminado correctamente",
+							showConfirmButton: false,
+							timer: 2000,
+							timerProgressBar: true,
+							background: "#d4edda", 
+							color: "#155724",
+							iconColor: "#28a745",
+						});
+			
+						setTimeout(() => {
+							localStorage.removeItem("token");
+							this.router.navigate(["/"]);
+						}, 2000);
+					} catch (error) {
+						console.error(error);
+						Swal.fire({
+							toast: true,
+							position: "top-end",
+							icon: "error",
+							title: "Error al eliminar el perfil",
+							showConfirmButton: false,
+							timer: 2000,
+							timerProgressBar: true,
+							background: "#f8d7da",
+							color: "#721c24",
+							iconColor: "#dc3545",
+						});
+					}
+				}
 			}
-		}
-	}
+			
 }
