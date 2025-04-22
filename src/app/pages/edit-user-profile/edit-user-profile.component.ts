@@ -73,6 +73,7 @@ export class EditUserProfileComponent {
 
 			await this.usuariosService.update(this.usuarioId, formData);
 			this.router.navigate(["/perfil-usuario"]);
+			console.log(formData);
 		}
 	}
 
@@ -86,16 +87,15 @@ export class EditUserProfileComponent {
 			showConfirmButton: false,
 			timer: 2000,
 			timerProgressBar: true,
-			background:"#ffe0c2", 
-			color: "#383d41",     
-			iconColor: "#17a2b8",  
+			background: "#ffe0c2",
+			color: "#383d41",
+			iconColor: "#17a2b8",
 		});
-	
+
 		setTimeout(() => {
 			this.router.navigate(["/perfil-usuario"]);
 		}, 2000);
 	}
-	
 
 	onImagenSeleccionada(event: Event): void {
 		const file = (event.target as HTMLInputElement)?.files?.[0];
@@ -104,72 +104,72 @@ export class EditUserProfileComponent {
 			reader.onload = () => {
 				this.imagenPreview = reader.result as string;
 			};
-			reader.readAsDataURL(file);		}
+			reader.readAsDataURL(file);
+		}
 	}
-		
-			async eliminarPerfil() {
-				if (!this.usuarioId) return;
-			
-				const ToastConfirm = Swal.mixin({
+
+	async eliminarPerfil() {
+		if (!this.usuarioId) return;
+
+		const ToastConfirm = Swal.mixin({
+			toast: true,
+			position: "top-end",
+			showConfirmButton: true,
+			showCancelButton: true,
+			confirmButtonText: "Sí, eliminar",
+			cancelButtonText: "Cancelar",
+			background: "#fff3cd",
+			color: "#856404",
+			iconColor: "#ffc107",
+			customClass: {
+				popup: "colored-toast",
+				confirmButton: "swal2-confirm swal2-styled",
+				cancelButton: "swal2-cancel swal2-styled",
+			},
+		});
+
+		const resultado = await ToastConfirm.fire({
+			icon: "warning",
+			title: "¿Eliminar perfil?",
+			text: "Esta acción no se puede deshacer.",
+		});
+
+		if (resultado.isConfirmed) {
+			try {
+				await this.usuariosService.eliminarUsuario(this.usuarioId);
+
+				Swal.fire({
 					toast: true,
 					position: "top-end",
-					showConfirmButton: true,
-					showCancelButton: true,
-					confirmButtonText: "Sí, eliminar",
-					cancelButtonText: "Cancelar",
-					background: "#fff3cd", 
-					color: "#856404",      
-					iconColor: "#ffc107", 
-					customClass: {
-						popup: "colored-toast",
-						confirmButton: "swal2-confirm swal2-styled",
-						cancelButton: "swal2-cancel swal2-styled",
-					},
+					icon: "success",
+					title: "Perfil eliminado correctamente",
+					showConfirmButton: false,
+					timer: 2000,
+					timerProgressBar: true,
+					background: "#d4edda",
+					color: "#155724",
+					iconColor: "#28a745",
 				});
-			
-				const resultado = await ToastConfirm.fire({
-					icon: "warning",
-					title: "¿Eliminar perfil?",
-					text: "Esta acción no se puede deshacer.",
+
+				setTimeout(() => {
+					localStorage.removeItem("token");
+					this.router.navigate(["/"]);
+				}, 2000);
+			} catch (error) {
+				console.error(error);
+				Swal.fire({
+					toast: true,
+					position: "top-end",
+					icon: "error",
+					title: "Error al eliminar el perfil",
+					showConfirmButton: false,
+					timer: 2000,
+					timerProgressBar: true,
+					background: "#f8d7da",
+					color: "#721c24",
+					iconColor: "#dc3545",
 				});
-			
-				if (resultado.isConfirmed) {
-					try {
-						await this.usuariosService.eliminarUsuario(this.usuarioId);
-			
-						Swal.fire({
-							toast: true,
-							position: "top-end",
-							icon: "success",
-							title: "Perfil eliminado correctamente",
-							showConfirmButton: false,
-							timer: 2000,
-							timerProgressBar: true,
-							background: "#d4edda", 
-							color: "#155724",
-							iconColor: "#28a745",
-						});
-			
-						setTimeout(() => {
-							localStorage.removeItem("token");
-							this.router.navigate(["/"]);
-						}, 2000);
-					} catch (error) {
-						console.error(error);
-						Swal.fire({
-							toast: true,
-							position: "top-end",
-							icon: "error",
-							title: "Error al eliminar el perfil",
-							showConfirmButton: false,
-							timer: 2000,
-							timerProgressBar: true,
-							background: "#f8d7da",
-							color: "#721c24",
-							iconColor: "#dc3545",
-						});
-					}
-				}
 			}
-			
+		}
+	}
 }

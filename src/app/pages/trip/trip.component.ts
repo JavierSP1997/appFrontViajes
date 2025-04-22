@@ -53,6 +53,7 @@ export class TripComponent {
 
 		try {
 			this.viaje = await this.viajesService.getViajeById(id);
+			this.esFinalizado = this.viaje.estado === "finalizado";
 			this.participantes = this.viaje.participantes ?? [];
 			this.anfitrion = this.viaje.anfitrion;
 			this.usuarioLogado = await this.usuariosService.getPerfilUsuario();

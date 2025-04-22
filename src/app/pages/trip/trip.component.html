@@ -2,8 +2,20 @@
 
     @if (cargado) {
     @if (viaje !== null) {
-    <div class="container d-flex justify-content-center align-items-center mt-5 mb-5 airport-flip">
-        <div class="card shadow-lg border-0 rounded-4" style="max-width: 800px; width: 100%;">
+
+    <!-- Sello de Viaje Finalizado -->
+    <div class="sello-finalizado" [ngClass]="{ 'activo': esFinalizado }">
+        <span class="texto-sello">¡Este viaje ha llegado a su fin!</span>
+        <p class="mensaje-sello">Pero no te preocupes, ¡tenemos muchos más por descubrir! Explora nuevas aventuras y
+            únete a nuestro próximo destino.</p>
+        <a class="btn btn-warning" routerLink="/viajes">Ver más viajes</a>
+    </div>
+
+    <div class="container d-flex justify-content-center align-items-center mt-5 mb-5">
+        <div class="card shadow-lg border-0 rounded-4" [ngClass]="{ 'finalizado': esFinalizado }"
+            style="max-width: 800px; width: 100%;">
+
+
             <img [src]="viaje.imagen" class="card-img-top rounded-top-4" alt="Imagen del viaje"
                 style="height: 350px; object-fit: cover;" />
 
@@ -35,19 +47,17 @@
                 </ul>
 
                 <div class="text-center mt-4 d-flex justify-content-center gap-2 flex-wrap">
-                    @if (esAnfitrion) {
-                    <button class="btn btn-warning" [routerLink]="['/viajes', viaje.id_viaje, 'editar']"
-                        [disabled]="esFinalizado">✏️ Editar viaje</button>
-                    <button class="btn btn-danger" (click)="eliminarViaje()">🗑️ Eliminar viaje</button>
-
                     @if (!esFinalizado) {
+                    @if (esAnfitrion) {
+                    <button class="btn btn-warning" [routerLink]="['/viajes', viaje.id_viaje, 'editar']">✏️ Editar
+                        viaje</button>
+                    <button class="btn btn-danger" (click)="eliminarViaje()">🗑️ Eliminar viaje</button>
                     <button class="btn btn-secondary" (click)="finalizarViaje()">✅ Finalizar viaje</button>
-                    }
-
                     } @else if (esParticipante) {
                     <button class="btn btn-danger" (click)="abandonar()">🚪 Abandonar viaje</button>
                     } @else {
                     <button class="btn btn-success" (click)="unirse()">➕ Unirse al viaje</button>
+                    }
                     }
                 </div>
             </div>
@@ -59,9 +69,9 @@
     <app-participantes [participantes]="participantes" [esAnfitrion]="esAnfitrion"
         [viajeId]="viaje.id_viaje"></app-participantes>
 
-    @if (puedeComentar) {
+    @if (!esFinalizado && puedeComentar) {
     <app-comentarios [viajeId]="viaje.id_viaje"></app-comentarios>
-    } @else {
+    } @else if (!esFinalizado) {
     <h5 class="text-center mt-5 text-muted p-5">Tienes que ser aceptado en el viaje para comentar.</h5>
     }
 
