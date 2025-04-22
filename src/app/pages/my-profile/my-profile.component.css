@@ -1,6 +1,7 @@
 .headerNav{
   padding: 10px;
   margin: 10px auto;
+
 }
 
 h2{
@@ -17,8 +18,8 @@ button {
   color: var(--color-texto-botones);
 
   &:hover{
-    background-color: var(--color-boton-fondo-hover);
-    border: 2px solid var(--color-boton-fondo-hover);
+    background-color: var(--color-boton-bgc-hover);
+    border: 2px solid var(--color-boton-bgc-hover);
     transform: scale(1.05);
   }
 }
@@ -48,23 +49,27 @@ figure {
 }
 
 .perfil {
-  margin: 30px 0;
+  margin: 10px 0;
 }
 
 .campos {
-  margin: 50px;
+  margin: 30px 50px;
 
   .cajaTitulo{
     justify-self: center;
     background-color: var(--color-boton-bgc-hover);
     width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
+
+
   h5{
     padding: 5px;
     margin: 0;
     color: var(--color-texto-botones);
     text-align: center;
-    border-bottom: 2px solid var(--color-texto-botones)
+    border-bottom: 2px solid var(--color-texto-botones);
   }
 
   p{
@@ -83,5 +88,7 @@ figure {
   }
 }
 
-
+.line {
+  border-top: 2px solid var(--color-texto-botones);
+}
 

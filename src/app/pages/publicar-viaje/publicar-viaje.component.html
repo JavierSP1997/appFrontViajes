@@ -1,8 +1,13 @@
+<hgroup class="container titulo">
+    <h2>PUBLICA UN NUEVO VIAJE</h2>
+    <h5>Cuéntanos todo acerca de cómo quieres hacer tu viaje. Puedes escribir todo el recorrido en el itinerario, así nuestros usuarios pueden saber exactamente qué se hará en cada momento. </h5>
+</hgroup>
+
 <div class="container formulario my-4">
     <form [formGroup]="viajeForm" (ngSubmit)="onSubmit()" class="p-4">
         <div class="mb-1">
             <label for="nombre_viaje" class="form-label">Nombre del viaje</label>
-            <input type="text" id="nombre_viaje" class="form-control" formControlName="nombre_viaje" />
+            <input type="text" id="nombre_viaje" class="form-control" formControlName="nombre_viaje" placeholder="Título del viaje" />
             <div class="text-danger">
                 @if (checkError('nombre_viaje', 'required')) {
                         <small>Este campo es obligatorio.</small>
@@ -31,8 +36,8 @@
         </div>
         
         <div class="mb-1">
-            <label for="coste_por_persona" class="form-label">Coste por persona (€)</label>
-            <input type="number" id="coste_por_persona" class="form-control" formControlName="coste_por_persona" />
+            <label for="coste_por_persona" class="form-label">Coste estimado por persona (€)</label>
+            <input type="number" id="coste_por_persona" class="form-control" formControlName="coste_por_persona" placeholder="Indíca el precio mínimo por persona" />
                 <div class="text-danger">
                     @if (checkError('coste_por_persona', 'required')) {
                             <small>Este campo es obligatorio.</small>
@@ -41,8 +46,8 @@
         </div>
         
         <div class="mb-1">
-            <label for="personas_minimas" class="form-label">Personas mínimas</label>
-            <input type="number" id="personas_minimas" class="form-control" formControlName="personas_minimas" />
+            <label for="personas_minimas" class="form-label">Número de viajeros</label>
+            <input type="number" id="personas_minimas" class="form-control" formControlName="personas_minimas" placeholder="Indíca el número de personas para realizar este viaje" />
                 <div class="text-danger">
                     @if (checkError('personas_minimas', 'required')) {
                             <small>Este campo es obligatorio.</small>
@@ -52,7 +57,7 @@
         
         <div class="mb-1">
             <label for="localizacion" class="form-label">Localizacion</label>
-            <select id="localizacion" class="form-control" formControlName="localizacion">
+            <select id="localizacion" class="form-control" formControlName="localizacion" >
                 <option value="">Selecciona una ciudad</option>
                 @for (ciudad of ciudadesSpain; track ciudad) {
                     <option>{{ ciudad }}</option>
@@ -68,18 +73,18 @@
         
         <div class="mb-1">
             <label for="itinerario" class="form-label">Itinerario</label>
-            <textarea id="itinerario" rows="3" class="form-control" formControlName="itinerario">
-                <!-- <div class="text-danger">
+            <textarea id="itinerario" rows="3" class="form-control" formControlName="itinerario" placeholder="Cuéntale a los viajeros cuál es el plan, qué se hará cada día o qué se visitará...">
+            </textarea>
+                <div class="text-danger">
                     @if (checkError('itinerario', 'required')) {
                             <small>Este campo es obligatorio.</small>
                         }
-                </div>   -->
-            </textarea>
+                </div>  
         </div>
         
         <div class="mb-3">
             <label for="imagen" class="form-label">Imagen (URL)</label>
-            <input type="text" id="imagen" class="form-control" formControlName="imagen" />
+            <input type="text" id="imagen" class="form-control" formControlName="imagen" placeholder="Sube fotos del destino" />
         </div>
         
         <button type="submit" class="btn btn-primary" [disabled]="viajeForm.invalid">Publicar viaje</button>

@@ -1,12 +1,23 @@
 .text-danger {
 	min-height: 25px;
 }
+
+.titulo {
+	text-align: center;
+	margin: 50px auto;
+	h2 {
+		color: var(--color-boton-texto);
+	}
+	h5{
+		margin-top: 20px;
+		color: var(--color-titulo-secundario);
+	}
+}
+
+label{
+	font-weight: bold;
+}
+
 .formulario {
-	max-width: 800px;
-	background-color: var(--color-fondo-tarjeta);
-	backdrop-filter: blur(0.5px);
-	border-radius: 1rem;
-	box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.2);
-	padding: 1.5625rem;
-	margin: 0 auto;
+	max-width: 900px ;
 }
