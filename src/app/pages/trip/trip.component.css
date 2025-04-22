@@ -3,7 +3,7 @@
 }
 
 .card-title {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	letter-spacing: 0.5px;
 }
 
@@ -11,24 +11,6 @@
 	background-color: #f9f9f9;
 	border: none;
 	font-size: 1rem;
-}
-
-.airport-flip {
-	animation: flipIn 0.8s ease-out forwards;
-	opacity: 0;
-	transform: rotateX(90deg);
-	transform-origin: top;
-}
-
-@keyframes flipIn {
-	from {
-		transform: rotateZ(4deg);
-		opacity: 0;
-	}
-	to {
-		transform: rotateX(0);
-		opacity: 1;
-	}
 }
 
 .btn-sticky {
