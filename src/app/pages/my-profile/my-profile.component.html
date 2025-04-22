@@ -1,85 +1,78 @@
-<header class="mt-3">
-  <nav
-    class="container d-flex justify-content-between align-items-center flex-wrap gap-3">
-    <h2 class="mb-0 text-success">Mi Perfil</h2>
 
-    <div class="d-flex flex-wrap gap-2 justify-content-center">
-      <button class="btn perfil-btn" (click)="editarPerfil()">
+  <nav
+    class="container d-flex justify-content-between align-items-center headerNav">
+    <h2>Mi Perfil</h2>
+
+    <div class="d-flex gap-4">
+      <button (click)="editarPerfil()">
         <i class="bi bi-pencil-square me-1"></i>Editar perfil
       </button>
-      <button class="btn perfil-btn" routerLink="/publicar">
+      <button routerLink="/publicar">
         <i class="bi bi-plus-circle me-1"></i>Publicar viaje
       </button>
-      <button class="btn perfil-btn" routerLink="/mis-viajes">
+      <button routerLink="/mis-viajes">
         <i class="bi bi-suitcase me-1"></i>Mis Viajes
       </button>
-      <button class="btn perfil-btn" (click)="cerrarSesion()">
-        <i class="bi bi-box-arrow-right me-1"></i>Salir
+      <button (click)="cerrarSesion()">
+        <i class="bi bi-box-arrow-right me-1"></i>Cerrar sesión
       </button>
     </div>
   </nav>
-</header>
 @if (usuario) {
-<div class="container my-5">
-  <div
-    class="profile-header shadow-sm mb-5 bg-white p-4 rounded d-flex align-items-center justify-content-between flex-wrap"
-  >
-    <div>
-      <h1 class="fw-bold text-success mb-0">{{ usuario.nombre }}</h1>
-    </div>
-
-    <div>
-      @if (usuario.imagen) {
-      <img
-        [src]="usuario.imagen"
-        alt="Foto de perfil"
-        class="rounded-circle border profile-img"
-      />
+<div class="container">
+  <div class="d-flex justify-content-evenly perfil">
+      <h1>{{ usuario.nombre }}</h1>
+      @if (!usuario.imagen) {
+        <p class="text-muted mt-2">
+          <i class="bi bi-exclamation-circle me-2"></i>Aún no tienes foto
+        </p>
       } @else {
-      <p class="text-muted mt-2">
-        <i class="bi bi-exclamation-circle me-2"></i>Aún no tienes fotito
-      </p>
+        <figure>
+          <img
+          [src]="usuario.imagen"
+          alt="Foto de perfil"
+          class="rounded-circle"
+        />
+        </figure>
       }
-    </div>
   </div>
 
-  <div class="row gy-4 justify-content-center">
-    <div class="col-md-6">
-      <div class="info-card shadow-sm">
-        <h5><i class="bi bi-card-text me-2"></i>Descripción</h5>
+  <div class="row g-4 campos">
+      <div class=" col-md-6 caja">
+        <div class="cajaTitulo">
+          <h5>Descripción</h5>
+        </div>
         @if (usuario.descripcion) {
-        <p class="mt-2">{{ usuario.descripcion }}</p>
+        <p>{{ usuario.descripcion }}</p>
         } @else {
-        <p class="text-muted mt-2">
-          <i class="bi bi-exclamation-circle me-2"></i>Aún no tienes nada en
-          este campo
-        </p>
-        }
+        <p class="text-muted">Aún no tienes nada en este campo</p>
+      }
       </div>
-    </div>
 
-    <div class="col-md-6">
-      <div class="info-card shadow-sm">
-        <h5><i class="bi bi-gender-ambiguous me-2"></i>Género</h5>
-        @if (usuario.gender) {
-          <p class="mt-2">{{ traductorDeGenero(usuario.gender) }}</p>
-        } @else {
-        <p class="text-muted mt-2">
-          <i class="bi bi-exclamation-circle me-2"></i>Aún no tienes nada en
-          este campo
-        </p>
-        }
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="info-card shadow-sm">
-        <h5><i class="bi bi-controller me-2"></i>Hobbies</h5>
+      <div class="col-md-6">
+        <div class="cajaTitulo">
+          <h5>Hobbies</h5>
+        </div>
         @if (usuario.hobbies) {
-        <p class="mt-2">{{ usuario.hobbies }}</p>
+        <p>{{ usuario.hobbies }}</p>
         } @else {
-        <p class="text-muted mt-2">
-          <i class="bi bi-exclamation-circle me-2"></i>Aún no tienes nada en
+        <p class="text-muted">
+          Aún no tienes nada en
+          este campo
+        </p>
+        }
+    </div>
+
+    <div class="col-md-6">
+      <div>
+        <div class="cajaTitulo">
+          <h5>Género</h5>
+        </div>
+        @if (usuario.gender) {
+          <p>{{ traductorDeGenero(usuario.gender) }}</p>
+        } @else {
+        <p class="text-muted">
+          Aún no tienes nada en
           este campo
         </p>
         }
@@ -87,18 +80,37 @@
     </div>
 
     <div class="col-md-6">
-      <div class="info-card shadow-sm">
-        <h5><i class="bi bi-house-heart me-2"></i>¿Tienes mascotas?</h5>
+      <div class="cajaTitulo">
+        <h5>Email</h5>
+      </div>
+      @if (usuario.email) {
+      <p>{{ usuario.email }}</p>
+      } @else {
+      <p class="text-muted">
+        Aún no tienes nada en
+        este campo
+      </p>
+      }
+  </div>
+
+    <div class="mascota">
+      <div class="centro">
+        <div class="cajaTitulo">
+          <h5>¿Tienes mascotas?</h5>
+        </div>
         @if (usuario.pets !== null && usuario.pets !== undefined) {
-        <p class="mt-2">{{ usuario.pets }}</p>
+        <p>{{ usuario.pets }}</p>
         } @else {
-        <p class="text-muted mt-2">
-          <i class="bi bi-exclamation-circle me-2"></i>Aún no tienes nada en
+        <p class="text-muted">
+          Aún no tienes nada en
           este campo
         </p>
         }
-      </div>
     </div>
+    </div>
+
+
+    
   </div>
 </div>
 }

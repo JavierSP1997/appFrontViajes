@@ -25,8 +25,7 @@ export const routes: Routes = [
 	{
 		path: 'viajes/:id/editar',
 		component: EditViajeComponent,
-	  },
-	  
+	},
 	{
 		path: "perfil-usuario",
 		component: MyProfileComponent,
