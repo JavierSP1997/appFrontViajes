@@ -42,24 +42,51 @@ export class MyProfileComponent {
 			!!u && (!u.gender || !u.hobbies?.length || !u.pets?.length || !u.imagen)
 		);
 	}
-	cerrarSesion() {
-		const nombre = this.usuario?.nombre || "¡Hasta pronto!";
-		Swal.fire({
-			title: "Cerrando sesión",
-			text: `Hasta pronto, ${nombre}!`,
-			icon: "info",
-			showConfirmButton: false,
-			timer: 2000,
+	async cerrarSesion() {
+		const nombre = this.usuario?.nombre || "usuario";
+	
+		const ToastConfirm = Swal.mixin({
 			toast: true,
 			position: "top-end",
-			background: "#f0f9ff",
-			color: "#0369a1",
+			showConfirmButton: true,
+			showCancelButton: true,
+			confirmButtonText: "Aceptar",
+			cancelButtonText: "Cancelar",
+			background: "#e0f2fe",
+			color: "#0369a1", 
+			iconColor: "#0284c7", 
+			customClass: {
+				popup: "colored-toast",
+				confirmButton: "swal2-confirm swal2-styled",
+				cancelButton: "swal2-cancel swal2-styled",
+			},
 		});
 	
-		setTimeout(() => {
-			localStorage.removeItem("token");
-			this.router.navigate(["/"]);
-		}, 2000);
+		const resultado = await ToastConfirm.fire({
+			icon: "question",
+			title: `¿Cerrar sesión, ${nombre}?`,
+			text: "Tu sesión se cerrará y volverás al inicio.",
+		});
+	
+		if (resultado.isConfirmed) {
+			Swal.fire({
+				toast: true,
+				position: "top-end",
+				icon: "info",
+				title: `¡Hasta pronto, ${nombre}!`,
+				showConfirmButton: false,
+				timer: 2000,
+				timerProgressBar: true,
+				background: "#f0f9ff",
+				color: "#0369a1",
+				iconColor: "#0ea5e9",
+			});
+	
+			setTimeout(() => {
+				localStorage.removeItem("token");
+				this.router.navigate(["/"]);
+			}, 2000);
+		}
 	}
 	
 }
