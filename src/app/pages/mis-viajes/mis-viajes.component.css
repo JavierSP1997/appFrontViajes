@@ -62,12 +62,13 @@ button.info {
 	background-color: var(--color-titulo-secundario);
 	color: var(--color-boton-texto);
 	transition: all 0.3s ease;
+	font-weight: bold;
 }
 
 button.info:hover {
-	background-color: var(--color-boton-hover-fondo);
-	color: var(--color-boton-fondo);
-	border-color: var(--color-boton-hover-fondo);
+	background-color: var(--color-boton-bgc-hover);
+	color: var(--color-texto-botones);
+	border-color: var(--color-boton-bgc-hover);
 }
 
 /* Detalle del viaje */
@@ -85,6 +86,7 @@ ul {
 	padding: 0;
 	margin: 20px 0;
 	list-style: none;
+	min-height: 80px;
 }
 
 ul li span {

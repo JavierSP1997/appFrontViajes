@@ -59,17 +59,17 @@ figure figcaption {
 button.info {
 	font-weight: bold;
 	padding: 0.5rem 1rem;
-	border: 2px solid var(--color-borde);
+	border: 2px solid var(--color-boton);
 	border-radius: 0.625rem;
-	background-color: var(--color-boton-fondo);
-	color: var(--color-boton-texto);
+	background-color: var(--color-boton);
+	color: var(--color-texto-botones);
 	transition: all 0.3s ease;
 }
 
 button.info:hover {
-	background-color: var(--color-boton-hover-fondo);
+	background-color: var(--color-boton-bgc-hover);
 	color: var(--color-boton-fondo);
-	border-color: var(--color-boton-hover-fondo);
+	border-color: var(--color-boton-bgc-hover);
 }
 
 /* Detalle del viaje */
@@ -87,6 +87,7 @@ ul {
 	padding: 0;
 	margin: 20px 0;
 	list-style: none;
+	min-height: 80px;
 }
 
 ul li span {

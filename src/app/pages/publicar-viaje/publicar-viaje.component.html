@@ -3,6 +3,8 @@
     <h5>Cuéntanos todo acerca de cómo quieres hacer tu viaje. Puedes escribir todo el recorrido en el itinerario, así nuestros usuarios pueden saber exactamente qué se hará en cada momento. </h5>
 </hgroup>
 
+<div class="gradiente"></div>
+
 <div class="container formulario my-4">
     <form [formGroup]="viajeForm" (ngSubmit)="onSubmit()" class="p-4">
         <div class="mb-1">
@@ -87,7 +89,10 @@
             <input type="text" id="imagen" class="form-control" formControlName="imagen" placeholder="Sube fotos del destino" />
         </div>
         
-        <button type="submit" class="btn btn-primary" [disabled]="viajeForm.invalid">Publicar viaje</button>
+        <div class="button">
+            <button type="submit" [disabled]="viajeForm.invalid">Publicar viaje</button>
+            <button type="text" (click)="volverAtras()">Volver</button>
+        </div>
     </form>
 </div>
 

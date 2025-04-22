@@ -5,9 +5,8 @@ h2{
 
 .formulario {
     width: 900px;
-    margin: 20px auto;
+    margin: auto;
     padding: 40px;
-    border-top: 2px solid var(--color-texto-botones);
 }
 
 label{
@@ -54,3 +53,7 @@ label{
     }
 }
 
+.gradiente{
+	background-image: linear-gradient(to right, white, #e4944a, #e4944a, white);
+	height: 3px;
+}
