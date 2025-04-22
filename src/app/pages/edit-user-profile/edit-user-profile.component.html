@@ -16,7 +16,8 @@
           <input id="photo" type="text" class="form-control" placeholder="URL de la imagen" formControlName="photo" />
 
           @if (imagenPreview || perfilUsuarioForm.value.photo) {
-          <img [src]="imagenPreview || perfilUsuarioForm.value.photo" alt="Preview" class="profile-img mt-3" />
+          <img [src]="imagenPreview || perfilUsuarioForm.value.photo" alt="Preview"
+            class="profile-img mt-3 w-100 h-auto" />
           }
         </div>
       </div>

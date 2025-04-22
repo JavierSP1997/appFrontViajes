@@ -26,4 +26,14 @@ export class PublicProfileComponent {
 
 		}
 	}
+
+	traductorDeGenero(gender: string): string {
+		const genderMap: { [key: string]: string } = {
+			male: "Masculino",
+			female: "Femenino",
+			other: "Otro",
+		};
+		return genderMap[gender];
+	}
+
 }

@@ -18,14 +18,13 @@
       </button>
     </div>
   </nav>
+
 @if (usuario) {
-<div class="container">
+<div class="container line">
   <div class="d-flex justify-content-around perfil">
       <h1>{{ usuario.nombre }}</h1>
       @if (!usuario.imagen) {
-        <p class="text-muted mt-2 foto">
-          <i class="bi bi-exclamation-circle me-2"></i>Aún no tienes foto
-        </p>
+        <p class="text-muted mt-2 foto">Aún no tienes foto</p>
       } @else {
         <figure>
           <img
@@ -42,11 +41,11 @@
         <div class="cajaTitulo">
           <h5>Descripción</h5>
         </div>
-        @if (usuario.descripcion) {
-        <p>{{ usuario.descripcion }}</p>
-        } @else {
-        <p class="text-muted">Aún no tienes nada en este campo</p>
-      }
+          @if (usuario.descripcion) {
+            <p>{{ usuario.descripcion }}</p>
+            } @else {
+            <p class="text-muted">Aún no tienes nada en este campo</p>
+          }
       </div>
 
       <div class="col-md-6">
@@ -108,9 +107,6 @@
         }
     </div>
     </div>
-
-
-    
   </div>
 </div>
 }
