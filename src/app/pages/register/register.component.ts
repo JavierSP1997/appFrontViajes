@@ -40,14 +40,29 @@ export class RegisterComponent {
 				this.formRegister.value,
 			);
 			Swal.fire({
-				title: "REGISTRO COMPLETADO",
-				text: "Te has registrado correctamente",
+				title: "¡Registro completado!",
+				text: "Te has registrado correctamente.",
 				icon: "success",
-				confirmButtonText: "Cerrar",
-			});
+				toast: true,
+				position: "top-end",
+				timer: 3000,
+				showConfirmButton: false,
+				background: "#f0fff4", 
+				color: "#065f46",
+			});			
 			this.router.navigateByUrl("/login");
 		} catch (error) {
-			console.log(error);
+			Swal.fire({
+				title: "¡Error!",
+				text: "No se pudo completar el registro.",
+				icon: "error",
+				toast: true,
+				position: "top-end",
+				timer: 3000,
+				showConfirmButton: false,
+				background: "#fef2f2",
+				color: "#991b1b",
+			});			
 		}
 	}
 

@@ -98,7 +98,7 @@
         <div class="cajaTitulo">
           <h5>¿Tienes mascotas?</h5>
         </div>
-        @if (usuario.pets !== null && usuario.pets !== undefined) {
+        @if (usuario.pets) {
         <p>{{ usuario.pets }}</p>
         } @else {
         <p class="text-muted">

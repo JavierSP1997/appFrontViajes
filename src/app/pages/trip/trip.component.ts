@@ -63,7 +63,6 @@ export class TripComponent {
 					(p) => p.id_usuario === this.usuarioLogado?.id_usuario,
 				);
 			}
-			// Lógica para determinar si puede comentar
 			this.puedeComentar =
 				this.esAnfitrion ||
 				this.participantes.some(
@@ -80,46 +79,78 @@ export class TripComponent {
 	}
 
 	async unirse() {
-		if (this.viaje && this.usuarioLogado) {
-			try {
-				await this.participantesService.unirseAlViaje(
-					this.viaje?.id_viaje,
-					this.token,
+		if (!this.viaje || !this.usuarioLogado) return;
+	
+		const idViaje = this.viaje.id_viaje;
+		const userId = this.usuarioLogado.id_usuario;
+		const cooldownKey = `viaje-${idViaje}-usuario-${userId}-cooldown`;
+	
+		const ultimoIntento = localStorage.getItem(cooldownKey);
+		const ahora = new Date().getTime();
+	
+		if (ultimoIntento) {
+			const tiempoTranscurrido = ahora - Number(ultimoIntento);
+			const horasPasadas = tiempoTranscurrido / (1000 * 60 * 60);
+	
+			if (horasPasadas < 24) {
+				const horasRestantes = Math.floor(24 - horasPasadas);
+				const minutosRestantes = Math.floor(
+					(24 - horasPasadas - horasRestantes) * 60
 				);
-				Swal.fire({
-					title: "¡Solicitud enviada!",
-					text: "Has pedido unirte al viaje con éxito.",
-					icon: "success",
+	
+				await Swal.fire({
+					title: "Ya has solicitado unirte",
+					text: `Debes esperar ${horasRestantes}h ${minutosRestantes}min para volver a intentarlo.`,
+					icon: "info",
 					toast: true,
 					position: "top-end",
-					timer: 3000,
 					showConfirmButton: false,
-					background: "#f0fff4",
-					color: "#065f46",
+					timer: 4000,
+					background: "#e0f2fe",
+					color: "#075985",
 				});
-				const viajeActualizado = await this.viajesService.getViajeById(
-					this.viaje?.id_viaje,
-				);
-				this.participantes = viajeActualizado.participantes ?? [];
-				this.esParticipante = this.participantes.some(
-					(p) => p.id_usuario === this.usuarioLogado?.id_usuario,
-				);
-				// setTimeout(() => location.reload(), 3000);
-			} catch (err) {
-				Swal.fire({
-					title: "¡Error!",
-					text: "No se pudo enviar la solicitud.",
-					icon: "error",
-					toast: true,
-					position: "top-end",
-					timer: 3000,
-					showConfirmButton: false,
-					background: "#fef2f2",
-					color: "#991b1b",
-				});
+				return;
 			}
 		}
+
+		try {
+			await this.participantesService.unirseAlViaje(idViaje, this.token);
+
+			localStorage.setItem(cooldownKey, ahora.toString());
+	
+			await Swal.fire({
+				title: "¡Solicitud enviada!",
+				text: "Has pedido unirte al viaje con éxito.",
+				icon: "success",
+				toast: true,
+				position: "top-end",
+				timer: 3000,
+				showConfirmButton: false,
+				background: "#f0fff4",
+				color: "#065f46",
+			});
+	
+			const viajeActualizado = await this.viajesService.getViajeById(idViaje);
+			this.participantes = viajeActualizado.participantes ?? [];
+			this.esParticipante = this.participantes.some(
+				(p) => p.id_usuario === userId,
+			);
+			setTimeout(() => location.reload(), 3000);
+		} catch (err) {
+			await Swal.fire({
+				title: "¡Error!",
+				text: "No se pudo enviar la solicitud.",
+				icon: "error",
+				toast: true,
+				position: "top-end",
+				timer: 3000,
+				showConfirmButton: false,
+				background: "#fef2f2",
+				color: "#991b1b",
+			});
+		}
 	}
+	
 
 	async abandonar() {
 		if (this.viaje && this.usuarioLogado) {

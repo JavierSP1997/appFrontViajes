@@ -4,6 +4,7 @@ import {
 	FormGroup,
 	FormsModule,
 	ReactiveFormsModule,
+	Validators,
 } from "@angular/forms";
 import { UsuariosService } from "../../services/usuarios.service";
 import { Router } from "@angular/router";
@@ -22,17 +23,17 @@ export class EditUserProfileComponent {
 	imagenPreview: string | null = null;
 	usuariosService = inject(UsuariosService);
 	private router = inject(Router);
-	mostrarPassword = false;
 
 	perfilUsuarioForm: FormGroup = new FormGroup({
-		name: new FormControl(""),
-		email: new FormControl(""),
+		name: new FormControl("", [Validators.required]),
+		email: new FormControl("", [Validators.required, Validators.email]),
 		description: new FormControl(""),
 		gender: new FormControl(""),
 		hobbies: new FormControl(""),
 		pets: new FormControl(""),
 		photo: new FormControl(""),
 	});
+
 	async ngOnInit() {
 		const usuario = await this.usuariosService.getPerfilUsuario();
 		if (usuario) {
@@ -49,15 +50,7 @@ export class EditUserProfileComponent {
 			});
 		}
 	}
-	togglePassword() {
-		this.mostrarPassword = !this.mostrarPassword;
 
-		if (this.mostrarPassword) {
-			this.perfilUsuarioForm.addControl("password", new FormControl(""));
-		} else {
-			this.perfilUsuarioForm.removeControl("password");
-		}
-	}
 	async onSubmit() {
 		if (
 			this.perfilUsuarioForm.valid &&
@@ -77,9 +70,6 @@ export class EditUserProfileComponent {
 				fecha_registro: this.usuarioOriginal.fecha_registro,
 				password: this.usuarioOriginal.password,
 			};
-			if (this.mostrarPassword && formValue.password?.trim()) {
-				formData.password = formValue.password;
-			}
 
 			await this.usuariosService.update(this.usuarioId, formData);
 			this.router.navigate(["/perfil-usuario"]);
@@ -97,11 +87,11 @@ export class EditUserProfileComponent {
 			reader.onload = () => {
 				this.imagenPreview = reader.result as string;
 			};
-			reader.readAsDataURL(file);
+			reader.readAsDataURL(file);		}
+	}
 			// Opcional: guardar archivo para enviarlo al backend
 			// this.formulario.patchValue({ imagen: file });
-		}
-	}
+
 	async eliminarPerfil() {
 		const confirmacion = confirm(
 			"¿Estás seguro de que quieres eliminar tu perfil? Esta acción no se puede deshacer.",

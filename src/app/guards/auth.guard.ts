@@ -11,10 +11,15 @@ export const authGuard: CanActivateFn = (route, state) => {
 		// biome-ignore lint/style/noUselessElse: <explanation>
 	} else {
 		Swal.fire({
-			title: "Acceso restringido",
-			text: "Tienes que iniciar sesión para continuar",
+			title:"Acceso restringido",
+			text:"Tienes que iniciar sesión para continuar",
 			icon: "error",
-			confirmButtonText: "Aceptar",
+			toast: true,
+			position: "top-end",
+			timer: 3000,
+			showConfirmButton: false,
+			background: "#fef2f2",
+			color: "#991b1b",
 		});
 		return router.parseUrl("/login");
 	}

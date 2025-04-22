@@ -98,18 +98,68 @@ export class ComentariosComponent implements OnInit {
 		}
 	}
 
+	// async eliminarComentario(idComentario: number) {
+	// 	const resultado = await Swal.fire({
+	// 		title: "¿Estás seguro?",
+	// 		text: "Esta acción eliminará tu comentario permanentemente.",
+	// 		icon: "warning",
+	// 		showCancelButton: true,
+	// 		confirmButtonColor: "#d33",
+	// 		cancelButtonColor: "#6c757d",
+	// 		confirmButtonText: "Sí, eliminar",
+	// 		cancelButtonText: "Cancelar",
+	// 	});
+
+	// 	if (resultado.isConfirmed) {
+	// 		try {
+	// 			await this.comentariosService.eliminarComentario(
+	// 				this.viajeId,
+	// 				idComentario,
+	// 				this.token,
+	// 			);
+	// 			await this.cargarComentarios();
+
+	// 			Swal.fire({
+	// 				title: "¡Eliminado!",
+	// 				text: "Tu comentario ha sido eliminado.",
+	// 				icon: "success",
+	// 				timer: 1500,
+	// 				showConfirmButton: false,
+	// 			});
+	// 		} catch (error) {
+	// 			console.error("Error al eliminar comentario", error);
+	// 			Swal.fire({
+	// 				title: "Error",
+	// 				text: "Ocurrió un error al intentar eliminar el comentario.",
+	// 				icon: "error",
+	// 			});
+	// 		}
+	// 	}
+	// }
 	async eliminarComentario(idComentario: number) {
-		const resultado = await Swal.fire({
-			title: "¿Estás seguro?",
-			text: "Esta acción eliminará tu comentario permanentemente.",
-			icon: "warning",
+		const ToastConfirm = Swal.mixin({
+			toast: true,
+			position: "top-end",
+			showConfirmButton: true,
 			showCancelButton: true,
-			confirmButtonColor: "#d33",
-			cancelButtonColor: "#6c757d",
 			confirmButtonText: "Sí, eliminar",
 			cancelButtonText: "Cancelar",
+			background: "#fff3cd", 
+			color: "#856404", 
+			iconColor: "#ffc107", 
+			customClass: {
+				popup: "colored-toast",
+				confirmButton: "swal2-confirm swal2-styled",
+				cancelButton: "swal2-cancel swal2-styled",
+			},
 		});
-
+	
+		const resultado = await ToastConfirm.fire({
+			icon: "warning",
+			title: "¿Eliminar comentario?",
+			text: "No podrás recuperarlo.",
+		});
+	
 		if (resultado.isConfirmed) {
 			try {
 				await this.comentariosService.eliminarComentario(
@@ -118,24 +168,37 @@ export class ComentariosComponent implements OnInit {
 					this.token,
 				);
 				await this.cargarComentarios();
-
+	
 				Swal.fire({
-					title: "¡Eliminado!",
-					text: "Tu comentario ha sido eliminado.",
+					toast: true,
+					position: "top-end",
 					icon: "success",
-					timer: 1500,
+					title: "Comentario eliminado",
 					showConfirmButton: false,
+					timer: 2000,
+					timerProgressBar: true,
+					background: "#d4edda",
+					color: "#155724",
+					iconColor: "#28a745",
 				});
 			} catch (error) {
 				console.error("Error al eliminar comentario", error);
 				Swal.fire({
-					title: "Error",
-					text: "Ocurrió un error al intentar eliminar el comentario.",
+					toast: true,
+					position: "top-end",
 					icon: "error",
+					title: "Error al eliminar el comentario",
+					showConfirmButton: false,
+					timer: 2000,
+					timerProgressBar: true,
+					background: "#f8d7da",
+					color: "#721c24",
+					iconColor: "#dc3545",
 				});
 			}
 		}
 	}
+	
 
 	private scrollToBottom() {
 		if (this.chatContainer) {
