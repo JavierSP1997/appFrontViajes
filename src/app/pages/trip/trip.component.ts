@@ -260,10 +260,24 @@ export class TripComponent {
 	async finalizarViaje(): Promise<void> {
 		if (!this.viaje) return;
 
+		const confirmacion = await Swal.fire({
+			title: "¿Ya de vuelta?",
+			text: "Estás por dar el viaje por terminado. ¿Estás seguro de que deseas continuar?",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#d33",
+			cancelButtonColor: "#3085d6",
+			confirmButtonText: "Sí, finalizar",
+			cancelButtonText: "Cancelar",
+		});
+
+		if (!confirmacion.isConfirmed) return;
+
 		try {
 			await this.viajesService.finalizarViaje(this.viaje.id_viaje);
 			this.viaje.estado = "finalizado";
 			this.esFinalizado = true;
+
 			Swal.fire({
 				icon: "success",
 				title: "¡Viaje finalizado!",
@@ -280,7 +294,6 @@ export class TripComponent {
 			});
 		}
 	}
-
 	redirectToViajes() {
 		window.location.href = "/viajes";
 	}
