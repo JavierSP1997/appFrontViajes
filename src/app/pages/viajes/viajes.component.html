@@ -7,12 +7,18 @@
 <div class="text-end">
     <button id="clear" class="btn btn-secondary" (click)="quitarFiltros()">Quitar filtros</button>
 </div>
-<!-- Grid de cards -->
 
+<!-- Grid de cards -->
 <section class="m-4 seccion container m-auto">
     <article class="viajes">
         @for (viaje of arrViajes; track viaje.id_viaje) {
-        <section class="viaje">
+        <section class="viaje position-relative" style="transition: opacity 0.3s ease"
+            [class.bg-light]="viaje.estado === 'finalizado'" [class.opacity-75]="viaje.estado === 'finalizado'">
+
+            <!-- Sello superior si está finalizado -->
+            @if (viaje.estado === 'finalizado') {
+            <div class="sello-finalizado">VIAJE FINALIZADO</div>
+            }
             <figure>
                 <figcaption><span>{{viaje.nombre_viaje}}</span></figcaption>
                 <img src="{{viaje.imagen}}" alt="">
