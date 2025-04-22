@@ -14,4 +14,5 @@ export interface Viaje {
 	imagen: string;
 	participantes: Participante[];
 	anfitrion: Anfitrion;
+	estado?: "activo" | "finalizado";
 }

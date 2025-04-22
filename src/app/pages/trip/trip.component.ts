@@ -80,24 +80,24 @@ export class TripComponent {
 
 	async unirse() {
 		if (!this.viaje || !this.usuarioLogado) return;
-	
+
 		const idViaje = this.viaje.id_viaje;
 		const userId = this.usuarioLogado.id_usuario;
 		const cooldownKey = `viaje-${idViaje}-usuario-${userId}-cooldown`;
-	
+
 		const ultimoIntento = localStorage.getItem(cooldownKey);
 		const ahora = new Date().getTime();
-	
+
 		if (ultimoIntento) {
 			const tiempoTranscurrido = ahora - Number(ultimoIntento);
 			const horasPasadas = tiempoTranscurrido / (1000 * 60 * 60);
-	
+
 			if (horasPasadas < 24) {
 				const horasRestantes = Math.floor(24 - horasPasadas);
 				const minutosRestantes = Math.floor(
-					(24 - horasPasadas - horasRestantes) * 60
+					(24 - horasPasadas - horasRestantes) * 60,
 				);
-	
+
 				await Swal.fire({
 					title: "Ya has solicitado unirte",
 					text: `Debes esperar ${horasRestantes}h ${minutosRestantes}min para volver a intentarlo.`,
@@ -117,7 +117,7 @@ export class TripComponent {
 			await this.participantesService.unirseAlViaje(idViaje, this.token);
 
 			localStorage.setItem(cooldownKey, ahora.toString());
-	
+
 			await Swal.fire({
 				title: "¡Solicitud enviada!",
 				text: "Has pedido unirte al viaje con éxito.",
@@ -129,7 +129,7 @@ export class TripComponent {
 				background: "#f0fff4",
 				color: "#065f46",
 			});
-	
+
 			const viajeActualizado = await this.viajesService.getViajeById(idViaje);
 			this.participantes = viajeActualizado.participantes ?? [];
 			this.esParticipante = this.participantes.some(
@@ -150,7 +150,6 @@ export class TripComponent {
 			});
 		}
 	}
-	
 
 	async abandonar() {
 		if (this.viaje && this.usuarioLogado) {
@@ -253,6 +252,30 @@ export class TripComponent {
 						});
 					}
 				}
+			});
+		}
+	}
+
+	async finalizarViaje(): Promise<void> {
+		if (!this.viaje) return;
+
+		try {
+			await this.viajesService.finalizarViaje(this.viaje.id_viaje);
+			this.viaje.estado = "finalizado";
+			this.esFinalizado = true;
+			Swal.fire({
+				icon: "success",
+				title: "¡Viaje finalizado!",
+				text: "El viaje se ha marcado como finalizado correctamente.",
+				confirmButtonText: "Aceptar",
+			});
+		} catch (error) {
+			console.error("Error al finalizar el viaje:", error);
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "No se pudo finalizar el viaje. Intenta de nuevo más tarde.",
+				confirmButtonText: "Cerrar",
 			});
 		}
 	}
