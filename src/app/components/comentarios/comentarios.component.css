@@ -16,3 +16,14 @@
 		}
 	}
 }
+.swal2-toast .swal2-actions {
+	justify-content: space-between;
+	width: 100%;
+  }
+  
+  .swal2-toast .swal2-confirm,
+  .swal2-toast .swal2-cancel {
+	font-size: 0.8rem;
+	padding: 5px 10px;
+  }
+  

@@ -2,34 +2,49 @@
   <div class="container my-5">
     <h2 class="mb-4 text-success">Editar viaje</h2>
 
-    <form [formGroup]="viajeForm" (ngSubmit)="guardarCambios()">
-      <div class="mb-3">
-        <label for="titulo" class="form-label">Título</label>
-        <input type="text" id="titulo" class="form-control" formControlName="nombre_viaje" />
+    <form [formGroup]="viajeForm" (ngSubmit)="guardarCambios()" class="p-4">
+      <div class="mb-1">
+        <label for="nombre_viaje" class="form-label">Nombre del viaje</label>
+        <input type="text" id="nombre_viaje" class="form-control" formControlName="nombre_viaje" />
       </div>
-
-      <div class="mb-3">
-        <label for="descripcion" class="form-label">Descripción</label>
-        <textarea id="descripcion" class="form-control" formControlName="itinerario"></textarea>
+    
+      <div class="mb-1">
+        <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
+        <input type="date" id="fecha_inicio" class="form-control" formControlName="fecha_inicio" />
       </div>
-
-      <div class="mb-3">
-        <label for="destino" class="form-label">Destino</label>
-        <input type="text" id="destino" class="form-control" formControlName="localizacion" />
+    
+      <div class="mb-1">
+        <label for="fecha_fin" class="form-label">Fecha de fin</label>
+        <input type="date" id="fecha_fin" class="form-control" formControlName="fecha_fin" />
       </div>
-
-      <div class="mb-3">
-        <label for="fecha" class="form-label">Fecha</label>
-        <input type="date" id="fecha" class="form-control" formControlName="fecha_inicio" />
+    
+      <div class="mb-1">
+        <label for="coste_por_persona" class="form-label">Coste por persona (€)</label>
+        <input type="number" id="coste_por_persona" class="form-control" formControlName="coste_por_persona" />
       </div>
-
+    
+      <div class="mb-1">
+        <label for="personas_minimas" class="form-label">Personas mínimas</label>
+        <input type="number" id="personas_minimas" class="form-control" formControlName="personas_minimas" />
+      </div>
+    
+      <div class="mb-1">
+        <label for="localizacion" class="form-label">Localización</label>
+        <input type="text" id="localizacion" class="form-control" formControlName="localizacion" />
+      </div>
+    
+      <div class="mb-1">
+        <label for="itinerario" class="form-label">Itinerario</label>
+        <textarea id="itinerario" class="form-control" rows="3" formControlName="itinerario"></textarea>
+      </div>
+    
       <div class="mb-3">
-        <label for="imagen" class="form-label">URL de imagen</label>
+        <label for="imagen" class="form-label">Imagen (URL)</label>
         <input type="text" id="imagen" class="form-control" formControlName="imagen" />
       </div>
-
+    
       <div class="d-flex gap-2">
-        <button type="submit" class="btn btn-success">Guardar cambios</button>
+        <button type="submit" class="btn btn-success" [disabled]="viajeForm.invalid">Guardar cambios</button>
         <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
       </div>
     </form>

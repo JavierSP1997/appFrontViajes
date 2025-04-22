@@ -86,7 +86,17 @@ export class ReviewsComponent implements OnInit {
 				this.scrollToLastReview(); // Desplazarse a la última reseña
 			}
 		} catch (error) {
-			console.log("Error al enviar la reseña", error);
+			Swal.fire({
+				toast: true,
+				position: "top-end",
+				icon: "error",
+				title: "Error al enviar la reseña",
+				text: "Revisa tu conexión o intenta más tarde.",
+				showConfirmButton: false,
+				timer: 3000,
+				timerProgressBar: true,
+			});
+			
 		}
 	}
 
@@ -147,22 +157,30 @@ export class ReviewsComponent implements OnInit {
 				text: "No podrás revertir esto",
 				icon: "warning",
 				showCancelButton: true,
-				confirmButtonColor: "#3085d6",
+				confirmButtonColor: "#28a745", 
 				cancelButtonColor: "#d33",
 				confirmButtonText: "Eliminar",
 				cancelButtonText: "Cancelar",
-			});
+				customClass: {
+				confirmButton: 'swal-btn-confirm',
+				cancelButton: 'swal-btn-cancel'
+				},
+				backdrop: 'rgba(0, 0, 0, 0.4)',
+			  });
 
 			if (result.isConfirmed) {
 				await this.reviewService.deleteReview(id);
 				this.reviews = this.reviews.filter((review) => review.id_review !== id);
-				console.log("Reseña eliminada correctamente.");
-
 				Swal.fire({
-					title: "Eliminada",
-					text: "Reseña eliminada correctamente",
+					toast: true,
+					position: "top-end",
 					icon: "success",
+					title: "Reseña eliminada correctamente",
+					showConfirmButton: false,
+					timer: 3000,
+					timerProgressBar: true,
 				});
+				
 			}
 		} catch (error) {
 			if ((error as { status: number }).status === 404) {
@@ -170,7 +188,18 @@ export class ReviewsComponent implements OnInit {
 			} else {
 				console.error("Error al eliminar la reseña", error);
 			}
-			alert("Hubo un problema al eliminar la reseña. Inténtalo nuevamente.");
+			Swal.fire({
+				toast: true,
+				position: "top-end",
+				icon: "error",
+				title: "Error al eliminar la reseña",
+				text: "Inténtalo nuevamente.",
+				showConfirmButton: false,
+				timer: 3000,
+				timerProgressBar: true,
+				background: "#dc3545",
+				iconColor: "#fff", 
+			});			
 		}
 	}
 }

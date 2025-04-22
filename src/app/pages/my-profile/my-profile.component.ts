@@ -3,7 +3,7 @@ import { UsuariosService } from "../../services/usuarios.service";
 import type { Usuario } from "../../../../interfaces/usuario.interface";
 // biome-ignore lint/style/useImportType: <explanation>
 import { Router, RouterLink } from "@angular/router";
-
+import Swal from "sweetalert2";
 @Component({
 	selector: "app-my-profile",
 	imports: [RouterLink],
@@ -43,7 +43,23 @@ export class MyProfileComponent {
 		);
 	}
 	cerrarSesion() {
-		localStorage.removeItem("token");
-		this.router.navigate(["/"]);
+		const nombre = this.usuario?.nombre || "¡Hasta pronto!";
+		Swal.fire({
+			title: "Cerrando sesión",
+			text: `Hasta pronto, ${nombre}!`,
+			icon: "info",
+			showConfirmButton: false,
+			timer: 2000,
+			toast: true,
+			position: "top-end",
+			background: "#f0f9ff",
+			color: "#0369a1",
+		});
+	
+		setTimeout(() => {
+			localStorage.removeItem("token");
+			this.router.navigate(["/"]);
+		}, 2000);
 	}
+	
 }

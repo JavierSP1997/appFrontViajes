@@ -34,23 +34,22 @@ export class LoginComponent {
 
 		try {
 			const response = await this.usuariosService.login(this.formLogin.value);
-			localStorage.setItem("token", response.token);
-			Swal.fire({
-				title: "LOGIN",
-				text: "Has iniciado sesion correctamente",
-				icon: "success",
-				confirmButtonText: "Cerrar",
-			});
+			localStorage.setItem("token", response.token);		
 			this.router.navigate(["/"]);
 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		} catch (msg: any) {
 			console.error("Error en el login", msg.error.error);
 			Swal.fire({
-				title: "Usuario o contraseña incorrectas",
-				text: msg.error.error,
+				title: "¡Error!",
+				text: msg.error.error || "Usuario o contraseña incorrectos.",
 				icon: "error",
-				confirmButtonText: "Cerrar",
-			});
+				toast: true,
+				position: "top-end",
+				timer: 3000,
+				showConfirmButton: false,
+				background: "#fef2f2",
+				color: "#991b1b",
+			});			
 		}
 	}
 	checkError(field: string, validator: string): boolean | undefined {
