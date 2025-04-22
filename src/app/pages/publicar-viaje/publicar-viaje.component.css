@@ -2,6 +2,11 @@
 	min-height: 25px;
 }
 
+.gradiente{
+	background-image: linear-gradient(to right, white, #e4944a, #e4944a, white);
+	height: 3px;
+}
+
 .titulo {
 	text-align: center;
 	margin: 50px auto;
@@ -20,4 +25,27 @@ label{
 
 .formulario {
 	max-width: 900px ;
+}
+
+button {
+	border-radius: 10px;
+	background-color: var(--color-boton);
+	border: 2px solid var(--color-boton);
+	padding: 5px;
+	margin: 10px;
+	width: 150px;
+	transition: 0.5s;
+	font-weight: bold;
+	color: var(--color-texto-botones);
+
+	&:hover{
+		background-color: var(--color-boton-bgc-hover);
+		border: 2px solid var(--color-boton-bgc-hover);
+		transform: scale(1.05);
+	}
+}
+
+.button{
+	margin-top: 40px;
+	text-align: center;
 }
