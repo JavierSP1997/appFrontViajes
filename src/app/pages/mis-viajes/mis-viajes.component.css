@@ -147,3 +147,23 @@ ul li span {
 		height: 400px;
 	}
 }
+
+.bg-light {
+	filter: grayscale(100%) brightness(0.9);
+	color: gray;
+	position: relative; /* asegura que los hijos absolutos estén relativos a esto */
+}
+
+div.sello-finalizado {
+	position: absolute;
+	top: -15px;
+	right: 20px;
+	background-color: rgba(161, 89, 0, 0.85);
+	color: white;
+	font-weight: bold;
+	padding: 6px 10px;
+	border-radius: 6px;
+	font-size: .8rem;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+	z-index: 10;
+}
