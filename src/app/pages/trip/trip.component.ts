@@ -160,6 +160,21 @@ export class TripComponent {
 					this.token,
 				);
 
+				const result = await Swal.fire({
+					title: "¿Estás seguro?",
+					text: "Estás a punto de abandonar el viaje. ¿Deseas continuar?",
+					icon: "warning",
+					showCancelButton: true,
+					confirmButtonColor: "#d33",
+					cancelButtonColor: "#3085d6",
+					confirmButtonText: "Sí, abandonar",
+					cancelButtonText: "No, cancelar",
+				});
+
+				if (!result.isConfirmed) {
+					return;
+				}
+
 				Swal.fire({
 					title: "¡Has abandonado el viaje!",
 					text: "Esperamos que te unas a otro pronto.",
@@ -193,6 +208,52 @@ export class TripComponent {
 					color: "#991b1b",
 				});
 			}
+		}
+	}
+
+	eliminarViaje() {
+		if (this.viaje && this.usuarioLogado) {
+			const idViaje = this.viaje.id_viaje;
+			Swal.fire({
+				title: "¿Estás seguro?",
+				text: "Esta acción eliminará el viaje permanentemente. ¿Deseas continuar?",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#d33",
+				cancelButtonColor: "#3085d6",
+				confirmButtonText: "Sí, eliminar",
+				cancelButtonText: "No, cancelar",
+			}).then(async (result) => {
+				if (result.isConfirmed) {
+					try {
+						await this.viajesService.removeViaje(idViaje, this.token);
+						Swal.fire({
+							title: "¡Viaje eliminado!",
+							text: "El viaje ha sido eliminado con éxito.",
+							icon: "success",
+							toast: true,
+							position: "top-end",
+							timer: 3000,
+							showConfirmButton: false,
+							background: "#fefce8",
+							color: "#713f12",
+						});
+						this.redirectToViajes();
+					} catch (err) {
+						Swal.fire({
+							title: "¡Error!",
+							text: "No se pudo eliminar el viaje.",
+							icon: "error",
+							toast: true,
+							position: "top-end",
+							timer: 3000,
+							showConfirmButton: false,
+							background: "#fef2f2",
+							color: "#991b1b",
+						});
+					}
+				}
+			});
 		}
 	}
 

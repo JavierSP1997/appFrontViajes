@@ -57,11 +57,9 @@ figure figcaption {
 
 /* Botón de info */
 button.info {
-	font-weight: bold;
 	padding: 0.5rem 1rem;
-	border: 2px solid var(--color-borde);
 	border-radius: 0.625rem;
-	background-color: var(--color-boton-fondo);
+	background-color: var(--color-titulo-secundario);
 	color: var(--color-boton-texto);
 	transition: all 0.3s ease;
 }

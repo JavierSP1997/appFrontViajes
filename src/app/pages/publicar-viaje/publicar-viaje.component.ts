@@ -95,7 +95,7 @@ export class PublicarViajeComponent {
 				};
 
 				const viajeCreado = await this.viajesService.crearViaje(nuevoViaje);
-				this.router.navigate([`/viaje/${viajeCreado.id_viaje}`]);
+				this.router.navigate([`/viajes/${viajeCreado.id_viaje}`]);
 			} catch (error) {
 				console.error("Error al crear el viaje:", error);
 			}
