@@ -1,6 +1,6 @@
 
   <nav
-    class="container d-flex justify-content-between align-items-center headerNav">
+    class="container my-4 d-flex justify-content-between align-items-center headerNav">
     <h2>Mi Perfil</h2>
 
     <div class="d-flex gap-4">
@@ -20,10 +20,10 @@
   </nav>
 @if (usuario) {
 <div class="container">
-  <div class="d-flex justify-content-evenly perfil">
+  <div class="d-flex justify-content-around perfil">
       <h1>{{ usuario.nombre }}</h1>
       @if (!usuario.imagen) {
-        <p class="text-muted mt-2">
+        <p class="text-muted mt-2 foto">
           <i class="bi bi-exclamation-circle me-2"></i>Aún no tienes foto
         </p>
       } @else {
@@ -96,7 +96,7 @@
     <div class="mascota">
       <div class="centro">
         <div class="cajaTitulo">
-          <h5>¿Tienes mascotas?</h5>
+          <h5>Mascotas</h5>
         </div>
         @if (usuario.pets) {
         <p>{{ usuario.pets }}</p>
