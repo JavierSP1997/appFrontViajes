@@ -12,3 +12,8 @@
 h2 {
 	color: var(--color-titulo-principal);
 }
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+	filter: brightness(0) saturate(100%) invert(76%) sepia(23%) saturate(805%)
+		hue-rotate(331deg) brightness(95%) contrast(89%);
+}
