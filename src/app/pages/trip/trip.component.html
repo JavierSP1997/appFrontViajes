@@ -27,18 +27,23 @@
                     <li class="list-group-item"><strong>📅 Fecha de inicio:</strong> {{ viaje.fecha_inicio | date:
                         'dd-MM-YYYY' }}</li>
                     <li class="list-group-item"><strong>📅 Fecha de fin:</strong> {{ viaje.fecha_fin | date:
-                        'dd-MM-YYYY'
-                        }}</li>
+                        'dd-MM-YYYY' }}</li>
                     <li class="list-group-item"><strong>💸 Coste por persona:</strong> {{ viaje.coste_por_persona }} €
                     </li>
                     <li class="list-group-item"><strong>👥 Personas mínimas:</strong> {{ viaje.personas_minimas }}</li>
                     <li class="list-group-item"><strong>🧭 Itinerario:</strong> {{ viaje.itinerario }}</li>
                 </ul>
-                <div class="text-center mt-4 d-flex justify-content-center gap-2">
+
+                <div class="text-center mt-4 d-flex justify-content-center gap-2 flex-wrap">
                     @if (esAnfitrion) {
-                    <button class="btn btn-warning" [routerLink]="['/viajes', viaje.id_viaje, 'editar']">✏️
-                        Editar viaje</button>
+                    <button class="btn btn-warning" [routerLink]="['/viajes', viaje.id_viaje, 'editar']"
+                        [disabled]="esFinalizado">✏️ Editar viaje</button>
                     <button class="btn btn-danger" (click)="eliminarViaje()">🗑️ Eliminar viaje</button>
+
+                    @if (!esFinalizado) {
+                    <button class="btn btn-secondary" (click)="finalizarViaje()">✅ Finalizar viaje</button>
+                    }
+
                     } @else if (esParticipante) {
                     <button class="btn btn-danger" (click)="abandonar()">🚪 Abandonar viaje</button>
                     } @else {
@@ -56,16 +61,16 @@
 
     @if (puedeComentar) {
     <app-comentarios [viajeId]="viaje.id_viaje"></app-comentarios>
-    } @else { <h5 class="text-center mt-5 text-muted p-5">Tienes que ser aceptado en el viaje para comentar.</h5>}
+    } @else {
+    <h5 class="text-center mt-5 text-muted p-5">Tienes que ser aceptado en el viaje para comentar.</h5>
+    }
 
     @if (esFinalizado) {
     <app-review [viajeId]="viaje.id_viaje"></app-review>
     }
 
-
     <!-- Sticky button -->
     <button class="btn btn-primary btn-sticky" (click)="redirectToViajes()">← Volver a viajes</button>
-
 
     } @else {
     <p class="text-center mt-5 text-muted">No se encontró el viaje.</p>

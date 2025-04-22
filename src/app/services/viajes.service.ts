@@ -57,6 +57,11 @@ export class ViajesService {
 			status: "pendiente",
 		});
 	}
+
+	abandonarViaje(idViaje: number, idUsuario: number) {
+		return this.httpClient.delete(`/api/participantes/${idViaje}/${idUsuario}`);
+	}
+
 	updateViaje(
 		idViaje: number,
 		datosActualizados: Partial<Viaje>,
@@ -82,8 +87,17 @@ export class ViajesService {
 		);
 	}
 
-	abandonarViaje(idViaje: number, idUsuario: number) {
-		return this.httpClient.delete(`/api/participantes/${idViaje}/${idUsuario}`);
+	finalizarViaje(idViaje: number): Promise<Viaje> {
+		const token = localStorage.getItem("token");
+		const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
+
+		return lastValueFrom(
+			this.httpClient.put<Viaje>(
+				`${this.baseUrl}/${idViaje}/finalizar`,
+				{ finalizado: true },
+				{ headers },
+			),
+		);
 	}
 
 	removeViaje(idViaje: number, token: string): Promise<Viaje> {
