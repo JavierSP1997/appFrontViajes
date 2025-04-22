@@ -66,5 +66,9 @@ export class UsuariosService {
 	eliminarUsuario(id: number) {
 		return lastValueFrom(this.httpClient.delete(`${this.baseUrl}/${id}`));
 	}
+	obtenerUsuarioActual() {
+		return this.getPerfilUsuario();
+	  }
+	  
 	
 }

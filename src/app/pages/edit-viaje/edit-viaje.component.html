@@ -1,0 +1,37 @@
+@if (esAnfitrion) {
+  <div class="container my-5">
+    <h2 class="mb-4 text-success">Editar viaje</h2>
+
+    <form [formGroup]="viajeForm" (ngSubmit)="guardarCambios()">
+      <div class="mb-3">
+        <label for="titulo" class="form-label">Título</label>
+        <input type="text" id="titulo" class="form-control" formControlName="nombre_viaje" />
+      </div>
+
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea id="descripcion" class="form-control" formControlName="itinerario"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="destino" class="form-label">Destino</label>
+        <input type="text" id="destino" class="form-control" formControlName="localizacion" />
+      </div>
+
+      <div class="mb-3">
+        <label for="fecha" class="form-label">Fecha</label>
+        <input type="date" id="fecha" class="form-control" formControlName="fecha_inicio" />
+      </div>
+
+      <div class="mb-3">
+        <label for="imagen" class="form-label">URL de imagen</label>
+        <input type="text" id="imagen" class="form-control" formControlName="imagen" />
+      </div>
+
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-success">Guardar cambios</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+}

@@ -43,9 +43,8 @@ button.info {
 	transition: all 0.3s ease;
 
 	&:hover {
-		background-color: var(--color-boton-hover-fondo);
-		/* color: var(--color-boton-fondo); */
-		/* border: 2px solid var(--color-boton-hover-fondo); */
+		background-color: var(--color-boton-bgc-hover);
+		border: 2px solid var(--color-boton-bgc-hover);
 	}
 }
 

@@ -10,6 +10,7 @@ import { TripComponent } from "./pages/trip/trip.component";
 import { PublicProfileComponent } from "./pages/public-profile/public-profile.component";
 import { PublicarViajeComponent } from "./pages/publicar-viaje/publicar-viaje.component";
 import { MisViajesComponent } from "./pages/mis-viajes/mis-viajes.component";
+import { EditViajeComponent } from "./pages/edit-viaje/edit-viaje.component";
 
 export const routes: Routes = [
 	{ path: "", pathMatch: "full", component: HomeComponent },
@@ -22,10 +23,10 @@ export const routes: Routes = [
 		canActivate: [authGuard],
 	},
 	{
-		path: "viajes/:idViaje/editar",
-		component: PublicarViajeComponent,
-		canActivate: [authGuard],
-	},
+		path: 'viajes/:id/editar',
+		component: EditViajeComponent,
+	  },
+	  
 	{
 		path: "perfil-usuario",
 		component: MyProfileComponent,
