@@ -1,6 +1,13 @@
 .seccion {
 	text-align: center;
 	padding: 15px;
+	border-bottom: 1px solid transparent;
+	background-image: linear-gradient(to right, white, #e4944a, #e4944a, white);
+	background-size: 100% 3px;
+	background-repeat: no-repeat;
+	background-position: bottom;
+	padding-bottom: 70px;
+
 	hgroup {
 		text-align: center;
 		margin: 15px;
@@ -16,9 +23,6 @@
 }
 
 figure {
-	width: 100%;
-	max-height: none;
-	overflow: hidden;
 	border-radius: 15px;
 
 	img {
@@ -28,17 +32,22 @@ figure {
 		object-fit: cover;
 		border-radius: 15px;
 		transition: transform 0.3s ease, opacity 0.3s ease;
+
 		&:hover {
 			opacity: 0.9;
-			transform: scale(1.05);
+			transform: scale(0.95);
 		}
 	}
 }
+li {
+	margin-top: 25px;
+}
 
 figure figcaption {
+	margin-top: 5px;
+	margin-bottom: 5px;
 	font-size: 1.25rem;
 	font-weight: bold;
-	margin: 10px 8px;
 	border-radius: 15px;
 }
 
@@ -77,6 +86,9 @@ span {
 @media (min-width: 425px) {
 	figure {
 		height: 300px;
+	}
+	.viaje {
+		margin-bottom: 60px;
 	}
 }
 
