@@ -30,33 +30,6 @@
           />
         </div>
       </div>
-
-      <div class="col-md-6">
-        <div class="info-card shadow-sm">
-          <div class="form-check mb-2">
-            <input
-              type="checkbox"
-              id="toggle-password"
-              class="form-check-input"
-              [checked]="mostrarPassword"
-              (change)="togglePassword()"
-            />
-            <label for="toggle-password" class="form-check-label"
-              >¿Quieres cambiar tu contraseña?</label
-            >
-          </div>
-
-          @if (mostrarPassword) {
-          <input
-            type="text"
-            class="form-control"
-            formControlName="password"
-            placeholder="Escribe tu nueva contraseña"
-          />
-          }
-        </div>
-      </div>
-
       <div class="col-md-6">
         <div class="info-card shadow-sm">
           <label for="description" class="form-label"
