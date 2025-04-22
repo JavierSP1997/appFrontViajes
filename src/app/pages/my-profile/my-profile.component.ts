@@ -4,9 +4,10 @@ import type { Usuario } from "../../../../interfaces/usuario.interface";
 // biome-ignore lint/style/useImportType: <explanation>
 import { Router, RouterLink } from "@angular/router";
 import Swal from "sweetalert2";
+import { NotificacionesComponent } from "../../components/notificaciones/notificaciones.component";
 @Component({
 	selector: "app-my-profile",
-	imports: [RouterLink],
+	imports: [RouterLink,NotificacionesComponent],
 	templateUrl: "./my-profile.component.html",
 	styleUrl: "./my-profile.component.css",
 })
