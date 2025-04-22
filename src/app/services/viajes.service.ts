@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { lastValueFrom, type Observable } from "rxjs";
+import { lastValueFrom } from "rxjs";
 import type { Viaje } from "../../../interfaces/viaje.interface";
 
 @Injectable({
@@ -57,7 +57,10 @@ export class ViajesService {
 			status: "pendiente",
 		});
 	}
-	updateViaje(idViaje: number, datosActualizados: Partial<Viaje>): Promise<Viaje> {
+	updateViaje(
+		idViaje: number,
+		datosActualizados: Partial<Viaje>,
+	): Promise<Viaje> {
 		const token = localStorage.getItem("token");
 		const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
 		const datosFormateados = {
@@ -69,14 +72,24 @@ export class ViajesService {
 				? new Date(datosActualizados.fecha_fin).toISOString().split("T")[0]
 				: undefined,
 		};
-	
+
 		return lastValueFrom(
-			this.httpClient.put<Viaje>(`${this.baseUrl}/${idViaje}`, datosFormateados, { headers })
+			this.httpClient.put<Viaje>(
+				`${this.baseUrl}/${idViaje}`,
+				datosFormateados,
+				{ headers },
+			),
 		);
 	}
-	
-	  
+
 	abandonarViaje(idViaje: number, idUsuario: number) {
 		return this.httpClient.delete(`/api/participantes/${idViaje}/${idUsuario}`);
+	}
+
+	removeViaje(idViaje: number, token: string): Promise<Viaje> {
+		const headers = new HttpHeaders().set("Authorization", `Bearer ${token}`);
+		return lastValueFrom(
+			this.httpClient.delete<Viaje>(`${this.baseUrl}/${idViaje}`, { headers }),
+		);
 	}
 }

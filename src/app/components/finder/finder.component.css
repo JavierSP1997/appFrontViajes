@@ -9,6 +9,7 @@ button {
 	background-color: var(--color-boton);
 	color: var(--color-texto-botones);
 	transition: all 0.5s ease;
+	
 
 	&:hover {
 		background-color: var(--color-boton-bgc-hover);
@@ -23,7 +24,7 @@ hgroup {
 	font-size: 1.75rem;
 	text-align: center;
 	align-content: center;
-
+	
 	h4 {
 		color: var(--color-titulo-principal);
 		font-size: 26px;
@@ -36,4 +37,5 @@ hgroup {
 span {
 	font-weight: bold;
 	color: var(--color-texto-botones);
+	
 }
