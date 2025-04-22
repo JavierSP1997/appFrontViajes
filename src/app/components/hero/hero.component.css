@@ -8,10 +8,12 @@
 	background-color: rgb(168, 168, 168);
 }
 
-h4 {
+h1 {
 	color: white;
-	font-size: 40px;
-	/* background-color: #f0a369ee; */
+	font-size: 34px;
+}
+p {
+	color: white;
 }
 
 .buttons {

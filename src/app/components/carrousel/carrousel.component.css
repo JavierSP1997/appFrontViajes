@@ -1,0 +1,14 @@
+.resena-card {
+	background-size: cover;
+	background-position: center;
+	border-radius: 1rem;
+	overflow: hidden;
+	min-height: 250px;
+}
+
+#carouselResenas {
+	margin-bottom: 80px;
+}
+h2 {
+	color: var(--color-titulo-principal);
+}
