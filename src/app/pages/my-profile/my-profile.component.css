@@ -9,8 +9,7 @@ button {
 	border: 2px solid var(--color-boton);
 	padding: 5px;
 	transition: 0.5s;
-	font-weight: bold;
-	color: var(--color-texto-botones);
+	color: white;
 
 	&:hover {
 		background-color: var(--color-boton-bgc-hover);
