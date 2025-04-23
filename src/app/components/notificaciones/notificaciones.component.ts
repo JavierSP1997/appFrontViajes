@@ -74,22 +74,22 @@ async ngOnInit(): Promise<void> {
   }
   async cerrarNotificacion(id: number) {
     try {
-      const notificacion = this.notificaciones.find(n => n.id_notificacion === id);
-      if (!notificacion) return;
+      const noti = this.notificaciones.find(n => n.id_notificacion === id);
+      if (!noti) return;
   
-      const notificacionActualizada = {
-        mensaje: notificacion.mensaje,
-        tipo: "",
+      const actualizada = {
+        mensaje: noti.mensaje,
         estado: 'leído'
       };
   
-      await this.notificacionesService.actualizarNotificacion(id, notificacionActualizada, this.token);
+      await this.notificacionesService.actualizarNotificacion(id, actualizada, this.token);
       this.notificaciones = this.notificaciones.filter(n => n.id_notificacion !== id);
   
     } catch (err) {
-      console.error('Error al cerrar la notificación:', err);
+      console.error('Error al cerrar notificación:', err);
     }
   }
+  
   
   
 }
