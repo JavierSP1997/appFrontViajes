@@ -9,7 +9,7 @@
 
 <div class="borde-gradiente">
 <div class="container formulario my-2">
-    <div class="bg-white rounded-4 p-4 mx-auto" style="max-width: 720px; ">
+    <div class=" rounded-4 p-4 mx-auto" style="max-width: 770px; ">
     <form [formGroup]="viajeForm" (ngSubmit)="onSubmit()" >
         <div class="mb-1">
             <label for="nombre_viaje" class="form-label">Nombre del viaje</label>
@@ -17,13 +17,16 @@
             <div class="text-danger">
                 @if (checkError('nombre_viaje', 'required')) {
                         <small>Este campo es obligatorio.</small>
-                    }
+                    }@if (checkError('nombre_viaje', 'pattern')) {
+                        <small>Debe tener al menos 3 letras y texto.</small>
+                      }
             </div>
         </div>
     
         <div class="mb-1">
             <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
-            <input type="date" id="fecha_inicio" class="form-control" formControlName="fecha_inicio" />
+            <input type="date" id="fecha_inicio" class="form-control" formControlName="fecha_inicio" min="2024-01-01"
+            max="2100-12-31" />
                 <div class="text-danger">
                     @if (checkError('fecha_inicio', 'required')) {
                             <small>Este campo es obligatorio.</small>
@@ -33,14 +36,16 @@
         
         <div class="mb-1">
             <label for="fecha_fin" class="form-label">Fecha de fin</label>
-            <input type="date" id="fecha_fin" class="form-control" formControlName="fecha_fin" />
+            <input type="date" id="fecha_fin" class="form-control" formControlName="fecha_fin" min="2024-01-01"
+            max="2100-12-31"/>
                 <div class="text-danger">
                     @if (checkError('fecha_fin', 'required')) {
                             <small>Este campo es obligatorio.</small>
-                        }
+                        } @if (viajeForm.errors?.['fechaInvalida'] && viajeForm.touched) {
+                            <small>La fecha de fin debe ser posterior a la fecha de inicio.</small>}
                 </div>
         </div>
-        
+    
         <div class="mb-1">
             <label for="coste_por_persona" class="form-label">Coste estimado por persona (€)</label>
             <input type="number" id="coste_por_persona" class="form-control" formControlName="coste_por_persona" placeholder="Indíca el precio mínimo por persona" />
