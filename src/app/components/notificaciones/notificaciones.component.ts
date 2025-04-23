@@ -5,39 +5,38 @@ import { UsuariosService } from "../../services/usuarios.service";
 import { ViajesService } from "../../services/viajes.service";
 
 @Component({
-	selector: "notificaciones",
-	imports: [],
-	templateUrl: "./notificaciones.component.html",
-	styleUrls: ["./notificaciones.component.css"],
+  selector: "notificaciones",
+  imports: [],
+  templateUrl: "./notificaciones.component.html",
+  styleUrls: ["./notificaciones.component.css"],
 })
 export class NotificacionesComponent {
-	private notificacionesService = inject(NotificacionesService);
-	isDropdownOpen = false;
-	private userSvc   = inject(UsuariosService);
+  private notificacionesService = inject(NotificacionesService);
+  isDropdownOpen = false;
+  private userSvc   = inject(UsuariosService);
   private viajesSvc = inject(ViajesService);
-	notificaciones: Notificacion[] = [];
-	token: string = localStorage.getItem("token") || "null";
+  notificaciones: Notificacion[] = [];
+  token: string = localStorage.getItem("token") || "null";
 
-// 	async ngOnInit(): Promise<void> {
-// 		console.log(this.token)
+//  async ngOnInit(): Promise<void> {
+//    console.log(this.token)
 
-// 		try {
-// 			this.notificaciones = await this.notificacionesService.obtenerNotificaciones(this.token);
-// 			console.log("###", this.notificaciones)
-// 		} catch (err) {
-// 			console.error("Error al cargar notificaciones:", err);
-// 		}
+//    try {
+//      this.notificaciones = await this.notificacionesService.obtenerNotificaciones(this.token);
+//      console.log("###", this.notificaciones)
+//    } catch (err) {
+//      console.error("Error al cargar notificaciones:", err);
+//    }
 
-// 	}
+//  }
 
-// 	async marcarComoLeido(id: number) {
-// 		try {
-// 			await this.notificacionesService.marcarComoLeido(id);
-// 			this.notificaciones = this.notificaciones.filter((n) => n.id_notificacion !== id);
-// 		} catch (err) {
-// 			console.error("Error al marcar como leído:", err);
-// 		}
-	
+//  async marcarComoLeido(id: number) {
+//    try {
+//      await this.notificacionesService.marcarComoLeido(id);
+//      this.notificaciones = this.notificaciones.filter((n) => n.id_notificacion !== id);
+//    } catch (err) {
+//      console.error("Error al marcar como leído:", err);
+//    }
 // }}
 
 async ngOnInit(): Promise<void> {
@@ -56,10 +55,27 @@ async ngOnInit(): Promise<void> {
 
   async marcarComoLeido(id: number) {
     try {
-      await this.notificacionesService.marcarComoLeido(id);
-      this.notificaciones = this.notificaciones.filter(n => n.id_notificacion !== id);
+
+      const nofiticacionesFiltradas = this.notificaciones.filter(n => n.id_notificacion !== id);
+      if (nofiticacionesFiltradas.length === 1) {
+        const notificacionActualizada = {
+          "mensaje": nofiticacionesFiltradas[0].mensaje,
+          "tipo": "",
+          "estado": "leído"
+        }
+        
+        notificacionActualizada.estado = 'leído';
+        await this.notificacionesService.actualizarNotificacion(id, notificacionActualizada, this.token)
+      }
+
     } catch (err) {
       console.error("Error al marcar como leído:", err);
     }
   }
+  cerrarNotificacion(idNotificacion: number) {
+    // Aquí puedes implementar la lógica para marcar la notificación como leída o eliminarla
+    console.log('Cerrar notificación con ID:', idNotificacion);
+    // Lógica adicional (si es necesario, por ejemplo, para eliminarla del array de notificaciones)
+  }
+  
 }
