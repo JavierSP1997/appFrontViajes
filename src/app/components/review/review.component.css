@@ -7,12 +7,34 @@
 	transition: background-color 0.3s ease;
 }
 
+h4{
+	color: var(--color-boton);
+}
+
 .btn:hover {
-	background-color: #0056b3;
+
 
 	@media (max-width: 768px) {
 		.container {
 			padding: 0 15px;
 		}
 	}
+}
+
+.enviar{
+	background-color: var(--color-boton) ;
+	border:2px solid var(--color-boton);
+	color: var(--color-texto-botones);
+	transition: 0.3s;
+
+	&:hover{
+		background-color: var(--color-boton-bgc-hover);
+        border: 2px solid var(--color-boton-bgc-hover);
+        transform: scale(1.05);
+    }
+}
+
+.reseñas {
+	color: #ed8b30; 
+	background-color: #e4944a68;
 }

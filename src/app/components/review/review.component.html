@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="card shadow border-0 rounded-4">
     <div class="card-body p-4">
-      <h4 class="text-center text-primary fw-bold mb-4">Reseñas</h4>
+      <h4 class="text-center fw-bold mb-4">Reseñas</h4>
 
       <div class="d-flex flex-column">
         <textarea
@@ -23,7 +23,7 @@
         </div>
 
         <button
-          class="btn btn-primary mx-auto px-5 py-2 rounded-pill fw-semibold mb-3"
+          class=" enviar mx-auto px-5 py-2 rounded-pill fw-semibold mb-3"
           (click)="enviarReview()"
         >
           Enviar
@@ -33,7 +33,7 @@
       <div class="mb-4">
         <div
           role="button"
-          class="d-flex align-items-center justify-content-between bg-body-tertiary border rounded-3 p-3 shadow-sm fw-semibold"
+          class=" reseñas d-flex align-items-center justify-content-between border rounded-3 p-3 shadow-sm fw-semibold"
           (click)="mostrarResenas = !mostrarResenas"
           [attr.aria-expanded]="mostrarResenas"
         >
