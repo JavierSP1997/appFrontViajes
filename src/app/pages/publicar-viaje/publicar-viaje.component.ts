@@ -9,6 +9,7 @@ import type { AbstractControl } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ViajesService } from "../../services/viajes.service";
 import { UsuariosService } from "../../services/usuarios.service";
+import { ciudades } from "../../data/ciudades.data";
 
 @Component({
 	selector: "app-publicar-viaje",
@@ -17,63 +18,13 @@ import { UsuariosService } from "../../services/usuarios.service";
 	styleUrl: "./publicar-viaje.component.css",
 })
 export class PublicarViajeComponent {
-	ciudadesSpain: string[] = [
-		"A Coruña",
-		"Albacete",
-		"Alicante",
-		"Almería",
-		"Ávila",
-		"Badajoz",
-		"Barcelona",
-		"Bilbao",
-		"Burgos",
-		"Castellón de la Plana",
-		"Ceuta",
-		"Ciudad Real",
-		"Cuenca",
-		"Cáceres",
-		"Cádiz",
-		"Córdoba",
-		"Girona",
-		"Granada",
-		"Guadalajara",
-		"Huelva",
-		"Huesca",
-		"Jaén",
-		"Las Palmas de Gran Canaria",
-		"León",
-		"Lleida",
-		"Logroño",
-		"Lugo",
-		"Madrid",
-		"Melilla",
-		"Murcia",
-		"Málaga",
-		"Ourense",
-		"Oviedo",
-		"Palencia",
-		"Palma de Mallorca",
-		"Pamplona",
-		"Pontevedra",
-		"Salamanca",
-		"San Sebastián",
-		"Santa Cruz de Tenerife",
-		"Santander",
-		"Segovia",
-		"Sevilla",
-		"Soria",
-		"Tarragona",
-		"Teruel",
-		"Toledo",
-		"Valencia",
-		"Valladolid",
-		"Vitoria-Gasteiz",
-		"Zamora",
-		"Zaragoza",
-	];
+	
 	private viajesService = inject(ViajesService);
 	private usuariosService = inject(UsuariosService);
 	private router = inject(Router);
+
+	ciudadesSpain: string[] = ciudades;
+	ciudadesFiltradas: string[] = [];
 
 	viajeForm: FormGroup = new FormGroup({
 		nombre_viaje: new FormControl("", [
@@ -138,6 +89,18 @@ export class PublicarViajeComponent {
 			return { fechaInvalida: true };
 		}
 		return null;
+	}
+
+	filtrarCiudades() {
+		const input = this.viajeForm.get('localizacion')?.value.toLowerCase().trim() || '';
+		this.ciudadesFiltradas = input
+			? this.ciudadesSpain.filter(c => c.toLowerCase().includes(input))
+			: [];
+	}
+	
+	seleccionarCiudad(ciudad: string) {
+		this.viajeForm.get('localizacion')?.setValue(ciudad);
+		this.ciudadesFiltradas = [];
 	}
 	
 }

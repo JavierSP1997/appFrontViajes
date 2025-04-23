@@ -45,19 +45,15 @@ export class ViajesComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy(): void {
-		// Nos aseguramos de desuscribirnos para evitar fugas de memoria
 		if (this.queryParamsSubscription) {
 			this.queryParamsSubscription.unsubscribe();
 		}
 	}
 
-	// Código actualizado dentro de la función obtenerViajesFiltrados
-	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	obtenerViajesFiltrados(queryParams: any): void {
 		this.viajesService.getAllViajes().then((viajes: Viaje[]) => {
 			let filtrados = [...viajes];
 
-			// Aplicamos los filtros según los query params
 			if (queryParams.nombre) {
 				filtrados = filtrados.filter((v) =>
 					v.localizacion

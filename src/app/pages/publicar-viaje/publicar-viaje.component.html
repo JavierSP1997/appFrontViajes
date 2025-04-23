@@ -16,7 +16,7 @@
                         <small>Este campo es obligatorio.</small>
                     }@if (checkError('nombre_viaje', 'pattern')) {
                         <small>Debe tener al menos 3 letras y texto.</small>
-                      }
+                    }
             </div>
         </div>
     
@@ -65,13 +65,29 @@
         
         <div class="mb-1">
             <label for="localizacion" class="form-label">Localizacion</label>
-            <select id="localizacion" class="form-control" formControlName="localizacion" >
-                <option value="">Selecciona una ciudad</option>
-                @for (ciudad of ciudadesSpain; track ciudad) {
-                    <option>{{ ciudad }}</option>
+            <div class="position-relative">
+                <input
+                    type="text"
+                    id="localizacion"
+                    class="form-control"
+                    placeholder="Escribe una ciudad..."
+                    formControlName="localizacion"
+                    (input)="filtrarCiudades()"
+                    autocomplete="off"/>
+            
+                @if (ciudadesFiltradas.length > 0) {
+                    <ul class="list-group position-absolute z-3 w-100">
+                    @for (ciudad of ciudadesFiltradas; track ciudad) {
+                        <li
+                        class="list-group-item list-group-item-action"
+                        (click)="seleccionarCiudad(ciudad)">
+                        {{ ciudad }}
+                        </li>
+                    }
+                    </ul>
                 }
-                <option>Otro...</option>
-            </select>
+                </div>
+            
                 <div class="text-danger">
                     @if (checkError('ciudad', 'required')) {
                             <small>Este campo es obligatorio.</small>

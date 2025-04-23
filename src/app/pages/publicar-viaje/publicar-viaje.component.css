@@ -57,3 +57,32 @@ button {
 	margin-top: 40px;
 	text-align: center;
 }
+
+/* Estilo visual coherente con tu diseño pastel-anaranjado */
+
+ul.list-group.position-absolute {
+	max-height: 200px;
+	overflow-y: auto;
+	background-color: #fff8f0; /* tono claro para combinar con .formulario */
+	border: 1px solid #e4944a;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	border-radius: 0.5rem;
+	z-index: 999;
+	margin-top: 2px;
+	padding: 0;
+	font-weight: bold;
+	color: #e4944a;
+  }
+  
+  /* Elementos de la lista */
+  ul.list-group li {
+	cursor: pointer;
+	padding: 10px 16px;
+	transition: background-color 0.2s ease;
+  }
+  
+  /* Hover que combine con tu hover de botones */
+  ul.list-group li:hover {
+	background-color: #ffe0c4;
+  }
+  

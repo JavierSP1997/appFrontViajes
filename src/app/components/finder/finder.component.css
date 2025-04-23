@@ -48,3 +48,32 @@ span {
 	background: #ffe0c2;
 	max-width: 900px;
 }
+
+/* Estilo del autocompletado en el finder, igual al de publicar viaje */
+
+ul.list-group.position-absolute {
+	max-height: 200px;
+	overflow-y: auto;
+	background-color: #fff8f0; /* mismo tono claro que en .formulario */
+	border: 1px solid #e4944a;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	border-radius: 0.5rem;
+	z-index: 999;
+	margin-top: 2px;
+	padding: 0;
+	font-weight: bold;
+	color: #e4944a;
+  }
+  
+  /* Elementos de la lista */
+  ul.list-group li {
+	cursor: pointer;
+	padding: 10px 16px;
+	transition: background-color 0.2s ease;
+  }
+  
+  /* Hover igual que en el formulario */
+  ul.list-group li:hover {
+	background-color: #ffe0c4;
+  }
+  

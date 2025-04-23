@@ -6,14 +6,16 @@ import {
 	type OnInit,
 } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { FormsModule } from "@angular/forms"; // Importa FormsModule
-import { CommonModule } from "@angular/common"; // Importa CommonModule
+import { FormsModule } from "@angular/forms"; 
+import { CommonModule } from "@angular/common"; 
 import type { Viaje } from "../../../../interfaces/viaje.interface";
+import { ciudades } from "../../data/ciudades.data";
+
 
 @Component({
 	selector: "app-finder",
-	standalone: true, // Módulo Standalone
-	imports: [CommonModule, FormsModule], // Asegúrate de que FormsModule esté aquí
+	standalone: true, 
+	imports: [CommonModule, FormsModule], 
 	templateUrl: "./finder.component.html",
 	styleUrls: ["./finder.component.css"],
 })
@@ -28,8 +30,11 @@ export class FinderComponent implements OnInit {
 	fechaVuelta = "";
 	viajeros = "";
 
+	ciudades: string[] = ciudades;
+	
+	ciudadesFiltradas: string[] = [];
+	
 	ngOnInit(): void {
-		// Leemos los query params para preservar los datos cuando la página se recarga
 		this.route.queryParams.subscribe(async (params) => {
 			// biome-ignore lint/complexity/useLiteralKeys: <explanation>
 			this.destino = params["nombre"] || "";
@@ -42,7 +47,6 @@ export class FinderComponent implements OnInit {
 		});
 	}
 
-	// Emitimos los datos en la URL como queryParams
 	async onSubmit(event: Event) {
 		event.preventDefault();
 
@@ -55,15 +59,34 @@ export class FinderComponent implements OnInit {
 		};
 
 		if (!this.router.url.startsWith("/viajes")) {
-			// Si estamos en home → redirige a /viajes con los parámetros en la URL
+
 			this.router.navigate(["/viajes"], { queryParams: params });
 		} else {
-			// Si ya estamos en /viajes, solo modificamos los parámetros
+	
 			this.router.navigate([], {
 				relativeTo: this.route,
 				queryParams: params,
-				queryParamsHandling: "merge", // Mantenemos los parámetros existentes y solo agregamos los nuevos
+				queryParamsHandling: "merge", 
 			});
 		}
+	}
+
+	filtrarCiudades() {
+		const input = this.destino.toLowerCase().trim();
+	
+		if (input === '') {
+		this.ciudadesFiltradas = [];
+		return;
+		}
+	
+		this.ciudadesFiltradas = this.ciudades.filter(ciudad =>
+		ciudad.toLowerCase().includes(input)
+		);
+	}
+	
+	
+	seleccionarCiudad(ciudad: string) {
+		this.destino = ciudad;
+		this.ciudadesFiltradas = [];
 	}
 }
