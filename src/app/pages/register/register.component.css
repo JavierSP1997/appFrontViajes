@@ -1,6 +1,7 @@
 .register {
 	min-height: calc(100vh - 58px - 99px);
 	padding-bottom: 50px;
+	align-content: center;
 }
 
 .card {
