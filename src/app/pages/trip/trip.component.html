@@ -20,7 +20,7 @@
                 class="card-img-top rounded-top-4" alt="Imagen del viaje" style="height: 350px; object-fit: cover;" />
 
             <div class="card-body p-4">
-                <h2 class="card-title fw-bold text-primary mb-3">{{ viaje.nombre_viaje }}</h2>
+                <h2 class="card-title fw-bold mb-3 titulos">{{ viaje.nombre_viaje }}</h2>
 
                 @if (anfitrion !== null) {
                 <div class="d-flex align-items-center gap-3 mb-3" style="cursor: pointer;"
@@ -90,7 +90,7 @@
     </div>
     </div>
 
-    <h3 class="text-center fw-bold text-primary">Participantes</h3>
+    <h3 class="text-center fw-bold titulos">Participantes</h3>
 
     <app-participantes [participantes]="participantes" [esAnfitrion]="esAnfitrion"
         [viajeId]="viaje.id_viaje"></app-participantes>

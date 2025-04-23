@@ -57,7 +57,6 @@
 	border-radius: 20px;
 }
 
-/* Estilo del Sello de Viaje Finalizado */
 .sello-finalizado {
 	position: absolute;
 	top: 30%;
@@ -100,3 +99,7 @@
   .sello-finalizado a:hover {
 	background-color: var(--color-boton-bgc-hover);
   }
+
+  .titulos{
+color: #e4944a;  
+}
