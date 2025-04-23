@@ -172,3 +172,34 @@ div.sello-finalizado {
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 	z-index: 10;
 }
+
+div.sello-anfitrion{
+	position: absolute;
+	right: 1;
+	top: 0;
+	font-size: .65rem;
+	font-weight: bolder;
+	padding: 5px;
+	width: 70px;
+	height: 40px;
+	color: white;
+	background-color: #51c9a1;
+	clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+}
+
+.sello-finalizado {
+	background-color: #9ca3af; /* gris */
+	z-index: 3;
+}
+
+.sello-anfitrion {
+	background-color: #f59e0b; /* ámbar */
+	top: 1.8rem;
+	z-index: 2;
+}
+
+.sello-inscripto {
+	background-color: #10b981; /* verde */
+	top: 3.6rem;
+	z-index: 1;
+}

@@ -2,9 +2,15 @@ import { Component, inject, type OnInit, type OnDestroy } from "@angular/core";
 import { ViajesService } from "../../services/viajes.service";
 import { Router, ActivatedRoute, RouterModule } from "@angular/router";
 import type { Viaje } from "../../../../interfaces/viaje.interface";
+type ViajeConEstado = Viaje & {
+	esAnfitrion?: boolean;
+	estaInscripto?: boolean;
+};
 import { FinderComponent } from "../../components/finder/finder.component";
 import type { Subscription } from "rxjs";
 import { DatePipe } from "@angular/common";
+import { UsuariosService } from "../../services/usuarios.service";
+import type { Usuario } from "../../../../interfaces/usuario.interface";
 
 @Component({
 	selector: "app-viajes",
@@ -13,15 +19,21 @@ import { DatePipe } from "@angular/common";
 	styleUrls: ["./viajes.component.css"],
 })
 export class ViajesComponent implements OnInit, OnDestroy {
-	arrViajes: Viaje[] = [];
-	viajeSeleccionado: Viaje | null = null;
-	private queryParamsSubscription: Subscription | null = null;
-
 	viajesService = inject(ViajesService);
 	router = inject(Router);
 	route = inject(ActivatedRoute);
+	usuariosService = inject(UsuariosService);
+	usuario: Usuario | null = null;
+	arrViajes: ViajeConEstado[] = [];
+	viajeSeleccionado: Viaje | null = null;
+	queryParamsSubscription: Subscription | null = null;
+	token = localStorage.getItem("token");
 
-	ngOnInit(): void {
+	async ngOnInit(): Promise<void> {
+		if (this.token) {
+			this.usuario = await this.usuariosService.getPerfilUsuario();
+		}
+
 		// Suscribimos a los query params para poder reaccionar a los cambios
 		this.queryParamsSubscription = this.route.queryParams.subscribe(
 			(queryParams) => {
@@ -39,6 +51,7 @@ export class ViajesComponent implements OnInit, OnDestroy {
 		}
 	}
 
+	// Código actualizado dentro de la función obtenerViajesFiltrados
 	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 	obtenerViajesFiltrados(queryParams: any): void {
 		this.viajesService.getAllViajes().then((viajes: Viaje[]) => {
@@ -66,11 +79,27 @@ export class ViajesComponent implements OnInit, OnDestroy {
 			if (queryParams.personas_minimas) {
 				const min = Number.parseInt(queryParams.personas_minimas, 10);
 				filtrados = filtrados.filter((v) => v.personas_minimas >= min);
-			} // Verifica si existe un parámetro 'personas_minimas' en los query params.
-			// Si existe, convierte su valor a un número entero y filtra los viajes para que solo se muestren mayor o igual al valor del parámetro.
+			}
 
-			// Asignamos el array filtrado a arrViajes
-			this.arrViajes = filtrados;
+			// Asignamos las propiedades esAnfitrion y estaInscripto
+			if (this.usuario) {
+				const idUsuario = this.usuario?.id_usuario; // ID del usuario logueado
+
+				// Añadimos la lógica para cada viaje
+				this.arrViajes = filtrados.map((viaje) => {
+					// Verificamos si el usuario es el anfitrión del viaje
+					const esAnfitrion = viaje.usuarios_id_usuario === idUsuario;
+
+					// Retornamos el viaje con las propiedades adicionales
+					return {
+						...viaje,
+						esAnfitrion,
+					};
+				});
+			} else {
+				// Si no hay usuario, no agregamos las propiedades
+				this.arrViajes = filtrados;
+			}
 		});
 	}
 
