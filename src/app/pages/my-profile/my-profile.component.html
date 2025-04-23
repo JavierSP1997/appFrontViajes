@@ -24,7 +24,7 @@
               style="width: 200px; height: 200px; object-fit: cover;"
             />
           } @else {
-            <p class="text-muted">Aún no tienes foto</p>
+            <p class="text-vacio"><i class="bi bi-info-circle me-1"></i>Aún no tienes foto</p>
           }
 
           <h4 class="h4 fw-bold">{{ usuario.nombre }}</h4>
@@ -34,14 +34,26 @@
         <div class="card mb-3">
           <div class="card-body shadow">
             <h5 class="card-title"><i class="bi bi-person-lines-fill me-2"></i>Descripción</h5>
-            <p class="card-text">{{ usuario.descripcion || 'Aún no tienes nada en este campo' }}</p>
+            <p class="card-text">
+              @if (usuario.descripcion) {
+                {{ usuario.descripcion }}
+              } @else {
+                <span class="text-vacio"><i class="bi bi-info-circle me-1"></i>Aún no tienes nada en este campo</span>
+              }
+            </p>
           </div>
         </div>
 
         <div class="card mb-3">
           <div class="card-body shadow">
             <h5 class="card-title"><i class="bi bi-stars me-2"></i>Hobbies</h5>
-            <p class="card-text">{{ usuario.hobbies || 'Aún no tienes nada en este campo' }}</p>
+            <p class="card-text">
+              @if (usuario.hobbies) {
+                {{ usuario.hobbies }}
+              } @else {
+                <span class="text-vacio"><i class="bi bi-info-circle me-1"></i>Aún no tienes nada en este campo</span>
+              }
+            </p>
           </div>
         </div>
 
@@ -49,7 +61,11 @@
           <div class="card-body shadow">
             <h5 class="card-title"><i class="bi bi-gender-ambiguous me-2"></i>Género</h5>
             <p class="card-text">
-              {{ usuario.gender ? traductorDeGenero(usuario.gender) : 'Aún no tienes nada en este campo' }}
+              @if (usuario.gender) {
+                {{ traductorDeGenero(usuario.gender) }}
+              } @else {
+                <span class="text-vacio"><i class="bi bi-info-circle me-1"></i>Aún no tienes nada en este campo</span>
+              }
             </p>
           </div>
         </div>
@@ -57,14 +73,26 @@
         <div class="card mb-3">
           <div class="card-body shadow">
             <h5 class="card-title"><i class="bi bi-envelope-fill me-2"></i>Email</h5>
-            <p class="card-text">{{ usuario.email || 'Aún no tienes nada en este campo' }}</p>
+            <p class="card-text">
+              @if (usuario.email) {
+                {{ usuario.email }}
+              } @else {
+                <span class="text-vacio"><i class="bi bi-info-circle me-1"></i>Aún no tienes nada en este campo</span>
+              }
+            </p>
           </div>
         </div>
 
         <div class="card mb-3">
           <div class="card-body shadow">
             <h5 class="card-title"><i class="fa-solid fa-dog me-2"></i>Mascotas</h5>
-            <p class="card-text">{{ usuario.pets || 'Aún no tienes nada en este campo' }}</p>
+            <p class="card-text">
+              @if (usuario.pets) {
+                {{ usuario.pets }}
+              } @else {
+                <span class="text-vacio"><i class="bi bi-info-circle me-1"></i>Aún no tienes nada en este campo</span>
+              }
+            </p>
           </div>
         </div>
       </div>
