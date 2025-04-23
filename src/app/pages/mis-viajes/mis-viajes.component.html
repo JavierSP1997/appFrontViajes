@@ -7,11 +7,8 @@
 <div class="py-4 d-flex flex-wrap align-items-center gap-3 filtros">
     <div class="d-flex align-items-center">
         <label for="filtroOrden" class="me-2 fw-semibold">Tipo de viaje:</label>
-        <select
-        id="filtroOrden"
-        class="form-select w-auto filtro-viajes"
-        [(ngModel)]="filtroSeleccionado"
-        (change)="ordenarViajes()">
+        <select id="filtroOrden" class="form-select w-auto filtro-viajes" [(ngModel)]="filtroSeleccionado"
+            (change)="ordenarViajes()">
             <option value="todos">Todos</option>
             <option value="creados">Creados por mí</option>
             <option value="participados">En los que participo</option>
@@ -21,11 +18,8 @@
 
     <div class="d-flex align-items-center">
         <label for="ordenFecha" class="me-2 fw-semibold">Ordenar por fecha:</label>
-        <select
-        id="ordenFecha"
-        class="form-select w-auto filtro-viajes"
-        [(ngModel)]="ordenFecha"
-        (change)="ordenarViajes()">
+        <select id="ordenFecha" class="form-select w-auto filtro-viajes" [(ngModel)]="ordenFecha"
+            (change)="ordenarViajes()">
             <option value="proxima">Más próxima</option>
             <option value="lejana">Más lejana</option>
         </select>
@@ -33,11 +27,8 @@
 
     <div class="d-flex align-items-center">
         <label for="ordenTitulo" class="me-2 fw-semibold">Ordenar alfabéticamente:</label>
-        <select
-        id="ordenTitulo"
-        class="form-select w-auto filtro-viajes"
-        [(ngModel)]="ordenTitulo"
-        (change)="ordenarPorTitulo()">
+        <select id="ordenTitulo" class="form-select w-auto filtro-viajes" [(ngModel)]="ordenTitulo"
+            (change)="ordenarPorTitulo()">
             <option value="asc">A-Z</option>
             <option value="desc">Z-A</option>
         </select>
@@ -48,212 +39,217 @@
 
 
 
-    @switch(filtroSeleccionado) {
+@switch(filtroSeleccionado) {
 
-        @case('creados') {
-            @if (viajesCreados.length === 0) {
-                <section class="m-4 seccion container m-auto">
-                    <div class="gradiente"></div>
-                    <div class="m-4">
-                        <h3>Viajes creados por mí</h3>
-                        <p class="text-muted fst-italic">Aún no has creado ningún viaje.</p>
-                    </div>
-                    <button [routerLink]="['/publicar']" class="none">Crear un viaje</button>
-                </section>
-            }@else {
-            <div class="gradiente"></div>
-            <section class="m-4 seccion container m-auto">
-            <h3>Creados por mí</h3>
-            <article class="viajes">
-                @for (viaje of viajesCreados; track viaje.id_viaje) {
-                <section class="viaje" style="position: relative;">
-                    <figure>
-                    <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
-                    <img [src]="viaje.imagen ? viaje.imagen : 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
-                        alt="Foto de viaje">
-                </figure>
-                <div class="parrafos">
-                    <ul class="list-unstyled">
-                        <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
-                        <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
-                    </ul>
-                    </div>
-                    <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
-                    <button class="btn btn-danger ms-2" (click)="eliminarViaje(viaje.id_viaje)">🗑️ Eliminar</button>
-                </section>
-                }
-            </article>
-            </section>
-            }
+@case('creados') {
+@if (viajesCreados.length === 0) {
+<section class="m-4 seccion container m-auto">
+    <div class="gradiente"></div>
+    <div class="m-4">
+        <h3>Viajes creados por mí</h3>
+        <p class="text-muted fst-italic">Aún no has creado ningún viaje.</p>
+    </div>
+    <button [routerLink]="['/publicar']" class="none">Crear un viaje</button>
+</section>
+}@else {
+<div class="gradiente"></div>
+<section class="m-4 seccion container m-auto">
+    <h3>Creados por mí</h3>
+    <article class="viajes">
+        @for (viaje of viajesCreados; track viaje.id_viaje) {
+        <section class="viaje" style="position: relative;">
+            <figure>
+                <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
+                <img [src]="viaje.imagen ? viaje.imagen : 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
+                    alt="Foto de viaje">
+            </figure>
+            <div class="parrafos">
+                <ul class="list-unstyled">
+                    <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
+                    <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
+                </ul>
+            </div>
+            <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
+            <button class="btn btn-danger ms-2" (click)="eliminarViaje(viaje.id_viaje)">🗑️ Eliminar</button>
+        </section>
         }
+    </article>
+</section>
+}
+}
 
-        @case('participados') {
-            @if (viajesParticipados.length === 0) {
-                <section class="m-4 seccion container m-auto">
-                    <div class="gradiente"></div>
-                    <div class="m-4">
-                        <h3>Viajes donde participo</h3>
-                        <p class="text-muted fst-italic">Todavía no te has unido a ningún viaje.</p>
-                    </div>
-                    <button [routerLink]="['/viajes']" class="none">Ir a viajes</button>
-                </section>
-            }@else {
-            <div class="gradiente"></div>
-            <section class="m-4 seccion container m-auto">
-            <h3>Viajes donde participo</h3>
-            <article class="viajes">
-                @for (viaje of viajesParticipados; track viaje.id_viaje) {
-                <section class="viaje" style="position: relative;">
-                    <figure>
-                    <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
-                    <img [src]="viaje.imagen" alt="">
-                    </figure>
-                    <div class="parrafos">
-                    <ul class="list-unstyled">
-                        <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
-                        <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
-                    </ul>
-                    </div>
-                    <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
-                </section>
-                }
-            </article>
-            </section>
-            }
+@case('participados') {
+@if (viajesParticipados.length === 0) {
+<section class="m-4 seccion container m-auto">
+    <div class="gradiente"></div>
+    <div class="m-4">
+        <h3>Viajes donde participo</h3>
+        <p class="text-muted fst-italic">Todavía no te has unido a ningún viaje.</p>
+    </div>
+    <button [routerLink]="['/viajes']" class="none">Ir a viajes</button>
+</section>
+}@else {
+<div class="gradiente"></div>
+<section class="m-4 seccion container m-auto">
+    <h3>Viajes donde participo</h3>
+    <article class="viajes">
+        @for (viaje of viajesParticipados; track viaje.id_viaje) {
+        <section class="viaje" style="position: relative;">
+            <figure>
+                <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
+                <img [src]="viaje.imagen ? viaje.imagen : 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
+                    alt="Foto de viaje">
+            </figure>
+            <div class="parrafos">
+                <ul class="list-unstyled">
+                    <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
+                    <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
+                </ul>
+            </div>
+            <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
+        </section>
         }
+    </article>
+</section>
+}
+}
 
-        @case('finalizados') {
-            @if (viajesFinalizados.length === 0) {
-                <section class="m-4 seccion container m-auto">
-                    <div class="gradiente"></div>
-                    <div class="m-4">
-                        <h3>Viajes donde participo</h3>
-                        <p class="text-muted fst-italic">Aún no tienes viajes finalizados.</p>
-                    </div>
-                </section>
-            }@else {
-            <div class="gradiente"></div>
-            <section class="m-4 seccion container m-auto">
-            <h3>Finalizados</h3>
-            <article class="viajes">
-                @for (viaje of viajesFinalizados; track viaje.id_viaje) {
-                <section class="viaje bg-light opacity-75" style="position: relative;">
-                    <div class="sello-finalizado">VIAJE FINALIZADO</div>
-                    <figure>
-                    <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
-                    <img [src]="viaje.imagen" alt="">
-                    </figure>
-                    <div class="parrafos">
-                    <ul class="list-unstyled">
-                        <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
-                        <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
-                    </ul>
-                    </div>
-                    <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
-                </section>
-                }
-            </article>
-            </section>
-            }
+@case('finalizados') {
+@if (viajesFinalizados.length === 0) {
+<section class="m-4 seccion container m-auto">
+    <div class="gradiente"></div>
+    <div class="m-4">
+        <h3>Viajes donde participo</h3>
+        <p class="text-muted fst-italic">Aún no tienes viajes finalizados.</p>
+    </div>
+</section>
+}@else {
+<div class="gradiente"></div>
+<section class="m-4 seccion container m-auto">
+    <h3>Finalizados</h3>
+    <article class="viajes">
+        @for (viaje of viajesFinalizados; track viaje.id_viaje) {
+        <section class="viaje bg-light opacity-75" style="position: relative;">
+            <div class="sello-finalizado">VIAJE FINALIZADO</div>
+            <figure>
+                <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
+                <img [src]="viaje.imagen ? viaje.imagen : 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
+                    alt="Foto de viaje">
+            </figure>
+            <div class="parrafos">
+                <ul class="list-unstyled">
+                    <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
+                    <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
+                </ul>
+            </div>
+            <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
+        </section>
         }
+    </article>
+</section>
+}
+}
 
-    @case('todos') {
-        @if (viajesCreados.length === 0) {
-            <section class="m-4 seccion container m-auto">
-                <div class="m-4">
-                    <h3>Viajes creados por mí</h3>
-                    <p class="text-muted fst-italic">Aún no has creado ningún viaje.</p>
-                </div>
-                <button [routerLink]="['/publicar']" class="none">Crear un viaje</button>
-            </section>
-        }@else {
-            <div class="gradiente"></div>
-            <section class="m-4 seccion container m-auto">
-                <h3>Creados por mí</h3>
-                <article class="viajes">
-                @for (viaje of viajesCreados; track viaje.id_viaje) {
-                    <section class="viaje" style="position: relative;">
-                    <figure>
-                        <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
-                        <img [src]="viaje.imagen" alt="">
-                    </figure>
-                    <div class="parrafos">
-                        <ul class="list-unstyled">
-                        <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
-                        <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
-                        </ul>
-                    </div>
-                    <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
-                    <button class="btn btn-danger ms-2" (click)="eliminarViaje(viaje.id_viaje)">🗑️ Eliminar</button>
-                    </section>
-                }
-                </article>
-            </section>
-            }
-    
-        @if (viajesParticipados.length === 0) {
-            <section class="m-4 seccion container m-auto">
-                <div class="gradiente"></div>
-                <div class="m-4">
-                    <h3>Viajes donde participo</h3>
-                    <p class="text-muted fst-italic">Todavía no te has unido a ningún viaje.</p>
-                </div>
-                <button [routerLink]="['/viajes']" class="none">Ir a viajes</button>
-            </section>
-        }@else {
-            <div class="gradiente"></div>
-            <section class="m-4 seccion container m-auto">
-                <h3>Viajes donde participo</h3>
-                <article class="viajes">
-                    @for (viaje of viajesParticipados; track viaje.id_viaje) {
-                        <section class="viaje" style="position: relative;">
-                            <figure>
-                                <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
-                                <img [src]="viaje.imagen" alt="">
-                            </figure>
-                            <div class="parrafos">
-                                <ul class="list-unstyled">
-                                    <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
-                                    <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
-                                </ul>
-                            </div>
-                            <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
-                        </section>
-                    }
-                </article>
-            </section>
-            }
-        @if (viajesFinalizados.length === 0) {
-            <section class="m-4 seccion container m-auto">
-                <div class="gradiente"></div>
-                <div class="m-4">
-                    <h3>Viajes donde participo</h3>
-                    <p class="text-muted fst-italic">Aún no tienes viajes finalizados.</p>
-                </div>
-            </section>
-        }@else {
-            <div class="gradiente"></div>
-            <section class="m-4 seccion container m-auto">
-                <h3>Finalizados</h3>
-                <article class="viajes">
-                @for (viaje of viajesFinalizados; track viaje.id_viaje) {
-                    <section class="viaje bg-light opacity-75" style="position: relative;">
-                    <div class="sello-finalizado">VIAJE FINALIZADO</div>
-                    <figure>
-                        <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
-                        <img [src]="viaje.imagen" alt="">
-                    </figure>
-                    <div class="parrafos">
-                        <ul class="list-unstyled">
-                        <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
-                        <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
-                        </ul>
-                    </div>
-                    <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
-                    </section>
-                }
-                </article>
-            </section>
-            }
+@case('todos') {
+@if (viajesCreados.length === 0) {
+<section class="m-4 seccion container m-auto">
+    <div class="m-4">
+        <h3>Viajes creados por mí</h3>
+        <p class="text-muted fst-italic">Aún no has creado ningún viaje.</p>
+    </div>
+    <button [routerLink]="['/publicar']" class="none">Crear un viaje</button>
+</section>
+}@else {
+<div class="gradiente"></div>
+<section class="m-4 seccion container m-auto">
+    <h3>Creados por mí</h3>
+    <article class="viajes">
+        @for (viaje of viajesCreados; track viaje.id_viaje) {
+        <section class="viaje" style="position: relative;">
+            <figure>
+                <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
+                <img [src]="viaje.imagen ? viaje.imagen : 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
+                    alt="Foto de viaje">
+            </figure>
+            <div class="parrafos">
+                <ul class="list-unstyled">
+                    <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
+                    <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
+                </ul>
+            </div>
+            <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
+            <button class="btn btn-danger ms-2" (click)="eliminarViaje(viaje.id_viaje)">🗑️ Eliminar</button>
+        </section>
         }
-    }
+    </article>
+</section>
+}
+
+@if (viajesParticipados.length === 0) {
+<section class="m-4 seccion container m-auto">
+    <div class="gradiente"></div>
+    <div class="m-4">
+        <h3>Viajes donde participo</h3>
+        <p class="text-muted fst-italic">Todavía no te has unido a ningún viaje.</p>
+    </div>
+    <button [routerLink]="['/viajes']" class="none">Ir a viajes</button>
+</section>
+}@else {
+<div class="gradiente"></div>
+<section class="m-4 seccion container m-auto">
+    <h3>Viajes donde participo</h3>
+    <article class="viajes">
+        @for (viaje of viajesParticipados; track viaje.id_viaje) {
+        <section class="viaje" style="position: relative;">
+            <figure>
+                <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
+                <img [src]="viaje.imagen ? viaje.imagen : 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
+                    alt="Foto de viaje">
+            </figure>
+            <div class="parrafos">
+                <ul class="list-unstyled">
+                    <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
+                    <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
+                </ul>
+            </div>
+            <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
+        </section>
+        }
+    </article>
+</section>
+}
+@if (viajesFinalizados.length === 0) {
+<section class="m-4 seccion container m-auto">
+    <div class="gradiente"></div>
+    <div class="m-4">
+        <h3>Viajes donde participo</h3>
+        <p class="text-muted fst-italic">Aún no tienes viajes finalizados.</p>
+    </div>
+</section>
+}@else {
+<div class="gradiente"></div>
+<section class="m-4 seccion container m-auto">
+    <h3>Finalizados</h3>
+    <article class="viajes">
+        @for (viaje of viajesFinalizados; track viaje.id_viaje) {
+        <section class="viaje bg-light opacity-75" style="position: relative;">
+            <div class="sello-finalizado">VIAJE FINALIZADO</div>
+            <figure>
+                <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
+                <img [src]="viaje.imagen ? viaje.imagen : 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
+                    alt="Foto de viaje">
+            </figure>
+            <div class="parrafos">
+                <ul class="list-unstyled">
+                    <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
+                    <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
+                </ul>
+            </div>
+            <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
+        </section>
+        }
+    </article>
+</section>
+}
+}
+}
