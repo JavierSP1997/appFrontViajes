@@ -8,6 +8,6 @@
 		"css": false,
 		"javascript": false,
 		"typescript": true,
-		"html": false
+		"html": true
 	}
 }
