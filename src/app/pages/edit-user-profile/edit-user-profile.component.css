@@ -1,59 +1,76 @@
-h2{
-    color: var(--color-texto-botones);
-    margin: 35px 0;
+h2 {
+	color: var(--color-texto-botones);
+	margin: 35px 0;
 }
 
-.formulario {
-    width: 900px;
-    margin: auto;
-    padding: 40px;
+label {
+	font-weight: bold;
+	color: var(--color-texto-botones);
 }
-
-label{
-    font-weight: bold;
-    color: var(--color-texto-botones);
-
+.form-label {
+	color: #e4944a;
+}
+form {
+	padding: 20px;
+	margin-bottom: 30px;
+	background-color: #ffebcc;
+}
+.ojito {
+	background-color: gray;
+	color: white;
 }
 
 .botones {
-    margin-bottom: 40px;
-    button{
-        border-radius: 10px;
-        padding: 8px 20px;
-        font-weight: bold;
-        color: var(--color-texto-botones);
-
-    }
-    .guardar {
-        background-color: var(--color-boton);
-        border: var(--color-boton);
-        transition: 0.3s;
-        &:hover {
-            color: var(--color-fondo-principal);
-            transform: scale(1.02);
-        }
-    }
-    .cancelar {
-        background-color: gray;
-        border: 2px solid gray;
-        transition: 0.3s;
-        &:hover{
-            color: var(--color-fondo-principal);
-            transform: scale(1.02);
-        }
-    }
-    .eliminar {
-        background-color: var(--color-enlace-hover);
-        border: 2px solid var(--color-enlace-hover);
-        transition: 0.3s;
-        &:hover{
-            color: var(--color-fondo-principal);
-            transform: scale(1.02);
-        }
-    }
+	margin-bottom: 40px;
+	button {
+		border-radius: 10px;
+		padding: 8px 20px;
+		font-weight: bold;
+		color: white;
+	}
+	.guardar {
+		background-color: var(--color-boton);
+		border: var(--color-boton);
+		transition: 0.3s;
+		&:hover {
+			color: var(--color-fondo-principal);
+			transform: scale(1.02);
+		}
+	}
+	.cancelar {
+		background-color: gray;
+		border: 2px solid gray;
+		transition: 0.3s;
+		&:hover {
+			color: var(--color-fondo-principal);
+			transform: scale(1.02);
+		}
+	}
+	.eliminar {
+		background-color: var(--color-enlace-hover);
+		border: 2px solid var(--color-enlace-hover);
+		transition: 0.3s;
+		&:hover {
+			color: var(--color-fondo-principal);
+			transform: scale(1.02);
+		}
+	}
 }
 
-.gradiente{
+.gradiente {
 	background-image: linear-gradient(to right, white, #e4944a, #e4944a, white);
 	height: 3px;
+}
+.transition-icon {
+	transition: all 0.3s ease;
+	display: inline-block;
+}
+
+.icono-toggle .bi-eye,
+.icono-toggle .bi-eye-slash {
+	transform: rotate(0deg);
+}
+
+.icono-toggle .bi-eye-slash {
+	transform: rotate(180deg);
 }
