@@ -1,7 +1,7 @@
 <div class="container">
   <h2>Editar perfil</h2>
 
-<div class="gradiente"></div>
+  <div class="gradiente"></div>
 
   <form class="formulario mt-4" [formGroup]="perfilUsuarioForm" (ngSubmit)="onSubmit()">
     <div class="row gy-4">
@@ -18,8 +18,9 @@
           <input id="photo" type="text" class="form-control" placeholder="URL de la imagen" formControlName="photo" />
 
           @if (imagenPreview || perfilUsuarioForm.value.photo) {
-          <img [src]="imagenPreview || perfilUsuarioForm.value.photo" alt="Preview"
-            class="profile-img mt-3 w-100 h-auto" />
+          <img
+            [src]="imagenPreview || perfilUsuarioForm.value.photo || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'"
+            alt="Preview" class="profile-img mt-3 w-100 h-auto" />
           }
         </div>
       </div>

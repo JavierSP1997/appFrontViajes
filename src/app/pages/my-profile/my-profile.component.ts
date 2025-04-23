@@ -45,7 +45,7 @@ export class MyProfileComponent {
 	}
 	async cerrarSesion() {
 		const nombre = this.usuario?.nombre || "usuario";
-	
+
 		const ToastConfirm = Swal.mixin({
 			toast: true,
 			position: "top-end",
@@ -54,21 +54,21 @@ export class MyProfileComponent {
 			confirmButtonText: "Aceptar",
 			cancelButtonText: "Cancelar",
 			background: "#e0f2fe",
-			color: "#0369a1", 
-			iconColor: "#0284c7", 
+			color: "#0369a1",
+			iconColor: "#0284c7",
 			customClass: {
 				popup: "colored-toast",
 				confirmButton: "swal2-confirm swal2-styled",
 				cancelButton: "swal2-cancel swal2-styled",
 			},
 		});
-	
+
 		const resultado = await ToastConfirm.fire({
 			icon: "question",
 			title: `¿Cerrar sesión, ${nombre}?`,
 			text: "Tu sesión se cerrará y volverás al inicio.",
 		});
-	
+
 		if (resultado.isConfirmed) {
 			Swal.fire({
 				toast: true,
@@ -82,12 +82,11 @@ export class MyProfileComponent {
 				color: "#0369a1",
 				iconColor: "#0ea5e9",
 			});
-	
+
 			setTimeout(() => {
 				localStorage.removeItem("token");
 				this.router.navigate(["/"]);
 			}, 2000);
 		}
 	}
-	
 }
