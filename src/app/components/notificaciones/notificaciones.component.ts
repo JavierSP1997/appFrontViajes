@@ -72,10 +72,24 @@ async ngOnInit(): Promise<void> {
       console.error("Error al marcar como leído:", err);
     }
   }
-  cerrarNotificacion(idNotificacion: number) {
-    // Aquí puedes implementar la lógica para marcar la notificación como leída o eliminarla
-    console.log('Cerrar notificación con ID:', idNotificacion);
-    // Lógica adicional (si es necesario, por ejemplo, para eliminarla del array de notificaciones)
+  async cerrarNotificacion(id: number) {
+    try {
+      const notificacion = this.notificaciones.find(n => n.id_notificacion === id);
+      if (!notificacion) return;
+  
+      const notificacionActualizada = {
+        mensaje: notificacion.mensaje,
+        tipo: "",
+        estado: 'leído'
+      };
+  
+      await this.notificacionesService.actualizarNotificacion(id, notificacionActualizada, this.token);
+      this.notificaciones = this.notificaciones.filter(n => n.id_notificacion !== id);
+  
+    } catch (err) {
+      console.error('Error al cerrar la notificación:', err);
+    }
   }
+  
   
 }
