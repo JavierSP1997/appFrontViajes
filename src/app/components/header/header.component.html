@@ -40,17 +40,17 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/perfil-usuario" routerLinkActive="active" data-bs-toggle="collapse"
-            data-bs-target="#navbarContenido">
-            <i class="fas fa-user"></i> Mi Perfil
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" routerLink="/viajes" routerLinkActive="active" data-bs-toggle="collapse"
-            data-bs-target="#navbarContenido">
-            <i class="fas fa-plane"></i> Viajes
-          </a>
-        </li>
+          data-bs-target="#navbarContenido">
+          <i class="fas fa-plane"></i> Viajes
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/perfil-usuario" routerLinkActive="active" data-bs-toggle="collapse"
+          data-bs-target="#navbarContenido">
+          <i class="fas fa-user"></i> Mi Perfil
+        </a>
+      </li>
       </ul>
 
       @if (token) {
