@@ -22,38 +22,26 @@ form {
 
 .botones {
 	margin-bottom: 40px;
-	button {
-		border-radius: 10px;
-		padding: 8px 20px;
-		font-weight: bold;
-		color: white;
-	}
-	.guardar {
-		background-color: var(--color-boton);
-		border: var(--color-boton);
+}
+.botones button {
+	border-radius: 10px;
+	font-weight: bold;
+	color: white;
+	background-color: var(--color-boton);
+	border: 2px solid var(--color-boton);
+	transition: 0.3s;
+}
+.botones button:hover {
+	background-color: var(--color-boton-bgc-hover);
+	transform: scale(1.1);
+	transition: 0.3s;
+}
+button.btn.btn-warning {
+	transition: 0.3s;
+	&:hover {
+		background-color: brown;
+		border-color: brown;
 		transition: 0.3s;
-		&:hover {
-			color: var(--color-fondo-principal);
-			transform: scale(1.02);
-		}
-	}
-	.cancelar {
-		background-color: gray;
-		border: 2px solid gray;
-		transition: 0.3s;
-		&:hover {
-			color: var(--color-fondo-principal);
-			transform: scale(1.02);
-		}
-	}
-	.eliminar {
-		background-color: var(--color-enlace-hover);
-		border: 2px solid var(--color-enlace-hover);
-		transition: 0.3s;
-		&:hover {
-			color: var(--color-fondo-principal);
-			transform: scale(1.02);
-		}
 	}
 }
 
