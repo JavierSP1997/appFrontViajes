@@ -1,71 +1,71 @@
 .perfil {
-	width: 50px; 
-	height: 50px; 
+	width: 50px;
+	height: 50px;
 	object-fit: cover; /* Esto asegura que la imagen mantenga su proporción */
 	border-radius: 50%; /* Asegura que la imagen sea redonda */
-  }
-  
-  .navbar {
+	border: 3px solid #3d5a5d;
+}
+
+.navbar {
 	background-color: var(--color-fondo-principal);
 	color: var(--color-titulo-principal);
-  }
-  
-  .navbar {
+}
+
+.navbar {
 	font-family: "Arial", sans-serif;
 	padding: 0.5rem 1rem;
-  }
-  
-  .navbar-brand {
+}
+
+.navbar-brand {
 	color: var(--color-titulo-principal);
 	font-size: 1.5rem;
 	font-weight: bold;
 	text-transform: uppercase;
 	transition: color 0.3s ease;
-  }
-  
-  .navbar-brand:hover {
+}
+
+.navbar-brand:hover {
 	color: var(--color-boton-hover-fondo);
 	text-decoration: none;
-  }
-  
-  .nav-link {
+}
+
+.nav-link {
 	color: var(--color-titulo-principal);
 	margin-right: 1rem;
 	transition: color 0.3s ease;
-  }
-  
-  .nav-link:hover {
+}
+
+.nav-link:hover {
 	color: var(--color-boton-hover-fondo);
 	text-decoration: none;
-  }
-  
-  .nav-link.active {
+}
+
+.nav-link.active {
 	color: var(--color-titulo-principal);
 	font-weight: bold;
 	color: #ffc107;
-  }
-  
-  .navbar-toggler {
+}
+
+.navbar-toggler {
 	--bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%233D5A5D' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-  }
-  
-  .navbar {
+}
+
+.navbar {
 	position: relative;
 	z-index: 1030;
-  }
-  
-  @media (max-width: 992px) {
+}
+
+@media (max-width: 992px) {
 	.navbar-collapse {
-	  position: absolute;
-	  top: 100%;
-	  right: 0;
-	  left: 0;
-	  background-color: #f7f1e5c5;
-	  z-index: 1040;
+		position: absolute;
+		top: 100%;
+		right: 0;
+		left: 0;
+		background-color: #f7f1e5c5;
+		z-index: 1040;
 	}
-	
+
 	.navbar-nav {
-	  text-align: center;
+		text-align: center;
 	}
-  }
-  
+}
