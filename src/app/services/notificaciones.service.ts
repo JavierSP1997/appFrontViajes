@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 // biome-ignore lint/style/useImportType: <explanation>
 import  { HttpClient, HttpHeaders} from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
-import type { Notificacion } from "../../../interfaces/notificacion.interface";
+import type { ActualizaNotifiacion, Notificacion, NuevaNotifiacion } from "../../../interfaces/notificacion.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +16,31 @@ export class NotificacionesService {
     const headers = new HttpHeaders().set("Authorization", token)
     return lastValueFrom(
       this.httpClient.get<Notificacion[]>(`${this.baseUrl}`,
-				{ headers },
+        { headers },
       )
     );
   }  
 
-  marcarComoLeido(idNotificacion: number) {
+  actualizarNotificacion(idNotificacion: number, notification: ActualizaNotifiacion, token: string) {
+
+    const headers = new HttpHeaders().set("Authorization", token)
+
     return lastValueFrom(
-      this.httpClient.put(`${this.baseUrl}/leido/${idNotificacion}`, {})
+      this.httpClient.put(`${this.baseUrl}/${idNotificacion}`,
+        notification,
+        { headers },
+      )
     );
+  }
+
+  nuevaNotificacion(notificacion: NuevaNotifiacion, token: string) {
+    
+    const headers = new HttpHeaders().set("Authorization", token)
+    return lastValueFrom(
+      this.httpClient.post(
+        `${this.baseUrl}`, notificacion, { headers },
+      )
+    );
+
   }
 }
