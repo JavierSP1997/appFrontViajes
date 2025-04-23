@@ -89,7 +89,7 @@ export class PublicarViajeComponent {
 		personas_minimas: new FormControl("", [
 			Validators.required,
 			Validators.min(1),
-			Validators.max(100),
+			Validators.max(10),
 		]),
 		localizacion: new FormControl("", [Validators.required]),
 		itinerario: new FormControl("", [
