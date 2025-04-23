@@ -1,5 +1,6 @@
 .login {
 	min-height: 60vh;
+	padding-bottom: 80px;
 }
 .card {
 	background-color: var(--color-fondo-principal);
