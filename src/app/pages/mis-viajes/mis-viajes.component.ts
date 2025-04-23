@@ -30,6 +30,8 @@ export class MisViajesComponent {
 
 	ordenTitulo: 'asc' | 'desc' = 'asc';
 	ordenFecha: 'proxima' | 'lejana' = 'proxima';
+	estadoParticipacion: 'confirmado' | 'pendiente' | 'rechazado' = 'confirmado';
+
 
 	async ngOnInit() {
 		try {
@@ -89,6 +91,15 @@ export class MisViajesComponent {
 		this.viajesParticipados = [...this.viajesParticipados].sort(ordenar);
 		this.viajesFinalizados = [...this.viajesFinalizados].sort(ordenar);
 	}
+
+	get viajesParticipadosFiltrados(): Viaje[] {
+		return this.viajesParticipados.filter(viaje =>
+		viaje.participantes?.some(
+			p => p.id_usuario === this.usuarioIdLogado && p.status === this.estadoParticipacion
+		)
+		);
+	}
+	
 	
 		
 	irATrip(idViaje: number): void {
