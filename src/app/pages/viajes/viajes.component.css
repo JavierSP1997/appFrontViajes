@@ -4,7 +4,9 @@
 	margin-top: 20px;
 	display: block;
 }
-
+.boton {
+	margin-bottom: 60px;
+}
 /* Tarjeta de viaje principal */
 .viaje-card {
 	cursor: pointer;
@@ -167,6 +169,6 @@ div.sello-finalizado {
 	padding: 6px 10px;
 	border-radius: 6px;
 	font-size: .8rem;
-	box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 	z-index: 10;
 }
