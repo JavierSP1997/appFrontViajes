@@ -1,5 +1,5 @@
 <div class="dropdown">
-  <a class="nav-link position-relative" (click)="toggleDropdown()">
+  <button class="btn nav-link position-relative" (click)="toggleDropdown()">
     <i class="fas fa-bell"></i>
 
     @if (notificaciones.length > 0) {
@@ -7,11 +7,11 @@
         {{ notificaciones.length }}
       </span>
     }
-  </a>
+  </button>
 
   @if (isDropdownOpen) {
     <div class="dropdown-menu show">
-      @for ( n of notificaciones; track n.id_notificacion) {
+      @for (n of notificaciones; track n.id_notificacion) {
         <a class="dropdown-item small" (click)="marcarComoLeido(n.id_notificacion)">
           <strong>{{ n.usuarioNombre }}</strong> quiere unirse a <strong>{{ n.viajeTitulo }}</strong>
         </a>
