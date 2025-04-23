@@ -131,18 +131,6 @@ export class TripComponent {
 
 			localStorage.setItem(cooldownKey, ahora.toString());
 
-			await Swal.fire({
-				title: "¡Solicitud enviada!",
-				text: "Has pedido unirte al viaje con éxito.",
-				icon: "success",
-				toast: true,
-				position: "top-end",
-				timer: 3000,
-				showConfirmButton: false,
-				background: "#f0fff4",
-				color: "#065f46",
-			});
-
 			// Actualizar lista de participantes
 			const viajeActualizado = await this.viajesService.getViajeById(idViaje);
 			this.participantes = viajeActualizado.participantes ?? [];
@@ -160,6 +148,17 @@ export class TripComponent {
 
 			// Actualizar el progreso del cupo
 			this.actualizarProgresoCupo();
+			await Swal.fire({
+				title: "¡Solicitud enviada!",
+				text: "Has pedido unirte al viaje con éxito.",
+				icon: "success",
+				toast: true,
+				position: "top-end",
+				timer: 3000,
+				showConfirmButton: false,
+				background: "#f0fff4",
+				color: "#065f46",
+			});
 		} catch (err) {
 			await Swal.fire({
 				title: "¡Error!",
