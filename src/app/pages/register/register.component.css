@@ -1,5 +1,5 @@
 .register {
-	min-height: 60vh;
+	min-height: calc(100vh - 66px - 123px);
 	padding-bottom: 50px;
 }
 
