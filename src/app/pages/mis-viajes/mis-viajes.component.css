@@ -127,6 +127,11 @@ select{
 	background-color: #ffe0c2 ;
 }
 
+.seccion {
+	min-height: calc(100vh - 352px );
+	/* align-content: center; */
+}
+
 
 /* Responsive */
 @media (min-width: 425px) {
