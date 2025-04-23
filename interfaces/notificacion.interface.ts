@@ -5,5 +5,8 @@ export interface Notificacion {
 	mensaje: string;
 	// tipo: string;
 	fecha_notificacion: string;
-	leido: boolean;
+	estado: 'leído' | 'no_leído';
+	usuarioNombre: string;
+	viajeTitulo:   string;
+	hover?:        boolean;
 }
