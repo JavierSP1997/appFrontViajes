@@ -1,0 +1,20 @@
+<div class="dropdown">
+  <a class="nav-link position-relative" (click)="toggleDropdown()">
+    <i class="fa-solid fa-bell"></i>
+    @if (notificaciones.length > 0) {
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+        {{ notificaciones.length }}
+      </span>
+    }
+  </a>
+
+  @if (isDropdownOpen) {
+    <div class="dropdown-menu show">
+      @for ( n of notificaciones; track n.id_notificacion) {
+        <a class="dropdown-item small" (click)="marcarComoLeido(n.id_notificacion)">
+          {{ n.mensaje }}
+        </a>
+      }
+    </div>
+  }
+</div>
