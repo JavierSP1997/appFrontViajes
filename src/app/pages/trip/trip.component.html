@@ -16,8 +16,8 @@
             style="max-width: 800px; width: 100%;">
 
 
-            <img [src]="viaje.imagen" class="card-img-top rounded-top-4" alt="Imagen del viaje"
-                style="height: 350px; object-fit: cover;" />
+            <img [src]="viaje.imagen || 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
+                class="card-img-top rounded-top-4" alt="Imagen del viaje" style="height: 350px; object-fit: cover;" />
 
             <div class="card-body p-4">
                 <h2 class="card-title fw-bold text-primary mb-3">{{ viaje.nombre_viaje }}</h2>
@@ -34,7 +34,7 @@
                 </div>
                 }
 
-                <ul class="list-group list-group-flush mb-3">
+                <ul class="list-group list-group-flush mb-3 rounded-4">
                     <li class="list-group-item"><strong>📍 Localización:</strong> {{ viaje.localizacion }}</li>
                     <li class="list-group-item"><strong>📅 Fecha de inicio:</strong> {{ viaje.fecha_inicio | date:
                         'dd-MM-YYYY' }}</li>
