@@ -11,7 +11,8 @@
         <section class="viaje">
             <figure>
                 <figcaption><span>{{viaje.nombre_viaje}}</span></figcaption>
-                <img src="{{viaje.imagen}}" alt="">
+                <img [src]="viaje.imagen ? viaje.imagen : 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
+                    alt="Foto viaje">
             </figure>
             <div class="parrafos">
                 <ul class="list-unstyled">

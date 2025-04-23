@@ -69,9 +69,10 @@
                 <section class="viaje" style="position: relative;">
                     <figure>
                     <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
-                    <img [src]="viaje.imagen" alt="">
-                    </figure>
-                    <div class="parrafos">
+                    <img [src]="viaje.imagen ? viaje.imagen : 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
+                        alt="Foto de viaje">
+                </figure>
+                <div class="parrafos">
                     <ul class="list-unstyled">
                         <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
                         <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
