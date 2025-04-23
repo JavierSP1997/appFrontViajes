@@ -19,7 +19,7 @@
                 class="card-img-top rounded-top-4" alt="Imagen del viaje" style="height: 350px; object-fit: cover;" />
 
             <div class="card-body p-4">
-                <h2 class="card-title fw-bold text-primary mb-3">{{ viaje.nombre_viaje }}</h2>
+                <h2 class="card-title fw-bold mb-3 titulos">{{ viaje.nombre_viaje }}</h2>
 
                 @if (anfitrion !== null) {
                 <div class="d-flex align-items-center gap-3 mb-3" style="cursor: pointer;"
@@ -28,7 +28,7 @@
                         alt="Foto del anfitrión" class="rounded-circle" width="50" height="50">
                     <div>
                         <small class="text-muted">Anfitrión</small><br />
-                        <strong>{{ anfitrion.nombre }}</strong>
+                        <strong class="titulos">{{ anfitrion.nombre }}</strong>
                     </div>
                 </div>
                 }
@@ -89,7 +89,7 @@
     </div>
     </div>
 
-    <h3 class="text-center fw-bold text-primary">Participantes</h3>
+    <h3 class="text-center fw-bold titulos">Participantes</h3>
 
     <app-participantes [participantes]="participantes" [esAnfitrion]="esAnfitrion"
         [viajeId]="viaje.id_viaje"></app-participantes>
@@ -105,7 +105,7 @@
     }
 
     <!-- Sticky button -->
-    <button class="btn btn-primary btn-sticky" (click)="redirectToViajes()">← Volver a viajes</button>
+    <button class="btn btn-sticky titulos btnVolver" (click)="redirectToViajes()">← Volver a viajes</button>
 
     } @else {
     <p class="text-center mt-5 text-muted">No se encontró el viaje.</p>

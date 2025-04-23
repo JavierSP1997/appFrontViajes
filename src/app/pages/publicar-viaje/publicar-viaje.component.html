@@ -1,12 +1,16 @@
-<hgroup class="container titulo">
+<hgroup class="container titulo text-center mb-4">
     <h2>PUBLICA UN NUEVO VIAJE</h2>
-    <h5>Cuéntanos todo acerca de cómo quieres hacer tu viaje. Puedes escribir todo el recorrido en el itinerario, así nuestros usuarios pueden saber exactamente qué se hará en cada momento. </h5>
+    <h5 class="text-orange">Cuéntanos todo acerca de cómo quieres hacer tu viaje. Puedes escribir todo el recorrido en el itinerario, así nuestros usuarios pueden saber exactamente qué se hará en cada momento. </h5>
 </hgroup>
 
-<div class="gradiente"></div>
+<div class="container">
+    <div class="gradiente mb-4"></div>
+  </div>
 
-<div class="container formulario my-4">
-    <form [formGroup]="viajeForm" (ngSubmit)="onSubmit()" class="p-4">
+<div class="borde-gradiente">
+<div class="container formulario my-2">
+    <div class="bg-white rounded-4 p-4 mx-auto" style="max-width: 720px; ">
+    <form [formGroup]="viajeForm" (ngSubmit)="onSubmit()" >
         <div class="mb-1">
             <label for="nombre_viaje" class="form-label">Nombre del viaje</label>
             <input type="text" id="nombre_viaje" class="form-control" formControlName="nombre_viaje" placeholder="Título del viaje" />
@@ -94,6 +98,8 @@
             <button type="text" (click)="volverAtras()">Volver</button>
         </div>
     </form>
+</div>
+</div>
 </div>
 
 

@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { NotificacionesComponent } from "../../components/notificaciones/notificaciones.component";
 @Component({
 	selector: "app-my-profile",
-	imports: [RouterLink, NotificacionesComponent],
+	imports: [RouterLink],
 	templateUrl: "./my-profile.component.html",
 	styleUrl: "./my-profile.component.css",
 })
