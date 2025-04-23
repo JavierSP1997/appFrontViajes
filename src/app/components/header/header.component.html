@@ -1,18 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container p-0 d-flex align-items-center justify-content-between w-100">
-
-    <!-- Logo -->
     <a class="navbar-brand d-flex align-items-center" href="#">
       <img src="https://cdn-icons-png.flaticon.com/512/1566/1566062.png" alt="Logo" class="img-fluid me-2"
         style="max-height: 40px; max-width: 40px;">
       Viajeros Unidos
     </a>
-
-    <!-- Mobile: hamburguesa o avatar colapsador -->
     <div class="d-flex align-items-center d-lg-none">
 
       @if (!token) {
-      <!-- Hamburguesa clásica -->
       <button class="navbar-toggler p-0 me-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContenido"
         aria-controls="navbarContenido" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -20,17 +15,14 @@
       }
 
       @if (token) {
-      <!-- Avatar actúa como hamburguesa -->
       <img
         [src]="usuario?.imagen || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'"
-        alt="Foto de perfil" class="perfil rounded-circle img-thumbnail"
+        alt="Foto de perfil" class="perfil rounded-circle"
         style="width: 50px; height: 50px; cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#navbarContenido"
         aria-controls="navbarContenido" aria-expanded="false" aria-label="Toggle navigation" />
       }
 
     </div>
-
-    <!-- Menú colapsable -->
     <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarContenido">
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
@@ -40,24 +32,23 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/perfil-usuario" routerLinkActive="active" data-bs-toggle="collapse"
-            data-bs-target="#navbarContenido">
-            <i class="fas fa-user"></i> Mi Perfil
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" routerLink="/viajes" routerLinkActive="active" data-bs-toggle="collapse"
-            data-bs-target="#navbarContenido">
-            <i class="fas fa-plane"></i> Viajes
-          </a>
-        </li>
+          data-bs-target="#navbarContenido">
+          <i class="fas fa-plane"></i> Viajes
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/perfil-usuario" routerLinkActive="active" data-bs-toggle="collapse"
+          data-bs-target="#navbarContenido">
+          <i class="fas fa-user"></i> Mi Perfil
+        </a>
+      </li>
       </ul>
 
       @if (token) {
-      <!-- Avatar en desktop (solo se ve, no hace nada) -->
       <img
         [src]="usuario?.imagen || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'"
-        alt="Foto de perfil" class="perfil rounded-circle img-thumbnail d-none d-lg-block"
+        alt="Foto de perfil" class="perfil rounded-circle d-none d-lg-block"
         style="width: 50px; height: 50px;" />
       }
     </div>
