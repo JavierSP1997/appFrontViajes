@@ -41,6 +41,7 @@ export class TripComponent {
 	puedeComentar = false;
 	cargado = false;
 	error = false;
+	progresoCupo = 0;
 	token: string = localStorage.getItem("token") || "";
 
 	async ngOnInit(): Promise<void> {
@@ -71,6 +72,17 @@ export class TripComponent {
 						p.id_usuario === this.usuarioLogado?.id_usuario &&
 						p.status === "confirmado",
 				);
+
+			// biome-ignore lint/complexity/useOptionalChain: <explanation>
+			if (this.viaje && this.viaje.personas_minimas) {
+				const cantidadActual = this.viaje.participantes?.length || 0;
+				const cantidadMinima = this.viaje.personas_minimas;
+				const porcentaje = Math.min(
+					Math.floor((cantidadActual / cantidadMinima) * 100),
+					100,
+				);
+				this.progresoCupo = porcentaje;
+			}
 		} catch (err) {
 			this.error = true;
 		} finally {
@@ -119,6 +131,23 @@ export class TripComponent {
 
 			localStorage.setItem(cooldownKey, ahora.toString());
 
+			// Actualizar lista de participantes
+			const viajeActualizado = await this.viajesService.getViajeById(idViaje);
+			this.participantes = viajeActualizado.participantes ?? [];
+
+			// 🔽 Forzar re-render y mantener scroll
+			const scrollY = window.scrollY;
+			this.viaje.participantes = [...this.participantes];
+			setTimeout(() => {
+				window.scrollTo(0, scrollY);
+			}, 0);
+
+			this.esParticipante = this.participantes.some(
+				(p) => p.id_usuario === userId,
+			);
+
+			// Actualizar el progreso del cupo
+			this.actualizarProgresoCupo();
 			await Swal.fire({
 				title: "¡Solicitud enviada!",
 				text: "Has pedido unirte al viaje con éxito.",
@@ -130,13 +159,6 @@ export class TripComponent {
 				background: "#f0fff4",
 				color: "#065f46",
 			});
-
-			const viajeActualizado = await this.viajesService.getViajeById(idViaje);
-			this.participantes = viajeActualizado.participantes ?? [];
-			this.esParticipante = this.participantes.some(
-				(p) => p.id_usuario === userId,
-			);
-			setTimeout(() => location.reload(), 3000);
 		} catch (err) {
 			await Swal.fire({
 				title: "¡Error!",
@@ -187,14 +209,24 @@ export class TripComponent {
 					color: "#713f12",
 				});
 
+				// Actualizar lista de participantes
 				const viajeActualizado = await this.viajesService.getViajeById(
 					this.viaje.id_viaje,
 				);
 				this.participantes = viajeActualizado.participantes ?? [];
 
+				// 🔽 Forzar re-render y mantener scroll
+				const scrollY = window.scrollY;
+				this.viaje.participantes = [...this.participantes];
+				setTimeout(() => {
+					window.scrollTo(0, scrollY);
+				}, 0);
+
 				this.esParticipante = this.participantes.some(
 					(p) => p.id_usuario === this.usuarioLogado?.id_usuario,
 				);
+
+				this.actualizarProgresoCupo();
 			} catch (err) {
 				Swal.fire({
 					title: "¡Error!",
@@ -208,6 +240,19 @@ export class TripComponent {
 					color: "#991b1b",
 				});
 			}
+		}
+	}
+
+	actualizarProgresoCupo(): void {
+		// biome-ignore lint/complexity/useOptionalChain: <explanation>
+		if (this.viaje && this.viaje.personas_minimas) {
+			const cantidadActual = this.viaje.participantes?.length || 0;
+			const cantidadMinima = this.viaje.personas_minimas;
+			const porcentaje = Math.min(
+				Math.floor((cantidadActual / cantidadMinima) * 100),
+				100,
+			);
+			this.progresoCupo = porcentaje;
 		}
 	}
 

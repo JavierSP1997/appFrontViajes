@@ -46,22 +46,48 @@
                     <li class="list-group-item"><strong>🧭 Itinerario:</strong> {{ viaje.itinerario }}</li>
                 </ul>
 
-                <div class="text-center mt-4 d-flex justify-content-center gap-2 flex-wrap">
-                    @if (!esFinalizado) {
-                    @if (esAnfitrion) {
-                    <button class="btn btn-warning" [routerLink]="['/viajes', viaje.id_viaje, 'editar']">✏️ Editar
-                        viaje</button>
-                    <button class="btn btn-danger" (click)="eliminarViaje()">🗑️ Eliminar viaje</button>
-                    <button class="btn btn-secondary" (click)="finalizarViaje()">✅ Finalizar viaje</button>
-                    } @else if (esParticipante) {
-                    <button class="btn btn-danger" (click)="abandonar()">🚪 Abandonar viaje</button>
-                    } @else {
-                    <button class="btn btn-success" (click)="unirse()">➕ Unirse al viaje</button>
-                    }
-                    }
+                <!-- Estado del cupo -->
+                <div class="mt-4">
+                    <h5 class="fw-bold">📊 Estado del cupo</h5>
+                    <div class="progress mb-2" style="height: 25px;">
+                        <div class="progress-bar" role="progressbar"
+                            [ngClass]="{'bg-danger': progresoCupo < 50,'bg-warning': progresoCupo >= 50 && progresoCupo < 100, 'bg-success': progresoCupo >= 100}"
+                            [style.width.%]="progresoCupo">
+                            {{ progresoCupo }}%
+                        </div>
+                    </div>
+
+                    @if (progresoCupo >= 100) {
+                    <div class="alert alert-success mt-2">
+                        ¡Cupo mínimo alcanzado! 🎉
+                    </div>
+                    } @else if (progresoCupo >= 75 && progresoCupo < 100) { <div class="alert alert-warning mt-2">
+                        ¡Ya casi lo logramos! ¡Faltan pocas personas para alcanzar el mínimo! 💪
                 </div>
+                } @else {
+                <div class="alert alert-info mt-2">
+                    ¡Invitá a tus amigos a sumarse y hagamos que este viaje suceda! 🚀
+                </div>
+                }
+            </div>
+
+
+            <div class="text-center mt-4 d-flex justify-content-center gap-2 flex-wrap">
+                @if (!esFinalizado) {
+                @if (esAnfitrion) {
+                <button class="btn btn-warning" [routerLink]="['/viajes', viaje.id_viaje, 'editar']">✏️ Editar
+                    viaje</button>
+                <button class="btn btn-danger" (click)="eliminarViaje()">🗑️ Eliminar viaje</button>
+                <button class="btn btn-secondary" (click)="finalizarViaje()">✅ Finalizar viaje</button>
+                } @else if (esParticipante) {
+                <button class="btn btn-danger" (click)="abandonar()">🚪 Abandonar viaje</button>
+                } @else {
+                <button class="btn btn-success" (click)="unirse()">➕ Unirse al viaje</button>
+                }
+                }
             </div>
         </div>
+    </div>
     </div>
 
     <h3 class="text-center fw-bold text-primary">Participantes</h3>
