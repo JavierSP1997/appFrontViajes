@@ -29,7 +29,7 @@
                         alt="Foto del anfitrión" class="rounded-circle" width="50" height="50">
                     <div>
                         <small class="text-muted">Anfitrión</small><br />
-                        <strong>{{ anfitrion.nombre }}</strong>
+                        <strong class="titulos">{{ anfitrion.nombre }}</strong>
                     </div>
                 </div>
                 }
@@ -106,7 +106,7 @@
     }
 
     <!-- Sticky button -->
-    <button class="btn btn-primary btn-sticky" (click)="redirectToViajes()">← Volver a viajes</button>
+    <button class="btn btn-sticky titulos btnVolver" (click)="redirectToViajes()">← Volver a viajes</button>
 
     } @else {
     <p class="text-center mt-5 text-muted">No se encontró el viaje.</p>

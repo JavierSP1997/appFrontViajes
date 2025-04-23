@@ -25,9 +25,6 @@
 	transition: background-color 0.3s ease;
 }
 
-.btn-sticky:hover {
-	background-color: #0b5ed7;
-}
 
 .rounded-circle {
 	object-fit: cover;
@@ -101,5 +98,9 @@
   }
 
   .titulos{
-color: #e4944a;  
+color: #ed8b30;  
+}
+.btnVolver{
+	background-color: #e4944a68;
+	border-color: #ed8b30;
 }
