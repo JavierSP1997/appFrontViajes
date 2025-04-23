@@ -150,56 +150,66 @@ export class ReviewsComponent implements OnInit {
 		}
 	}
 
-	async eliminarReview(id: number) {
-		try {
-			const result = await Swal.fire({
-				title: "¿Quieres eliminar la reseña?",
-				text: "No podrás revertir esto",
-				icon: "warning",
-				showCancelButton: true,
-				confirmButtonColor: "#28a745", 
-				cancelButtonColor: "#d33",
-				confirmButtonText: "Eliminar",
-				cancelButtonText: "Cancelar",
-				customClass: {
-				confirmButton: 'swal-btn-confirm',
-				cancelButton: 'swal-btn-cancel'
-				},
-				backdrop: 'rgba(0, 0, 0, 0.4)',
-			  });
 
-			if (result.isConfirmed) {
-				await this.reviewService.deleteReview(id);
-				this.reviews = this.reviews.filter((review) => review.id_review !== id);
-				Swal.fire({
-					toast: true,
-					position: "top-end",
-					icon: "success",
-					title: "Reseña eliminada correctamente",
-					showConfirmButton: false,
-					timer: 3000,
-					timerProgressBar: true,
-				});
-				
-			}
-		} catch (error) {
-			if ((error as { status: number }).status === 404) {
-				console.error("No se encontró la reseña para eliminar.");
-			} else {
-				console.error("Error al eliminar la reseña", error);
-			}
+
+	async eliminarReview(idReview: number) {
+		const ToastConfirm = Swal.mixin({
+		  toast: true,
+		  position: "top-end",
+		  showConfirmButton: true,
+		  showCancelButton: true,
+		  confirmButtonText: "Sí, eliminar",
+		  cancelButtonText: "Cancelar",
+		  background: "#fff3cd",
+		  color: "#856404",
+		  iconColor: "#ffc107",
+		  customClass: {
+			popup: "colored-toast",
+			confirmButton: "swal2-confirm swal2-styled",
+			cancelButton: "swal2-cancel swal2-styled",
+		  },
+		});
+	  
+		const resultado = await ToastConfirm.fire({
+		  icon: "warning",
+		  title: "¿Eliminar reseña?",
+		  text: "No podrás recuperarla.",
+		});
+	  
+		if (resultado.isConfirmed) {
+		  try {
+			await this.reviewService.deleteReview(idReview);
+	  
+			await this.cargarReviews?.();
+	  
 			Swal.fire({
-				toast: true,
-				position: "top-end",
-				icon: "error",
-				title: "Error al eliminar la reseña",
-				text: "Inténtalo nuevamente.",
-				showConfirmButton: false,
-				timer: 3000,
-				timerProgressBar: true,
-				background: "#dc3545",
-				iconColor: "#fff", 
-			});			
+			  toast: true,
+			  position: "top-end",
+			  icon: "success",
+			  title: "Reseña eliminada",
+			  showConfirmButton: false,
+			  timer: 2000,
+			  timerProgressBar: true,
+			  background: "#d4edda",
+			  color: "#155724",
+			  iconColor: "#28a745",
+			});
+	  
+		  } catch (error) {
+			console.error("Error al eliminar reseña", error);
+			Swal.fire({
+			  toast: true,
+			  position: "top-end",
+			  icon: "error",
+			  title: "Error al eliminar la reseña",
+			  showConfirmButton: false,
+			  timer: 2000,
+			  timerProgressBar: true,
+			  background: "#f8d7da",
+			  color: "#721c24",
+			  iconColor: "#dc3545",
+			});
+		  }
 		}
-	}
+	  }
 }

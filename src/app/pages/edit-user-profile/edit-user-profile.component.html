@@ -1,9 +1,9 @@
-<div class="container">
-  <h2>Editar perfil</h2>
+<div class="mt-5">
+  <h2 class="text-center">Editar perfil</h2>
 
-  <div class="gradiente"></div>
-
-  <form class="formulario mt-4" [formGroup]="perfilUsuarioForm" (ngSubmit)="onSubmit()">
+  <div class="gradiente mb-4"></div>
+<div class="container mt-5 mb-5">
+  <form class="card formulario" [formGroup]="perfilUsuarioForm" (ngSubmit)="onSubmit()">
     <div class="row gy-4">
       <div class="col-md-6">
         <div>
@@ -13,31 +13,64 @@
       </div>
 
       <div class="col-md-6">
-        <div>
-          <label for="photo" class="form-label">Foto de perfil</label>
-          <input id="photo" type="text" class="form-control" placeholder="URL de la imagen" formControlName="photo" />
-
-          @if (imagenPreview || perfilUsuarioForm.value.photo) {
-          <img
-            [src]="imagenPreview || perfilUsuarioForm.value.photo || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'"
-            alt="Preview" class="profile-img mt-3 w-100 h-auto" />
+        <div class="position-relative">
+          @if (mostrarImagen && (imagenPreview || perfilUsuarioForm.value.photo)) {
+            <img
+              [src]="imagenPreview || perfilUsuarioForm.value.photo || 'https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'"
+              alt="Foto de perfil"
+              class="rounded-circle shadow position-absolute"
+              style="top: -120px; right: 20px; width: 150px; height: 150px; object-fit: cover; z-index: 10;"
+            />
           }
+
+          <div class="d-flex justify-content-between align-items-center">
+            <label for="photo" class="form-label">Foto de perfil</label>
+            
+          </div>
+
+          <div class="d-flex">
+            <input
+              id="photo"
+              type="text"
+              class="form-control pe-5"
+              placeholder="URL de la imagen"
+              formControlName="photo"
+            />
+            <button
+              class="ojito btn btn-outline-secondary icono-toggle"
+              type="button"
+              (click)="toggleImagen()"
+              [title]="mostrarImagen ? 'Ocultar imagen' : 'Ver imagen'"
+            >
+              <i class="bi transition-icon" [ngClass]="mostrarImagen ? 'bi-eye-slash' : 'bi-eye'"></i>
+            </button>
+          </div>
         </div>
       </div>
 
       <div class="col-md-6">
         <div>
           <label for="description" class="form-label">Descripción</label>
-          <textarea id="description" rows="4" class="form-control" formControlName="description"
-            placeholder="Cuéntanos un poco más de ti"></textarea>
+          <textarea
+            id="description"
+            rows="4"
+            class="form-control"
+            formControlName="description"
+            placeholder="Cuéntanos un poco más de ti"
+          ></textarea>
         </div>
       </div>
 
       <div class="col-md-6">
         <div>
           <label for="hobbies" class="form-label">Hobbies</label>
-          <textarea id="hobbies" rows="4" type="text" class="form-control" formControlName="hobbies"
-            placeholder="Cuéntanos sobre lo que te gusta"></textarea>
+          <textarea
+            id="hobbies"
+            rows="4"
+            class="form-control"
+            formControlName="hobbies"
+            placeholder="Cuéntanos sobre lo que te gusta"
+          ></textarea>
         </div>
       </div>
 
@@ -48,12 +81,9 @@
         </div>
       </div>
 
-
       <div class="col-md-6">
         <div>
-          <label for="gender" class="form-label">
-            <i class="bi bi-gender-ambiguous me-2"></i>Género
-          </label>
+          <label for="gender" class="form-label"><i class="bi bi-gender-ambiguous me-2"></i>Género</label>
           <select id="gender" class="form-select" formControlName="gender">
             <option value="" disabled>Selecciona tu género</option>
             <option value="male">Masculino</option>
@@ -63,26 +93,27 @@
         </div>
       </div>
 
-
-
       <div class="col-md-6">
         <div>
           <label for="pets" class="form-label"><i class="bi bi-house-heart me-2"></i>¿Tienes mascotas?</label>
-          <input id="pets" type="text" class="form-control" formControlName="pets"
-            placeholder="Cuéntanos más sobre tus mascotas" />
+          <input
+            id="pets"
+            type="text"
+            class="form-control"
+            formControlName="pets"
+            placeholder="Cuéntanos más sobre tus mascotas"
+          />
         </div>
       </div>
-
     </div>
 
     <div class="d-flex justify-content-center gap-4 mt-5 p-3 botones">
-      <button class="guardar" type="submit">Guardar cambios
-      </button>
-      <button class="cancelar" type="button" (click)="cancelarEdicion()">
+      <button class="btn" type="submit">Guardar cambios</button>
+      <button class="btn" type="button" (click)="cancelarEdicion()">
         <i class="bi bi-x-circle me-2"></i>Cancelar
       </button>
-      <button class="eliminar" type="button" (click)="eliminarPerfil()">Eliminar perfil
-      </button>
+      <button class="btn btn-warning" type="button" (click)="eliminarPerfil()">Eliminar perfil</button>
     </div>
-
   </form>
+</div>
+</div>

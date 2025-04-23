@@ -23,6 +23,7 @@ export class EditUserProfileComponent {
 	imagenPreview: string | null = null;
 	usuariosService = inject(UsuariosService);
 	private router = inject(Router);
+	mostrarImagen = false;
 
 	perfilUsuarioForm: FormGroup = new FormGroup({
 		name: new FormControl("", [Validators.required]),
@@ -33,6 +34,10 @@ export class EditUserProfileComponent {
 		pets: new FormControl(""),
 		photo: new FormControl(""),
 	});
+
+	toggleImagen() {
+		this.mostrarImagen = !this.mostrarImagen;
+	}
 
 	async ngOnInit() {
 		const usuario = await this.usuariosService.getPerfilUsuario();
