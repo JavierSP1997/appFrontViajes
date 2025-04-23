@@ -44,7 +44,6 @@
 @case('creados') {
 @if (viajesCreados.length === 0) {
 <section class="m-4 seccion container m-auto">
-    <div class="gradiente"></div>
     <div class="m-4">
         <h3>Viajes creados por mí</h3>
         <p class="text-muted fst-italic">Aún no has creado ningún viaje.</p>
@@ -52,7 +51,6 @@
     <button [routerLink]="['/publicar']" class="none">Crear un viaje</button>
 </section>
 }@else {
-<div class="gradiente"></div>
 <section class="m-4 seccion container m-auto">
     <h3>Creados por mí</h3>
     <article class="viajes">
@@ -79,48 +77,53 @@
 }
 
 @case('participados') {
-@if (viajesParticipados.length === 0) {
-<section class="m-4 seccion container m-auto">
-    <div class="gradiente"></div>
-    <div class="m-4">
-        <h3>Viajes donde participo</h3>
-        <p class="text-muted fst-italic">Todavía no te has unido a ningún viaje.</p>
-    </div>
+    @if (viajesParticipados.length === 0) {
+    <section class="m-4 seccion container m-auto">
+        <div class="gradiente"></div>
+        <div class="m-4">
+            <h3>Viajes donde participo</h3>
+            <p class="text-muted fst-italic">Todavía no te has unido a ningún viaje.</p>
+        </div>
+        <button [routerLink]="['/viajes']" class="none">Ir a viajes</button>
+    </section>
+    }@else {
+    <section class="m-4 seccion container m-auto">
+        <div>
+        <h3 class="mb-0">Viajes donde participo</h3>
+        <div class="d-flex justify-content-end align-items-center">
+            <label for="subfiltroEstado" class="me-2 fw-semibold">Estado:</label>
+            <select id="subfiltroEstado" class="form-select filtro-viajes w-auto" [(ngModel)]="estadoParticipacion">
+                <option value="confirmado">Aceptados</option>
+                <option value="pendiente">Pendientes</option>
+                <option value="rechazado">Rechazados</option>
+            </select>
+        </div>
+        </div>
+    @if (viajesParticipadosFiltrados.length === 0) {
+    <p class="text-muted fst-italic">Aún no te has unido a ningún viaje.</p>
     <button [routerLink]="['/viajes']" class="none">Ir a viajes</button>
-</section>
-}@else {
-<section class="m-4 seccion container m-auto">
-    <h3>Viajes donde participo</h3>
-    @if (filtroSeleccionado === 'participados') {
-    <div class="d-flex align-items-center mt-3">
-        <label for="subfiltroEstado" class="me-2 fw-semibold">Estado:</label>
-        <select id="subfiltroEstado" class="form-select filtro-viajes w-auto" [(ngModel)]="estadoParticipacion">
-            <option value="confirmado">Aceptados</option>
-            <option value="pendiente">Pendientes</option>
-            <option value="rechazado">Rechazados</option>
-        </select>
-    </div>
+    } @else {
+        <article class="viajes">
+            @for (viaje of viajesParticipadosFiltrados; track viaje.id_viaje) {
+            <section class="viaje" style="position: relative;">
+                <figure>
+                    <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
+                    <img [src]="viaje.imagen ? viaje.imagen : 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
+                        alt="Foto de viaje">
+                </figure>
+                <div class="parrafos">
+                    <ul class="list-unstyled">
+                        <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
+                        <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
+                    </ul>
+                </div>
+                <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
+            </section>
+            }
+        </article>
     }
-    <article class="viajes">
-        @for (viaje of viajesParticipadosFiltrados; track viaje.id_viaje) {
-        <section class="viaje" style="position: relative;">
-            <figure>
-                <figcaption><span>{{ viaje.nombre_viaje }}</span></figcaption>
-                <img [src]="viaje.imagen ? viaje.imagen : 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
-                    alt="Foto de viaje">
-            </figure>
-            <div class="parrafos">
-                <ul class="list-unstyled">
-                    <li>Fecha del viaje <br> <span>{{ viaje.fecha_inicio | date: 'dd-MM-yyyy' }}</span></li>
-                    <li>Destino <br> <span>{{ viaje.localizacion }}</span></li>
-                </ul>
-            </div>
-            <button class="btn info me-2" (click)="irATrip(viaje.id_viaje)">+ INFO</button>
-        </section>
-        }
-    </article>
 </section>
-}
+    }
 }
 
 @case('finalizados') {
@@ -217,7 +220,7 @@
         </div>
     </div>
     @if (viajesParticipadosFiltrados.length === 0) {
-    <p class="text-muted fst-italic">No tienes viajes en este estado.</p>
+    <p class="text-muted fst-italic">Aún no te has unido a ningún viaje.</p>
     <button [routerLink]="['/viajes']" class="none">Ir a viajes</button>
     } @else {
     <article class="viajes">
@@ -246,7 +249,7 @@
 <section class="m-4 seccion container m-auto">
     <div class="gradiente"></div>
     <div class="m-4">
-        <h3>Viajes donde participo</h3>
+        <h3>Viajes finalizados</h3>
         <p class="text-muted fst-italic">Aún no tienes viajes finalizados.</p>
     </div>
 </section>
