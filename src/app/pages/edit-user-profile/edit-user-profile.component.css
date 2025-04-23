@@ -1,64 +1,64 @@
 h2 {
-	color: var(--color-texto-botones);
-	margin: 35px 0;
+    color: var(--color-texto-botones);
+    margin: 35px 0;
 }
 
 label {
-	font-weight: bold;
-	color: var(--color-texto-botones);
+    font-weight: bold;
+    color: var(--color-texto-botones);
 }
 .form-label {
-	color: #e4944a;
+    color: #e4944a;
 }
 form {
-	padding: 20px;
-	margin-bottom: 30px;
-	background-color: #ffebcc;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #ffebcc;
 }
 .ojito {
-	background-color: gray;
-	color: white;
+    background-color: gray;
+    color: white;
 }
 
 .botones {
-	margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 .botones button {
-	border-radius: 10px;
-	font-weight: bold;
-	color: white;
-	background-color: var(--color-boton);
-	border: 2px solid var(--color-boton);
-	transition: 0.3s;
+    border-radius: 10px;
+    font-weight: bold;
+    color: white;
+    background-color: var(--color-boton);
+    border: 2px solid var(--color-boton);
+    transition: 0.3s;
 }
 .botones button:hover {
-	background-color: var(--color-boton-bgc-hover);
-	transform: scale(1.1);
-	transition: 0.3s;
+    background-color: var(--color-boton-bgc-hover);
+    transform: scale(1.1);
+    transition: 0.3s;
 }
 button.btn.btn-warning {
-	transition: 0.3s;
-	&:hover {
-		background-color: brown;
-		border-color: brown;
-		transition: 0.3s;
-	}
+    transition: 0.3s;
+    &:hover {
+        background-color: brown;
+        border-color: brown;
+        transition: 0.3s;
+    }
 }
 
 .gradiente {
-	background-image: linear-gradient(to right, white, #e4944a, #e4944a, white);
-	height: 3px;
+    background-image: linear-gradient(to right, white, #e4944a, #e4944a, white);
+    height: 3px;
 }
 .transition-icon {
-	transition: all 0.3s ease;
-	display: inline-block;
+    transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .icono-toggle .bi-eye,
 .icono-toggle .bi-eye-slash {
-	transform: rotate(0deg);
+    transform: rotate(0deg);
 }
 
 .icono-toggle .bi-eye-slash {
-	transform: rotate(180deg);
+    transform: rotate(180deg);
 }
