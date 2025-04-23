@@ -1,12 +1,14 @@
 <div class="container mt-5">
   <div class="card shadow-lg border-0 rounded-4">
     <div class="card-body p-4">
-      <h4 class="text-center text-primary fw-bold mb-4">Chat de viaje</h4>
+      <h4 class="text-center fw-bold mb-4">Chat de viaje</h4>
       <div
         class="chat-container mb-4 p-3 bg-light rounded-4"
         #chatContainer
-        style="max-height: 400px; overflow-y: auto;"
-      >
+        style="max-height: 400px; overflow-y: auto;">
+        @if(comentarios.length === 0){
+          <p class="text-center text-muted">Sé el primero en comentar en el viaje. ¡Anímate!</p>
+        }@else {
         <ul class="list-unstyled m-0">
           @for (comentario of comentarios; track $index) {
             <li class="mb-3">
@@ -61,6 +63,7 @@
                         </div>
                       </div>
                     }
+                    
                   </div>
                 </div>
               } @else {
@@ -79,6 +82,7 @@
             </li>
           }
         </ul>
+      }
       </div>
 
       <div class="d-flex flex-column">
@@ -90,7 +94,7 @@
         ></textarea>
 
         <button
-          class="btn btn-primary mx-auto px-5 py-2 rounded-pill fw-semibold"
+          class=" enviar mx-auto px-5 py-2 rounded-pill fw-semibold"
           (click)="enviarComentario()"
         >
           Enviar
