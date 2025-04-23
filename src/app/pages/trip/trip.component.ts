@@ -106,7 +106,7 @@ export class TripComponent {
 					toast: true,
 					position: "top-end",
 					showConfirmButton: false,
-					timer: 4000,
+					timer: 3000,
 					background: "#e0f2fe",
 					color: "#075985",
 				});
@@ -119,6 +119,13 @@ export class TripComponent {
 
 			localStorage.setItem(cooldownKey, ahora.toString());
 
+			
+			const viajeActualizado = await this.viajesService.getViajeById(idViaje);
+			this.participantes = viajeActualizado.participantes ?? [];
+			this.esParticipante = this.participantes.some(
+				(p) => p.id_usuario === userId,
+			);
+			setTimeout(() => location.reload(), 3000);
 			await Swal.fire({
 				title: "¡Solicitud enviada!",
 				text: "Has pedido unirte al viaje con éxito.",
@@ -130,13 +137,6 @@ export class TripComponent {
 				background: "#f0fff4",
 				color: "#065f46",
 			});
-
-			const viajeActualizado = await this.viajesService.getViajeById(idViaje);
-			this.participantes = viajeActualizado.participantes ?? [];
-			this.esParticipante = this.participantes.some(
-				(p) => p.id_usuario === userId,
-			);
-			setTimeout(() => location.reload(), 3000);
 		} catch (err) {
 			await Swal.fire({
 				title: "¡Error!",
