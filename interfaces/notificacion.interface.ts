@@ -9,4 +9,15 @@ export interface Notificacion {
 	usuarioNombre: string;
 	viajeTitulo:   string;
 	hover?:        boolean;
-}
+  }
+  
+  export interface ActualizaNotifiacion {
+	mensaje: string;
+	tipo: string;
+	estado: string;
+  }
+  
+  export interface NuevaNotifiacion extends ActualizaNotifiacion {
+	usuarioId: number;
+	idViaje: number;
+  }
