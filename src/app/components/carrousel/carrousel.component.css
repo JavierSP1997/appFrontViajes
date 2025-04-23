@@ -3,7 +3,9 @@
 	background-position: center;
 	border-radius: 1rem;
 	overflow: hidden;
-	min-height: 250px;
+}
+.alto {
+	height: 320px;
 }
 
 #carouselResenas {
