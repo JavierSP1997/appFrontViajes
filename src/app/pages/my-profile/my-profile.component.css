@@ -41,7 +41,9 @@ h4 {
 	color: #03030360;
 }
 
-.logOut{
-	background-color: brown;
-	border: 2px solid brown;
+.logOut {
+	&:hover {
+		background-color: brown;
+		border: 2px solid brown;
+	}
 }
