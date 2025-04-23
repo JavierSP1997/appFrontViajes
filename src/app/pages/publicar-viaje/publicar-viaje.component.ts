@@ -5,6 +5,7 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from "@angular/forms";
+import type { AbstractControl } from "@angular/forms";
 import { Router } from "@angular/router";
 import { ViajesService } from "../../services/viajes.service";
 import { UsuariosService } from "../../services/usuarios.service";
@@ -68,23 +69,37 @@ export class PublicarViajeComponent {
 		"Valladolid",
 		"Vitoria-Gasteiz",
 		"Zamora",
-		"Zaragoza"
-		
+		"Zaragoza",
 	];
 	private viajesService = inject(ViajesService);
 	private usuariosService = inject(UsuariosService);
 	private router = inject(Router);
 
 	viajeForm: FormGroup = new FormGroup({
-		nombre_viaje: new FormControl("", [Validators.required]),
+		nombre_viaje: new FormControl("", [
+			Validators.required,
+			Validators.pattern(/^[\p{L}\s]{3,}$/u),
+		]),
 		fecha_inicio: new FormControl("", [Validators.required]),
 		fecha_fin: new FormControl("", [Validators.required]),
-		coste_por_persona: new FormControl("", [Validators.required]),
-		personas_minimas: new FormControl("", [Validators.required]),
+		coste_por_persona: new FormControl("", [
+			Validators.required,
+			Validators.min(1),
+		]),
+		personas_minimas: new FormControl("", [
+			Validators.required,
+			Validators.min(1),
+			Validators.max(100),
+		]),
 		localizacion: new FormControl("", [Validators.required]),
-		itinerario: new FormControl("", [Validators.required]),
+		itinerario: new FormControl("", [
+			Validators.required,
+			Validators.pattern(/^[\p{L}\s]{3,}$/u),
+		]),
 		imagen: new FormControl(""),
-	});
+	},
+	this.fechasValidas.bind(this)
+);
 
 	async onSubmit() {
 		if (this.viajeForm.valid) {
@@ -110,7 +125,19 @@ export class PublicarViajeComponent {
 		);
 	}
 
-	volverAtras(){
+	volverAtras() {
 		this.router.navigate(["/perfil-usuario"]);
 	}
+	fechasValidas(control: AbstractControl): { fechaInvalida: boolean } | null {
+		const formulario = control as FormGroup;
+		const fechaInicio = formulario.get("fecha_inicio")?.value;
+		const fechaFin = formulario.get("fecha_fin")?.value;
+		const inicio = new Date(fechaInicio);
+		const fin = new Date(fechaFin);
+		if (fechaInicio && fechaFin && fin <= inicio) {
+			return { fechaInvalida: true };
+		}
+		return null;
+	}
+	
 }

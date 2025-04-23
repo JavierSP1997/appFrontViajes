@@ -7,6 +7,23 @@
 	transition: background-color 0.3s ease;
 }
 
+h4{
+	color: var(--color-boton);
+}
+
+.enviar{
+	background-color: var(--color-boton) ;
+	border:2px solid var(--color-boton);
+	color: var(--color-texto-botones);
+	transition: 0.3s;
+
+	&:hover{
+		background-color: var(--color-boton-bgc-hover);
+        border: 2px solid var(--color-boton-bgc-hover);
+        transform: scale(1.05);
+    }
+}
+
 .btn:hover {
 	background-color: #0056b3;
 
