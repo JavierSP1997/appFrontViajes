@@ -3,7 +3,7 @@ export interface Notificacion {
 	id_usuario: number;
 	id_viaje: number;
 	mensaje: string;
-	// tipo: string;
+	 tipo: string;
 	fecha_notificacion: string;
 	estado: 'leído' | 'no_leído';
 	usuarioNombre: string;

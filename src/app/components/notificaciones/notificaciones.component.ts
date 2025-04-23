@@ -79,6 +79,7 @@ async ngOnInit(): Promise<void> {
   
       const actualizada = {
         mensaje: noti.mensaje,
+        tipo: noti.tipo, 
         estado: 'leído'
       };
   
