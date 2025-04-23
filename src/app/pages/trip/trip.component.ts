@@ -118,7 +118,7 @@ export class TripComponent {
 					toast: true,
 					position: "top-end",
 					showConfirmButton: false,
-					timer: 4000,
+					timer: 3000,
 					background: "#e0f2fe",
 					color: "#075985",
 				});
@@ -131,10 +131,14 @@ export class TripComponent {
 
 			localStorage.setItem(cooldownKey, ahora.toString());
 
-			// Actualizar lista de participantes
+			
 			const viajeActualizado = await this.viajesService.getViajeById(idViaje);
 			this.participantes = viajeActualizado.participantes ?? [];
-
+			this.esParticipante = this.participantes.some(
+				(p) => p.id_usuario === userId,
+			);
+			setTimeout(() => location.reload(), 3000);
+			
 			// 🔽 Forzar re-render y mantener scroll
 			const scrollY = window.scrollY;
 			this.viaje.participantes = [...this.participantes];
