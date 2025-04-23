@@ -1,20 +1,16 @@
 .text-danger {
 	min-height: 25px;
 }
-
 .gradiente {
 	background-image: linear-gradient(to right, white, #e4944a, #e4944a, white);
 	height: 3px;
 }
-
+h2 {
+	color: var(--color-boton-texto);
+}
 .titulo {
 	text-align: center;
 	margin: 50px auto;
-
-	h2 {
-		color: var(--color-boton-texto);
-	}
-
 	h5 {
 		margin-top: 20px;
 		color: var(--color-titulo-secundario);
