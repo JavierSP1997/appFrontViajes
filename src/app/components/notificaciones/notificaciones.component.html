@@ -10,12 +10,17 @@
   </button>
 
   @if (isDropdownOpen) {
-    <div class="dropdown-menu show">
+    <div class="dropdown-menu custom-dropdown-menu show">
+      
       @for (n of notificaciones; track n.id_notificacion) {
-        <a class="dropdown-item small" (click)="marcarComoLeido(n.id_notificacion)">
-          <strong>{{ n.usuarioNombre }}</strong> quiere unirse a <strong>{{ n.viajeTitulo }}</strong>
-        </a>
+        <div class="dropdown-item-container">
+          <a class="dropdown-item small" (click)="marcarComoLeido(n.id_notificacion)">
+            <strong>{{ n.usuarioNombre }}</strong> quiere unirse a <strong>{{ n.viajeTitulo }}</strong>
+          </a>
+          <button class="btn-close notification-close" (click)="cerrarNotificacion(n.id_notificacion)" aria-label="Close"></button>
+        </div>
       }
+
       @if (notificaciones.length === 0) {
         <span class="dropdown-item text-muted">No hay notificaciones</span>
       }
