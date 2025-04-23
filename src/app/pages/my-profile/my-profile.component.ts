@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { NotificacionesComponent } from "../../components/notificaciones/notificaciones.component";
 @Component({
 	selector: "app-my-profile",
-	imports: [RouterLink,NotificacionesComponent],
+	imports: [RouterLink, NotificacionesComponent],
 	templateUrl: "./my-profile.component.html",
 	styleUrl: "./my-profile.component.css",
 })
@@ -85,7 +85,9 @@ export class MyProfileComponent {
 
 			setTimeout(() => {
 				localStorage.removeItem("token");
-				this.router.navigate(["/"]);
+				this.router.navigate(["/"]).then(() => {
+					window.location.reload();
+				});
 			}, 2000);
 		}
 	}

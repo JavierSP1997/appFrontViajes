@@ -7,7 +7,6 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from "@angular/forms";
-import { GuideComponent } from "../../components/guide/guide.component";
 import Swal from "sweetalert2";
 @Component({
 	selector: "app-login",
@@ -34,8 +33,25 @@ export class LoginComponent {
 
 		try {
 			const response = await this.usuariosService.login(this.formLogin.value);
-			localStorage.setItem("token", response.token);		
-			this.router.navigate(["/"]);
+
+			Swal.fire({
+				toast: true,
+				position: "top-end",
+				icon: "info",
+				title: "¡Login existoso!",
+				showConfirmButton: false,
+				timer: 2000,
+				timerProgressBar: true,
+				background: "#f0f9ff",
+				color: "#0369a1",
+				iconColor: "#0ea5e9",
+			});
+			setTimeout(() => {
+				localStorage.setItem("token", response.token);
+				this.router.navigate(["/"]).then(() => {
+					window.location.reload();
+				});
+			}, 2000);
 			// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		} catch (msg: any) {
 			console.error("Error en el login", msg.error.error);
@@ -49,7 +65,7 @@ export class LoginComponent {
 				showConfirmButton: false,
 				background: "#fef2f2",
 				color: "#991b1b",
-			});			
+			});
 		}
 	}
 	checkError(field: string, validator: string): boolean | undefined {
