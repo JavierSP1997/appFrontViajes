@@ -18,36 +18,17 @@ export class NotificacionesComponent {
   notificaciones: Notificacion[] = [];
   token: string = localStorage.getItem("token") || "null";
 
-//  async ngOnInit(): Promise<void> {
-//    console.log(this.token)
-
-//    try {
-//      this.notificaciones = await this.notificacionesService.obtenerNotificaciones(this.token);
-//      console.log("###", this.notificaciones)
-//    } catch (err) {
-//      console.error("Error al cargar notificaciones:", err);
-//    }
-
-//  }
-
-//  async marcarComoLeido(id: number) {
-//    try {
-//      await this.notificacionesService.marcarComoLeido(id);
-//      this.notificaciones = this.notificaciones.filter((n) => n.id_notificacion !== id);
-//    } catch (err) {
-//      console.error("Error al marcar como leído:", err);
-//    }
-// }}
-
 async ngOnInit(): Promise<void> {
-    if (!this.token) return;
+  if (!this.token) return;
 
-    try {
-      this.notificaciones = await this.notificacionesService.obtenerNotificaciones(this.token);
-    } catch (err) {
-      console.error("Error al cargar notificaciones:", err);
-    }
+  try {
+    // this.notificaciones = await this.notificacionesService.obtenerNotificaciones(this.token);
+    const todasNotificaciones = await this.notificacionesService.obtenerNotificaciones(this.token);
+    this.notificaciones = todasNotificaciones.filter(n => {n.estado === 'leído'});
+  } catch (err) {
+    console.error("Error al cargar notificaciones:", err);
   }
+}
 
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
