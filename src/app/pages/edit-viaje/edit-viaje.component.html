@@ -1,100 +1,106 @@
 @if (esAnfitrion) {
-  <div class="container my-5">
-    <h2 class="mb-4 text-success">Editar viaje</h2>
+  <hgroup class="container titulo text-center mb-4">
+    <h2 class="text-success">EDITAR VIAJE</h2>
+    <h5 class="text-orange">Actualiza los detalles del viaje para que los viajeros estén siempre informados.</h5>
+  </hgroup>
+  <div class="gradiente mb-4"></div>
+  <div class="container">
+    <div class="borde-gradiente">
+      <div class="container formulario mb-5 mt-5">
+        <div class="rounded-4 p-4 mx-auto" style="max-width: 770px;">
+          <form [formGroup]="viajeForm" (ngSubmit)="guardarCambios()">
+            <div class="mb-1">
+              <label for="nombre_viaje" class="form-label">Nombre del viaje</label>
+              <input type="text" id="nombre_viaje" class="form-control" formControlName="nombre_viaje" placeholder="Título del viaje" />
+              <div class="text-danger">
+                @if (checkError('nombre_viaje', 'required')) {
+                  <small>Este campo es obligatorio.</small>
+                } @if (checkError('nombre_viaje', 'pattern')) {
+                  <small>Debe tener al menos 3 letras y texto.</small>
+                }
+              </div>
+            </div>
 
-    <form [formGroup]="viajeForm" (ngSubmit)="guardarCambios()" class="p-4">
-      <div class="mb-1">
-        <label for="nombre_viaje" class="form-label">Nombre del viaje</label>
-        <input type="text" id="nombre_viaje" class="form-control" formControlName="nombre_viaje" placeholder="Título del viaje" />
-        <div class="text-danger">
-            @if (checkError('nombre_viaje', 'required')) {
-                    <small>Este campo es obligatorio.</small>
-                }@if (checkError('nombre_viaje', 'pattern')) {
-                    <small>Debe tener al menos 3 letras y texto.</small>
-                  }
-        </div>
-    </div>
+            <div class="mb-1">
+              <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
+              <input type="date" id="fecha_inicio" class="form-control" formControlName="fecha_inicio" min="2024-01-01" max="2100-12-31" />
+              <div class="text-danger">
+                @if (checkError('fecha_inicio', 'required')) {
+                  <small>Este campo es obligatorio.</small>
+                }
+              </div>
+            </div>
 
-    
-    <div class="mb-1">
-      <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
-      <input type="date" id="fecha_inicio" class="form-control" formControlName="fecha_inicio" min="2024-01-01"
-      max="2100-12-31" />
-          <div class="text-danger">
-              @if (checkError('fecha_inicio', 'required')) {
-                      <small>Este campo es obligatorio.</small>
-                  }
-          </div>
-  </div>
-    
-  <div class="mb-1">
-    <label for="fecha_fin" class="form-label">Fecha de fin</label>
-    <input type="date" id="fecha_fin" class="form-control" formControlName="fecha_fin" min="2024-01-01"
-    max="2100-12-31"/>
-        <div class="text-danger">
-            @if (checkError('fecha_fin', 'required')) {
-                    <small>Este campo es obligatorio.</small>
+            <div class="mb-1">
+              <label for="fecha_fin" class="form-label">Fecha de fin</label>
+              <input type="date" id="fecha_fin" class="form-control" formControlName="fecha_fin" min="2024-01-01" max="2100-12-31" />
+              <div class="text-danger">
+                @if (checkError('fecha_fin', 'required')) {
+                  <small>Este campo es obligatorio.</small>
                 } @if (viajeForm.errors?.['fechaInvalida'] && viajeForm.touched) {
-                    <small>La fecha de fin debe ser posterior a la fecha de inicio.</small>}
-        </div>
-</div>
-    
-<div class="mb-1">
-  <label for="coste_por_persona" class="form-label">Coste estimado por persona (€)</label>
-  <input type="number" id="coste_por_persona" class="form-control" formControlName="coste_por_persona" placeholder="Indíca el precio mínimo por persona" />
-      <div class="text-danger">
-          @if (checkError('coste_por_persona', 'required')) {
+                  <small>La fecha de fin debe ser posterior a la fecha de inicio.</small>
+                }
+              </div>
+            </div>
+
+            <div class="mb-1">
+              <label for="coste_por_persona" class="form-label">Coste estimado por persona (€)</label>
+              <input type="number" id="coste_por_persona" class="form-control" formControlName="coste_por_persona" placeholder="Indica el precio mínimo por persona" />
+              <div class="text-danger">
+                @if (checkError('coste_por_persona', 'required')) {
                   <small>Este campo es obligatorio.</small>
-              }
-      </div>  
-</div>
-    
-<div class="mb-1">
-  <label for="personas_minimas" class="form-label">Número de viajeros</label>
-  <input type="number" id="personas_minimas" class="form-control" formControlName="personas_minimas" placeholder="Indíca el número de personas para realizar este viaje" />
-      <div class="text-danger">
-          @if (checkError('personas_minimas', 'required')) {
+                }
+              </div>
+            </div>
+
+            <div class="mb-1">
+              <label for="personas_minimas" class="form-label">Número de viajeros</label>
+              <input type="number" id="personas_minimas" class="form-control" formControlName="personas_minimas" placeholder="Indica el número de personas para realizar este viaje" />
+              <div class="text-danger">
+                @if (checkError('personas_minimas', 'required')) {
                   <small>Este campo es obligatorio.</small>
-              }
-      </div>
-</div>
-    
-      <div class="mb-1">
-        <label for="localizacion" class="form-label">Localizacion</label>
-        <select id="localizacion" class="form-control" formControlName="localizacion" >
-            <option value="">Selecciona una ciudad</option>
-            @for (ciudad of ciudadesSpain; track ciudad) {
-                <option>{{ ciudad }}</option>
-            }
-            <option>Otro...</option>
-        </select>
-            <div class="text-danger">
+                }
+              </div>
+            </div>
+
+            <div class="mb-1">
+              <label for="localizacion" class="form-label">Localización</label>
+              <select id="localizacion" class="form-control" formControlName="localizacion">
+                <option value="">Selecciona una ciudad</option>
+                @for (ciudad of ciudadesSpain; track ciudad) {
+                  <option>{{ ciudad }}</option>
+                }
+                <option>Otro...</option>
+              </select>
+              <div class="text-danger">
                 @if (checkError('ciudad', 'required')) {
-                        <small>Este campo es obligatorio.</small>
-                    }
-            </div>  
+                  <small>Este campo es obligatorio.</small>
+                }
+              </div>
+            </div>
+
+            <div class="mb-1">
+              <label for="itinerario" class="form-label">Itinerario</label>
+              <textarea id="itinerario" rows="3" class="form-control" formControlName="itinerario" placeholder="Cuéntale a los viajeros cuál es el plan, qué se hará cada día o qué se visitará..."></textarea>
+              <div class="text-danger">
+                @if (checkError('itinerario', 'required')) {
+                  <small>Este campo es obligatorio.</small>
+                }
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="imagen" class="form-label">Imagen (URL)</label>
+              <input type="text" id="imagen" class="form-control" formControlName="imagen" placeholder="Sube fotos del destino" />
+            </div>
+
+            <div class="button">
+              <button type="submit" class="btn btn-success" [disabled]="viajeForm.invalid">Guardar cambios</button>
+              <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-    
-    <div class="mb-1">
-      <label for="itinerario" class="form-label">Itinerario</label>
-      <textarea id="itinerario" rows="3" class="form-control" formControlName="itinerario" placeholder="Cuéntale a los viajeros cuál es el plan, qué se hará cada día o qué se visitará...">
-      </textarea>
-          <div class="text-danger">
-              @if (checkError('itinerario', 'required')) {
-                      <small>Este campo es obligatorio.</small>
-                  }
-          </div>  
-  </div>
-    
-      <div class="mb-3">
-        <label for="imagen" class="form-label">Imagen (URL)</label>
-        <input type="text" id="imagen" class="form-control" formControlName="imagen" />
-      </div>
-    
-      <div class="d-flex gap-2">
-        <button type="submit" class="btn btn-success" [disabled]="viajeForm.invalid">Guardar cambios</button>
-        <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
-      </div>
-    </form>
   </div>
 }
