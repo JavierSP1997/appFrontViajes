@@ -278,41 +278,46 @@ export class TripComponent {
     if (this.viaje && this.usuarioLogado) {
       const idViaje = this.viaje.id_viaje;
       Swal.fire({
-        title: "¿Estás seguro?",
-        text: "Esta acción eliminará el viaje permanentemente. ¿Deseas continuar?",
+        toast: true,
+        position: "top-end",
         icon: "warning",
+        title: "¿Eliminar viaje?",
+        text: "Se eliminará permanentemente. ¿Deseas continuar?",
         showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
         confirmButtonText: "Sí, eliminar",
-        cancelButtonText: "No, cancelar",
+        cancelButtonText: "Cancelar",
+        timerProgressBar: true,
+        background: "#fff3cd",
+        color: "#856404",
+        iconColor: "#ffc107",
+        showCloseButton: true,
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
             await this.viajesService.removeViaje(idViaje, this.token);
             Swal.fire({
-              title: "¡Viaje eliminado!",
-              text: "El viaje ha sido eliminado con éxito.",
-              icon: "success",
               toast: true,
               position: "top-end",
-              timer: 3000,
+              icon: "success",
+              title: "Viaje eliminado con éxito.",
               showConfirmButton: false,
-              background: "#fefce8",
-              color: "#713f12",
+              timer: 3000,
+              background: "#f0fdf4",
+              color: "#14532d",
+              iconColor: "#22c55e",
             });
             this.redirectToViajes();
           } catch (err) {
             Swal.fire({
-              title: "¡Error!",
-              text: "No se pudo eliminar el viaje.",
-              icon: "error",
               toast: true,
               position: "top-end",
-              timer: 3000,
+              icon: "error",
+              title: "Error al eliminar viaje.",
               showConfirmButton: false,
+              timer: 3000,
               background: "#fef2f2",
               color: "#991b1b",
+              iconColor: "#dc2626",
             });
           }
         }
@@ -324,14 +329,19 @@ export class TripComponent {
     if (!this.viaje) return;
 
     const confirmacion = await Swal.fire({
-      title: "¿Ya de vuelta?",
-      text: "Estás por dar el viaje por terminado. ¿Estás seguro de que deseas continuar?",
+      toast: true,
+      position: "top-end",
       icon: "warning",
+      title: "¿Finalizar viaje?",
+      text: "¿Estás seguro de que deseas marcarlo como finalizado?",
       showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
       confirmButtonText: "Sí, finalizar",
       cancelButtonText: "Cancelar",
+      timerProgressBar: true,
+      background: "#fff3cd",
+      color: "#856404",
+      iconColor: "#ffc107",
+      showCloseButton: true,
     });
 
     if (!confirmacion.isConfirmed) return;
@@ -342,18 +352,28 @@ export class TripComponent {
       this.esFinalizado = true;
 
       Swal.fire({
+        toast: true,
+        position: "top-end",
         icon: "success",
-        title: "¡Viaje finalizado!",
-        text: "El viaje se ha marcado como finalizado correctamente.",
-        confirmButtonText: "Aceptar",
+        title: "Viaje finalizado.",
+        showConfirmButton: false,
+        timer: 3000,
+        background: "#ecfdf5",
+        color: "#064e3b",
+        iconColor: "#10b981",
       });
     } catch (error) {
       console.error("Error al finalizar el viaje:", error);
       Swal.fire({
+        toast: true,
+        position: "top-end",
         icon: "error",
-        title: "Oops...",
-        text: "No se pudo finalizar el viaje. Intenta de nuevo más tarde.",
-        confirmButtonText: "Cerrar",
+        title: "No se pudo finalizar el viaje.",
+        showConfirmButton: false,
+        timer: 3000,
+        background: "#fef2f2",
+        color: "#991b1b",
+        iconColor: "#dc2626",
       });
     }
   }
