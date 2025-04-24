@@ -24,7 +24,7 @@ async ngOnInit(): Promise<void> {
   try {
     // this.notificaciones = await this.notificacionesService.obtenerNotificaciones(this.token);
     const todasNotificaciones = await this.notificacionesService.obtenerNotificaciones(this.token);
-    this.notificaciones = todasNotificaciones.filter(n => {n.estado === 'leído'});
+    this.notificaciones = todasNotificaciones.filter(n => n.estado === 'leído');
   } catch (err) {
     console.error("Error al cargar notificaciones:", err);
   }

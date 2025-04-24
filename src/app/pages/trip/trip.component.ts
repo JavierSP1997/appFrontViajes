@@ -199,14 +199,16 @@ export class TripComponent {
         );
 
         const result = await Swal.fire({
-          title: "¿Estás seguro?",
-          text: "Estás a punto de abandonar el viaje. ¿Deseas continuar?",
           icon: "warning",
+          title: "¿Estás seguro?",
+          text: "Estás a punto de abandonar el viaje.",
           showCancelButton: true,
-          confirmButtonColor: "#d33",
-          cancelButtonColor: "#3085d6",
-          confirmButtonText: "Sí, abandonar",
-          cancelButtonText: "No, cancelar",
+          toast: true,
+          position: "top-end",
+          background: "#fef9c3",
+          color: "#92400e",
+          showConfirmButton: true,
+          showCloseButton: true,
         });
 
         if (!result.isConfirmed) {
