@@ -87,6 +87,20 @@ span {
 	font-size: 1rem;
 }
 
+.seccion-vacio {
+	justify-items: center;
+
+}
+
+.vacio{
+	text-align: center;
+	margin: 50px;
+	font-size: 25px;
+	background-color: var(--color-boton-bgc-hover);
+	border-radius: 10px ;
+	width: 500px;
+}
+
 @media (min-width: 425px) {
 	figure {
 		height: 300px;
