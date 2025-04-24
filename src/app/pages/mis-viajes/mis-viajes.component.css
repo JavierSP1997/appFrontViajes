@@ -128,7 +128,7 @@ select{
 }
 
 .seccion {
-	min-height: calc(100vh - 352px );
+	min-height: calc(90vh - 352px );
 	/* align-content: center; */
 }
 
