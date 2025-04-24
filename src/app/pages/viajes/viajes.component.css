@@ -100,7 +100,7 @@ ul li span {
 }
 
 .seccion-principal{
-	min-height: calc(100vh - 200px );
+	min-height: calc(60px - 200px );
 	/* align-content: center; */
 }
 
