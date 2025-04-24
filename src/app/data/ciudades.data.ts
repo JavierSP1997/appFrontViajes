@@ -7,7 +7,10 @@ export const ciudades: string[] = [
 		"Budapest", "Dublín", "Estocolmo", "Oslo", "Helsinki", "Zúrich", "Ginebra", "Múnich", "Catania", "Florencia",
 	
 		// América
-		"Nueva York", "Los Ángeles", "Miami", "Buenos Aires", "Lima", "México DF", "Bogotá", "Santiago de Chile", 
+		"Nueva York", "Los Ángeles", "Miami", "Buenos Aires", "Lima", "México DF", "Bogotá", "Santiago de Chile", "Las Vegas",
+		"Toronto", "Montreal", "Vancouver", "San Francisco", "Chicago", "Dallas", "Houston", "Atlanta", "Orlando", "San Diego",
+		"Seattle", "Filadelfia", "Phoenix", "Boston", "San Antonio", "Puerto Rico", "Cuba", "República Dominicana", "Colombia",
+		"Venezuela", "Ecuador", "Paraguay", "Uruguay", "Chile", "Perú", "Bolivia", "Honduras", "Guatemala", "El Salvador",
 	
 		// Asia
 		"Tokio", "Pekín", "Bangkok", "Seúl", "Dubái", "Singapur", "Seúl", "Hong Kong", "Kuala Lumpur", "Bali", "China",
