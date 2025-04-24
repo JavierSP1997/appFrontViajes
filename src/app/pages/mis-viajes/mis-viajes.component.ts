@@ -108,14 +108,19 @@ export class MisViajesComponent {
 
 	eliminarViaje(idViaje: number) {
 		Swal.fire({
-			title: "¿Estás seguro?",
-			text: "Esta acción eliminará el viaje permanentemente. ¿Deseas continuar?",
-			icon: "warning",
-			showCancelButton: true,
-			confirmButtonColor: "#d33",
-			cancelButtonColor: "#3085d6",
-			confirmButtonText: "Sí, eliminar",
-			cancelButtonText: "No, cancelar",
+				toast: true,
+				position: "top-end",
+				icon: "warning",
+				title: "¿Eliminar viaje?",
+				text: "Se eliminará permanentemente. ¿Deseas continuar?",
+				showCancelButton: true,
+				confirmButtonText: "Sí, eliminar",
+				cancelButtonText: "Cancelar",
+				timerProgressBar: true,
+				background: "#fff3cd",
+				color: "#856404",
+				iconColor: "#ffc107",
+				showCloseButton: true,
 		}).then(async (result) => {
 			if (result.isConfirmed) {
 				try {
