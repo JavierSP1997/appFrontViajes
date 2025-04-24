@@ -77,8 +77,24 @@ export class EditUserProfileComponent {
 			};
 
 			await this.usuariosService.update(this.usuarioId, formData);
+
+			Swal.fire({
+				toast: true,
+				position: "top-end",
+				icon: "success",
+				title: "Cambios guardados",
+				text: "Tu perfil ha sido actualizado.",
+				showConfirmButton: false,
+				timer: 1000,
+				timerProgressBar: true,
+				background: "#d4edda",
+				color: "#155724",
+				iconColor: "#28a745",
+			});
+			
 			this.router.navigate(["/perfil-usuario"]);
 			console.log(formData);
+			
 		}
 	}
 
@@ -90,7 +106,7 @@ export class EditUserProfileComponent {
 			title: "Cambios no guardados",
 			text: "Se descartarán los cambios realizados.",
 			showConfirmButton: false,
-			timer: 2000,
+			timer: 1000,
 			timerProgressBar: true,
 			background: "#ffe0c2",
 			color: "#383d41",
