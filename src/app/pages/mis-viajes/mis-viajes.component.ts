@@ -20,7 +20,7 @@ export class MisViajesComponent {
 	token: string = localStorage.getItem("token") || "";
 
 	
-	usuarioIdLogado: number = 0
+	usuarioIdLogado= 0
 	filtroSeleccionado = 'todos';
 	viajesCreados: Viaje[] = [];
 	viajesParticipados: Viaje[] = [];
