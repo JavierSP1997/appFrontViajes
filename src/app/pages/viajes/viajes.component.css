@@ -99,6 +99,11 @@ ul li span {
 	color: #333;
 }
 
+.seccion-principal{
+	min-height: calc(100vh - 200px );
+	/* align-content: center; */
+}
+
 /* Responsive */
 @media (min-width: 425px) {
 	figure {

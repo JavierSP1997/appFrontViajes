@@ -1,47 +1,48 @@
-<!-- Finder para filtrar viajes -->
-<app-finder></app-finder>
+<div class="seccion-principal">
+    <app-finder></app-finder>
 
 
-<div class="boton text-end">
-    <button id="clear" class="btn btn-secondary" (click)="quitarFiltros()">Quitar filtros</button>
-</div>
-
-@if (arrViajes.length === 0) {
-<section class="m-4 seccion container m-auto text-center">
-    <div class="gradiente"></div>
-    <div class="m-4">
-        <h2 class="text-muted">No hay ningún viaje con esas características.</h2>
+    <div class="boton text-end">
+        <button id="clear" class="btn btn-secondary" (click)="quitarFiltros()">Quitar filtros</button>
     </div>
-    <button [routerLink]="['/publicar']" class="btn btn-warning mt-3">Crear un viaje</button>
-</section>
-}@else {
-<!-- Grid de cards -->
-<section class="m-4 seccion container m-auto">
-    <article class="viajes">
-        @for (v of arrViajes; track v.id_viaje) {
-        <section class="viaje position-relative" style="transition: opacity 0.3s ease"
-            [class.bg-light]="v.estado === 'finalizado'" [class.opacity-75]="v.estado === 'finalizado'">
-
-            @if (v.estado === 'finalizado') {
-            <div class="sello-finalizado">VIAJE FINALIZADO</div>
+    
+    @if (arrViajes.length === 0) {
+    <section class="m-4 seccion container m-auto text-center">
+        <div class="gradiente"></div>
+        <div class="m-4">
+            <h2 class="text-muted">No hay ningún viaje con esas características.</h2>
+        </div>
+        <button [routerLink]="['/publicar']" class="btn btn-warning mt-3">Crear un viaje</button>
+    </section>
+    }@else {
+    <!-- Grid de cards -->
+    <section class="m-4 seccion container m-auto">
+        <article class="viajes">
+            @for (v of arrViajes; track v.id_viaje) {
+            <section class="viaje position-relative" style="transition: opacity 0.3s ease"
+                [class.bg-light]="v.estado === 'finalizado'" [class.opacity-75]="v.estado === 'finalizado'">
+    
+                @if (v.estado === 'finalizado') {
+                <div class="sello-finalizado">VIAJE FINALIZADO</div>
+                }
+                @if (v.esAnfitrion) {
+                <div class="sello-anfitrion">ANFITRIÓN</div>
+                }
+    
+                <figure>
+                    <figcaption><span>{{v.nombre_viaje}}</span></figcaption>
+                    <img [src]="v.imagen ? v.imagen : 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
+                        alt="">
+                </figure>
+                <div class="parrafos">
+                    <ul class="list-unstyled">
+                        <li>Fecha del viaje <br> <span>{{v.fecha_inicio | date: 'dd-MM-yyyy'}}</span> </li>
+                        <li>Destino <br> <span>{{v.localizacion}}</span></li>
+                    </ul>
+                </div>
+                <button class="info" (click)="irATrip(v.id_viaje)">+ INFO</button>
+            </section>
             }
-            @if (v.esAnfitrion) {
-            <div class="sello-anfitrion">ANFITRIÓN</div>
-            }
-
-            <figure>
-                <figcaption><span>{{v.nombre_viaje}}</span></figcaption>
-                <img [src]="v.imagen ? v.imagen : 'https://fundacionglobalnature.org/wp-content/plugins/elementor/assets/images/placeholder.png'"
-                    alt="">
-            </figure>
-            <div class="parrafos">
-                <ul class="list-unstyled">
-                    <li>Fecha del viaje <br> <span>{{v.fecha_inicio | date: 'dd-MM-yyyy'}}</span> </li>
-                    <li>Destino <br> <span>{{v.localizacion}}</span></li>
-                </ul>
-            </div>
-            <button class="info" (click)="irATrip(v.id_viaje)">+ INFO</button>
-        </section>
-        }
-    </article>
-</section>}
+        </article>
+    </section>}
+</div>
