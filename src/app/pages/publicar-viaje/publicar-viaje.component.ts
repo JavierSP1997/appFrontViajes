@@ -45,7 +45,6 @@ export class PublicarViajeComponent {
 		localizacion: new FormControl("", [Validators.required]),
 		itinerario: new FormControl("", [
 			Validators.required,
-			Validators.pattern(/^[\p{L}\s]{3,}$/u),
 		]),
 		imagen: new FormControl(""),
 	},
