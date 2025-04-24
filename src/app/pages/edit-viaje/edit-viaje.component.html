@@ -15,7 +15,7 @@
               <div class="text-danger">
                 @if (checkError('nombre_viaje', 'required')) {
                   <small>Este campo es obligatorio.</small>
-                } @if (checkError('nombre_viaje', 'pattern')) {
+                } @if (checkError('nombre_viaje', 'required')) {
                   <small>Debe tener al menos 3 letras y texto.</small>
                 }
               </div>

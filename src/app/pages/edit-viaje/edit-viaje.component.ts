@@ -30,7 +30,6 @@ export class EditViajeComponent {
 	viajeForm = new FormGroup({
 		nombre_viaje: new FormControl("",[
 			Validators.required,
-			Validators.pattern(/^[\p{L}\s]{3,}$/u),
 		]),
 
 		fecha_inicio: new FormControl("",[Validators.required]),
@@ -48,7 +47,6 @@ export class EditViajeComponent {
 		localizacion: new FormControl("",[Validators.required]),
 		itinerario: new FormControl("",[
 			Validators.required,
-			Validators.pattern(/^[\p{L}\s]{3,}$/u),
 		]),
 		imagen: new FormControl(""),
 	},
